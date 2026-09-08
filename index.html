@@ -342,20 +342,6 @@
 
   footer{padding:40px 0; text-align:center; font-family:var(--font-mono); font-size:11.5px; color:var(--muted); border-top:1px solid var(--hair);}
 
-  /* cv modal */
-  .modal-backdrop{position:fixed; inset:0; background:rgba(5,5,8,0.82); backdrop-filter:blur(6px); z-index:100; display:flex; align-items:center; justify-content:center; padding:24px;
-    opacity:0; visibility:hidden; transition:opacity .5s var(--ease-premium), visibility 0s linear .5s;}
-  .modal-backdrop.open{opacity:1; visibility:visible; transition:opacity .5s var(--ease-premium), visibility 0s linear 0s;}
-  .modal{background:var(--surface); border:1px solid var(--hair); border-radius:18px; width:min(880px,100%); height:min(86vh,900px); display:flex; flex-direction:column; overflow:hidden; box-shadow:0 50px 100px rgba(0,0,0,.6);
-    opacity:0; transform:scale(0.94) translateY(16px); transition:opacity .5s var(--ease-premium), transform .5s var(--ease-premium);}
-  .modal-backdrop.open .modal{opacity:1; transform:scale(1) translateY(0);}
-  @media (prefers-reduced-motion: reduce){ .modal-backdrop, .modal{transition:none;} }
-  .modal-head{display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--hair);}
-  .modal-head strong{font-family:var(--font-mono); font-size:13px; color:var(--ivory);}
-  .modal-close{width:32px; height:32px; border-radius:8px; border:1px solid var(--hair-strong); background:transparent; color:var(--ivory); cursor:pointer; font-size:16px; line-height:1;}
-  .modal iframe{flex:1; border:0; width:100%; background:#fff;}
-  .modal-foot{padding:14px 20px; border-top:1px solid var(--hair); font-family:var(--font-mono); font-size:12px; color:var(--muted);}
-
   .sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap;}
 
   /* frog mascot — pointer-events:none throughout, never intercepts UI */
@@ -395,7 +381,7 @@
       <li><a href="#contact" data-sec="contact"><span class="n">07</span>Contact</a></li>
     </ul>
     <div style="display:flex; align-items:center; gap:12px;">
-      <button class="navcv" id="navViewCv" data-cursor="OPEN" type="button">View CV</button>
+      <button class="navcv" id="navViewCv" type="button">View CV</button>
       <button class="navburger" id="burgerBtn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -433,7 +419,8 @@
     </div>
     <div class="hero-ctas">
       <a class="btn btn-solid" href="#work" data-magnetic>Explore My Work <span class="btn-arrow">↘</span></a>
-      <button class="btn btn-line" id="heroViewCv" data-cursor="OPEN" type="button" data-magnetic>View CV <span class="btn-arrow">↗</span></button>
+      <button class="btn btn-line" id="heroViewCv" type="button" data-magnetic>View CV <span class="btn-arrow">↗</span></button>
+      <button class="btn btn-line" id="heroDownloadCv" type="button" data-magnetic>Download <span class="btn-arrow btn-arrow-down">↓</span></button>
       <a class="btn btn-ghost" href="#contact" data-magnetic>Let's Talk <span class="btn-arrow">→</span></a>
     </div>
   </div>
@@ -496,7 +483,7 @@
 
   <div class="wrap">
 
-    <div class="project-block" data-cursor="VIEW">
+    <div class="project-block">
       <div>
         <span class="project-num">01</span>
         <span class="project-cat">MSc Dissertation</span>
@@ -521,7 +508,7 @@
       </div></div>
     </div>
 
-    <div class="project-block" data-cursor="VIEW">
+    <div class="project-block">
       <div>
         <span class="project-num">02</span>
         <span class="project-cat">Business Analytics · 2024</span>
@@ -545,7 +532,7 @@
       </div></div>
     </div>
 
-    <div class="project-block" data-cursor="VIEW">
+    <div class="project-block">
       <div>
         <span class="project-num">03</span>
         <span class="project-cat">Business Analytics · 2026</span>
@@ -562,7 +549,7 @@
       </div></div>
     </div>
 
-    <div class="project-block" data-cursor="VIEW">
+    <div class="project-block">
       <div>
         <span class="project-num">04</span>
         <span class="project-cat">Hackathon · Top 10 Finalist</span>
@@ -587,7 +574,7 @@
       </div></div>
     </div>
 
-    <div class="project-block" data-cursor="VIEW">
+    <div class="project-block">
       <div>
         <span class="project-num">05</span>
         <span class="project-cat">UX Research · Product Feasibility · Prototyping · Market Research</span>
@@ -601,7 +588,7 @@
       </div></div>
     </div>
 
-    <div class="project-block" data-cursor="VIEW">
+    <div class="project-block">
       <div>
         <span class="project-num">06</span>
         <span class="project-cat">Agentic AI · Currently Building</span>
@@ -687,8 +674,8 @@
           </div>
         </div>
         <div class="cv-buttons">
-          <button class="btn btn-line" id="profileViewCv" data-cursor="OPEN" type="button">View CV <span class="btn-arrow">↗</span></button>
-          <button class="btn btn-solid" id="profileDownloadCv" data-cursor="OPEN" type="button">Download PDF <span class="btn-arrow btn-arrow-down">↓</span></button>
+          <button class="btn btn-line" id="profileViewCv" type="button">View CV <span class="btn-arrow">↗</span></button>
+          <button class="btn btn-solid" id="profileDownloadCv" type="button">Download PDF <span class="btn-arrow btn-arrow-down">↓</span></button>
         </div>
       </div>
     </div>
@@ -718,7 +705,7 @@
             <textarea id="cMessage" name="message" rows="4" placeholder="A role, a project, a question..."></textarea>
             <span class="errmsg">Please add a short message.</span>
           </div>
-          <button class="submit-btn" id="submitBtn" data-cursor="SEND" type="submit"><span id="submitLabel">Send Message <span class="btn-arrow">↗</span></span></button>
+          <button class="submit-btn" id="submitBtn" type="submit"><span id="submitLabel">Send Message <span class="btn-arrow">↗</span></span></button>
           <div class="formstate success" id="successState">✓ Your email app should have opened with the message ready — hit send there to reach me.</div>
           <div class="formstate error" id="errorState">Something went wrong opening your email app. Please email me directly instead.</div>
         </form>
@@ -734,14 +721,6 @@
 
 <footer>Leeds, United Kingdom · +44 7352 678656 · © Suwaasha Murugaperumal</footer>
 </main>
-
-<div class="modal-backdrop" id="cvModal">
-  <div class="modal">
-    <div class="modal-head"><strong>Suwaasha_Murugaperumal_CV.pdf</strong><button class="modal-close" id="modalClose" type="button" aria-label="Close preview">✕</button></div>
-    <iframe id="cvFrame" title="CV preview"></iframe>
-    <div class="modal-foot">💡 Use your browser's download icon in the preview toolbar above to save this PDF.</div>
-  </div>
-</div>
 
 <script>
 (function(){
@@ -1171,24 +1150,30 @@
     if(c) c.style.display='none';
   }
 
-  /* ---------- CV modal ---------- */
-  var cvModal = document.getElementById('cvModal');
-  var cvFrame = document.getElementById('cvFrame');
+  /* ---------- CV: real "view in new tab" + real "download", now that this
+     runs on a normal deployed site rather than a sandboxed preview ---------- */
   var cvBlobUrl = null;
-  function openCvModal(){
+  function getCvBlobUrl(){
     if(!cvBlobUrl){ cvBlobUrl = URL.createObjectURL(b64ToBlob(CV_BASE64,'application/pdf')); }
-    cvFrame.src = cvBlobUrl;
-    cvModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    return cvBlobUrl;
   }
-  function closeCvModal(){ cvModal.classList.remove('open'); document.body.style.overflow=''; }
-  ['navViewCv','mobileViewCv','heroViewCv','profileViewCv','profileDownloadCv'].forEach(function(id){
+  function viewCv(){ window.open(getCvBlobUrl(), '_blank', 'noopener'); }
+  function downloadCv(){
+    var a = document.createElement('a');
+    a.href = getCvBlobUrl();
+    a.download = 'Suwaasha_Murugaperumal_CV.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+  ['navViewCv','mobileViewCv','heroViewCv','profileViewCv'].forEach(function(id){
     var b = document.getElementById(id);
-    if(b) b.addEventListener('click', openCvModal);
+    if(b) b.addEventListener('click', viewCv);
   });
-  document.getElementById('modalClose').addEventListener('click', closeCvModal);
-  cvModal.addEventListener('click', function(e){ if(e.target===cvModal) closeCvModal(); });
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeCvModal(); });
+  ['heroDownloadCv','profileDownloadCv'].forEach(function(id){
+    var b = document.getElementById(id);
+    if(b) b.addEventListener('click', downloadCv);
+  });
 
   /* ---------- contact form (mailto handoff) ---------- */
   var form = document.getElementById('contactForm');
