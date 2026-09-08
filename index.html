@@ -419,8 +419,7 @@
     </div>
     <div class="hero-ctas">
       <a class="btn btn-solid" href="#work" data-magnetic>Explore My Work <span class="btn-arrow">↘</span></a>
-      <button class="btn btn-line" id="heroViewCv" type="button" data-magnetic>View CV <span class="btn-arrow">↗</span></button>
-      <button class="btn btn-line" id="heroDownloadCv" type="button" data-magnetic>Download <span class="btn-arrow btn-arrow-down">↓</span></button>
+      <button class="btn btn-line" id="heroDownloadCv" type="button" data-magnetic>Download CV <span class="btn-arrow btn-arrow-down">↓</span></button>
       <a class="btn btn-ghost" href="#contact" data-magnetic>Let's Talk <span class="btn-arrow">→</span></a>
     </div>
   </div>
@@ -674,7 +673,6 @@
           </div>
         </div>
         <div class="cv-buttons">
-          <button class="btn btn-line" id="profileViewCv" type="button">View CV <span class="btn-arrow">↗</span></button>
           <button class="btn btn-solid" id="profileDownloadCv" type="button">Download PDF <span class="btn-arrow btn-arrow-down">↓</span></button>
         </div>
       </div>
@@ -1166,7 +1164,7 @@
     a.click();
     document.body.removeChild(a);
   }
-  ['navViewCv','mobileViewCv','heroViewCv','profileViewCv'].forEach(function(id){
+  ['navViewCv','mobileViewCv'].forEach(function(id){
     var b = document.getElementById(id);
     if(b) b.addEventListener('click', viewCv);
   });
