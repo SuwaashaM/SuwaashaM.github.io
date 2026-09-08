@@ -262,24 +262,30 @@
   .visual-inner .badge-row span{font-family:var(--font-mono); font-size:11.5px; padding:6px 11px; border-radius:8px; background:rgba(101,21,37,0.08); border:1px solid rgba(101,21,37,0.22); color:var(--burgundy);}
 
   /* journey */
-  .timeline{position:relative; margin-top:20px;}
+  .timeline{position:relative; margin-top:32px;}
   .timeline::before{content:""; position:absolute; left:50%; top:0; bottom:0; width:1px; background:var(--hair-strong); transform:translateX(-50%);}
-  @media (max-width:760px){ .timeline::before{left:18px;} }
-  .tl-row{display:grid; grid-template-columns:1fr 60px 1fr; align-items:start; margin-bottom:8px; position:relative;}
-  @media (max-width:760px){ .tl-row{grid-template-columns:18px 1fr; padding-left:0;} }
-  .tl-year{font-family:var(--font-mono); color:var(--burgundy); font-size:13px; text-align:center; padding-top:8px;}
-  .tl-dot{width:9px; height:9px; border-radius:50%; background:var(--bg); border:1.5px solid var(--amethyst); justify-self:center; margin-top:12px; position:relative; z-index:2;}
-  @media (max-width:760px){ .tl-dot{margin-left:14px;} .tl-year{display:none;} }
-  .tl-card{background:var(--surface); border:1px solid var(--hair); border-radius:16px; padding:22px 24px;}
+  .timeline-fill{position:absolute; left:50%; top:0; width:2px; height:0%; background:linear-gradient(var(--amethyst), var(--lavender)); transform:translateX(-50%); transition:height .1s linear; z-index:1;}
+  .tl-row{display:grid; grid-template-columns:1fr 60px 1fr; align-items:center; margin-bottom:14px; position:relative;}
+  .tl-year{font-family:var(--font-display); font-weight:700; color:var(--burgundy); font-size:clamp(1.6rem,2.8vw,2.2rem); line-height:1; letter-spacing:-.01em; text-align:center;}
+  .tl-dot{width:11px; height:11px; border-radius:50%; background:var(--bg); border:2px solid var(--amethyst); justify-self:center; position:relative; z-index:2; box-shadow:0 0 0 5px var(--bg);}
+  .tl-card{background:var(--surface); border:1px solid var(--hair); border-radius:16px; padding:22px 24px; transition:border-color .25s ease, box-shadow .25s ease, transform .25s ease;}
   .tl-row.right .tl-card{grid-column:3;}
   .tl-row.left .tl-card{grid-column:1;}
-  @media (max-width:760px){ .tl-row.right .tl-card, .tl-row.left .tl-card{grid-column:2;} }
   .tl-card h4{font-family:var(--font-body); font-weight:700; font-size:16px; margin-bottom:4px; color:var(--ivory);}
   .tl-card .org{font-family:var(--font-mono); font-size:12px; color:var(--muted); display:block; margin-bottom:8px;}
   .tl-card p{margin:0; font-size:13.5px; color:var(--muted); line-height:1.6;}
+  .tl-row.now .tl-year{color:var(--amethyst);}
+  .tl-row.now .tl-dot{width:14px; height:14px; border-color:var(--amethyst); background:var(--amethyst); box-shadow:0 0 0 5px var(--bg), 0 0 0 9px rgba(101,21,37,0.16);}
   .tl-row.now .tl-card{border-color:rgba(101,21,37,0.32); box-shadow:var(--shadow-glow); padding:28px;}
   .tl-row.now .tl-card h4{font-size:19px;}
-  @media (max-width:760px){ .tl-row.right .tl-year, .tl-row.left .tl-year{display:none;} }
+
+  @media (max-width:760px){
+    .timeline::before, .timeline-fill{left:12px; transform:none;}
+    .tl-row{grid-template-columns:24px 1fr; column-gap:16px; row-gap:6px; align-items:start;}
+    .tl-dot{grid-column:1; grid-row:1; justify-self:center; margin-top:8px;}
+    .tl-year{grid-column:2; grid-row:1; text-align:left; font-size:1.2rem;}
+    .tl-row.right .tl-card, .tl-row.left .tl-card{grid-column:2; grid-row:2;}
+  }
 
   /* beyond data */
   .beyond{text-align:center; position:relative; background:var(--dark-contrast); color:#F5EFE6;}
@@ -609,7 +615,8 @@
 <section id="journey">
   <div class="wrap">
     <div class="section-head reveal"><span class="eyebrow">04 — Journey</span><h2><span class="rl"><span>Growth, experimentation,</span></span><span class="rl"><span>direction.</span></span></h2></div>
-    <div class="timeline">
+    <div class="timeline" id="timeline">
+      <div class="timeline-fill" id="timelineFill"></div>
       <div class="tl-row left reveal">
         <div class="tl-card"><h4>Public Relations Unit, Government of Tamil Nadu</h4><span class="org">Intern · Aug–Sep 2021</span><p>Assisted with public-sector communication and information coordination.</p></div>
         <div class="tl-dot"></div><div class="tl-year">2021</div>
@@ -866,6 +873,26 @@
     window.addEventListener('resize', updateProjectScroll);
     updateProjectScroll();
   }
+
+  /* ---------- journey: timeline spine fills as you scroll through it ---------- */
+  (function(){
+    var tl = document.getElementById('timeline');
+    var fill = document.getElementById('timelineFill');
+    if(!tl || !fill) return;
+    function updateTimelineFill(){
+      var r = tl.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var progress = (vh*0.75 - r.top) / r.height;
+      progress = Math.min(Math.max(progress, 0), 1);
+      fill.style.height = (reduceMotion ? Math.round(progress) * 100 : progress*100) + '%';
+    }
+    var tTicking = false;
+    window.addEventListener('scroll', function(){
+      if(!tTicking){ tTicking = true; requestAnimationFrame(function(){ updateTimelineFill(); tTicking = false; }); }
+    }, {passive:true});
+    window.addEventListener('resize', updateTimelineFill);
+    updateTimelineFill();
+  })();
 
   /* ---------- magnetic buttons ---------- */
   if(!isTouch && !reduceMotion){
