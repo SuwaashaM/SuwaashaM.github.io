@@ -52,7 +52,7 @@
   }
 
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-x:hidden; width:100%;}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
   body{
     margin:0; background:var(--bg); color:var(--ivory);
@@ -151,7 +151,7 @@
 
   .hero h1{font-family:var(--font-display); font-size:clamp(2.6rem,5.5vw,4.8rem); font-weight:800; line-height:0.98; letter-spacing:-.02em; margin-bottom:30px;
     position:relative;}
-  @media (max-width:520px){ .hero h1{font-size:clamp(2.1rem,11vw,3.4rem);} }
+  @media (max-width:520px){ .hero h1{font-size:clamp(2.1rem,9.5vw,2.6rem);} }
   .word{display:block; position:relative;}
   .word span{
     display:inline-block; position:relative;
@@ -185,8 +185,6 @@
     opacity:0; transform:translateY(14px); animation:heroFade .6s var(--ease-premium) forwards; animation-delay:1.2s;}
   @media (prefers-reduced-motion: reduce){ .hero-ctas{animation:none; opacity:1; transform:none;} }
   @media (max-width:900px){ .hero{text-align:center;} .hero-inner{max-width:100%;} .hero-tags,.hero-ctas{justify-content:center;} }
-  @media (max-width:520px){ .hero h1{font-size:clamp(3.1rem,15vw,4.6rem);} }
-  @media (max-width:360px){ .hero h1{font-size:clamp(2.7rem,15vw,3.8rem);} }
   .btn{display:inline-flex; align-items:center; gap:9px; padding:15px 26px; border-radius:999px; font-size:clamp(13.5px, 0.2vw + 13px, 15px); font-family:var(--font-mono); font-weight:700; letter-spacing:.02em; text-decoration:none; cursor:pointer; border:1px solid transparent; transition:transform .3s var(--ease-premium), box-shadow .3s var(--ease-premium), background .25s ease, border-color .25s ease, color .25s ease; will-change:transform;}
   .btn:hover{transform:translateY(-3px);}
   .btn:active{transform:translateY(-1px);}
@@ -216,7 +214,7 @@
 
   /* hero portrait */
   .hero-grid{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr); gap:28px; align-items:stretch;}
-  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr; gap:20px;} }
+  @media (max-width:900px){ .hero-grid{grid-template-columns:minmax(0,1fr); gap:20px;} }
   .hero-portrait{display:flex; justify-content:flex-end; align-items:flex-start; min-width:0; perspective:1200px;}
   @media (max-width:900px){ .hero-portrait{justify-content:center; align-items:center;} }
   .portrait-frame{position:relative; width:92%; min-width:0; will-change:transform; transition:transform .35s var(--ease-premium);}
@@ -385,7 +383,7 @@
   }
 
   /* beyond data — inverted "paper" card: the one warm-light moment in a dark page */
-  .beyond{text-align:center; position:relative; background:var(--ivory); color:var(--dark-contrast);}
+  .beyond{text-align:center; position:relative; background:var(--ivory); color:var(--dark-contrast); overflow:hidden;}
   .beyond::before, .beyond::after{content:""; position:absolute; left:0; right:0; height:64px; pointer-events:none; z-index:1;}
   .beyond::before{top:0; background:linear-gradient(to bottom, var(--bg), transparent);}
   .beyond::after{bottom:0; background:linear-gradient(to top, var(--bg), transparent);}
