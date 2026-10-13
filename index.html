@@ -1065,10 +1065,16 @@
     var pBlocks = Array.prototype.slice.call(document.querySelectorAll('.project-block'));
     function updateProjectScroll(){
       var vh = window.innerHeight;
+      var vcenter = vh / 2;
       pBlocks.forEach(function(el){
         var r = el.getBoundingClientRect();
-        var center = r.top + r.height/2;
-        var dist = Math.min(Math.abs(center - vh/2) / (vh/2 + r.height/2), 1);
+        // distance from the viewport's centre to the NEAREST point within the card —
+        // not the card's own centre. A card taller than the viewport (e.g. the
+        // dissertation card with stats + takeaway + diagram) would otherwise never
+        // have its own centre line up with vh/2 while you're actually scrolling
+        // through and reading it, so it'd stay blurred the whole time.
+        var nearest = vcenter < r.top ? r.top : (vcenter > r.bottom ? r.bottom : vcenter);
+        var dist = Math.min(Math.abs(vcenter - nearest) / vcenter, 1);
         el.style.transform = 'scale(' + (1 - dist*0.06) + ')';
         el.style.opacity = (1 - dist*0.6).toFixed(2);
         el.style.filter = dist > 0.08 ? 'blur(' + (dist*3.2).toFixed(2) + 'px)' : 'none';
