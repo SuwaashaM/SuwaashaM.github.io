@@ -1277,6 +1277,7 @@
      runs on a normal deployed site rather than a sandboxed preview ---------- */
   var cvBlobUrl = null;
   function getCvBlobUrl(){
+    if(/^https?:$/.test(location.protocol)){ return 'cv/Suwaasha_Murugaperumal_CV.pdf'; }
     if(!cvBlobUrl){ cvBlobUrl = URL.createObjectURL(b64ToBlob(CV_BASE64,'application/pdf')); }
     return cvBlobUrl;
   }
