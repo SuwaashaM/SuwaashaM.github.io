@@ -497,7 +497,7 @@
   .rail-wrap{position:relative; margin-top:6px;}
   .rail{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:18px 4px 26px; margin:0 -4px; scrollbar-width:none;}
   .rail::-webkit-scrollbar{display:none;}
-  .tile{position:relative; flex:0 0 clamp(230px, 26vw, 300px); aspect-ratio:16/10; scroll-snap-align:start; border-radius:16px; overflow:hidden; text-decoration:none; color:var(--ivory); display:flex; flex-direction:column; justify-content:flex-end; gap:6px; padding:18px 20px;
+  .tile{position:relative; flex:1 1 0; min-width:clamp(230px, 26vw, 300px); aspect-ratio:16/10; scroll-snap-align:start; border-radius:16px; overflow:hidden; text-decoration:none; color:var(--ivory); display:flex; flex-direction:column; justify-content:flex-end; gap:6px; padding:18px 20px;
     background:radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--tile) 38%, transparent), transparent 62%), linear-gradient(160deg, var(--surface-2), var(--surface) 70%);
     border:1px solid var(--hair); box-shadow:0 10px 30px rgba(0,0,0,0.35); transition:transform .35s var(--ease-premium), box-shadow .35s var(--ease-premium), border-color .25s ease;}
   .tile::after{content:""; position:absolute; left:0; right:0; bottom:0; height:3px; background:var(--tile); opacity:.85;}
@@ -531,6 +531,9 @@
   .detail-body .project-block{padding:0 !important; border-top:none !important; transform:none !important; opacity:1 !important; filter:none !important; margin:0;}
   @media (max-width:640px){ .detail-modal{padding:0;} .detail-panel{border-radius:0; min-height:100%; padding:64px 20px 32px;} }
   html.modal-open{overflow:hidden;}
+
+  .rails-ready .rail-details.single{display:block;}
+  .rail-wrap.single{display:none;}
 
 </style>
 
@@ -943,10 +946,22 @@
     <div class="rail-wrap reveal">
       <button class="rail-arrow prev" type="button" aria-label="Scroll left" data-dir="-1">‹</button>
       <div class="rail" role="list" aria-label="Experience titles">
-        <a class="tile" href="#exp-startup" data-open="exp-startup" style="--tile:var(--champagne);" role="listitem">
+        <a class="tile" href="#exp-startup" data-open="exp-startup" style="--tile:var(--amethyst);" role="listitem">
           <span class="tile-num" aria-hidden="true">01</span><span class="tile-badge">NDA</span>
           <span class="tile-title">Confidential Industry Product Project</span>
           <span class="tile-genre">Work experience · 2026</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#exp-corizo" data-open="exp-corizo" style="--tile:var(--champagne);" role="listitem">
+          <span class="tile-num" aria-hidden="true">02</span><span class="tile-badge">Internship</span>
+          <span class="tile-title">Data Science Intern, Corizo EdTech</span>
+          <span class="tile-genre">Remote · 2024</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#exp-azure" data-open="exp-azure" style="--tile:var(--signal-2);" role="listitem">
+          <span class="tile-num" aria-hidden="true">03</span><span class="tile-badge">Internship</span>
+          <span class="tile-title">Cloud &amp; IoT Intern, Microsoft Azure</span>
+          <span class="tile-genre">Cloud · IoT · 2022–23</span>
           <span class="tile-more" aria-hidden="true">View details</span>
         </a>
       </div>
@@ -972,6 +987,32 @@
           <div class="lock">🔒 Details redacted under NDA</div>
         </div>
         <div class="tech-row"><span>UX Research</span><span>Figma</span><span>Lovable</span><span>Feasibility</span><span>Prototyping</span></div>
+      </div></div>
+    </div>
+
+    <div class="project-block" id="exp-corizo">
+      <div>
+        <span class="project-num">02</span>
+        <span class="project-cat">Internship · Remote · Jul – Aug 2024</span>
+        <h3>Data Science Intern<br>Corizo EdTech</h3>
+        <p class="p-justify" style="margin-top:8px;">My first hands-on run of the full data science workflow on real datasets. I prepared and explored the data in Python before any modelling. I then built and evaluated machine learning models against it. Results went out as structured reports and visualisations rather than raw numbers.</p>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--champagne);">
+        <div class="flow" style="margin:0;"><span class="step">Prepare</span><span class="arrow">→</span><span class="step">Explore</span><span class="arrow">→</span><span class="step">Model</span><span class="arrow">→</span><span class="step">Evaluate</span><span class="arrow">→</span><span class="step">Report</span></div>
+        <div class="tech-row"><span>Python</span><span>Machine learning</span><span>Data visualisation</span></div>
+      </div></div>
+    </div>
+
+    <div class="project-block" id="exp-azure">
+      <div>
+        <span class="project-num">03</span>
+        <span class="project-cat">Internship · Dec 2022 – Jan 2023</span>
+        <h3>Cloud &amp; IoT Intern<br>Microsoft Azure</h3>
+        <p class="p-justify" style="margin-top:8px;">An early look at how connected devices and the cloud fit together. I developed an IoT-based system using Microsoft Azure services. The work involved cloud-connected workflows and real-time data-processing concepts. It gave me practical, foundational exposure to cloud computing, IoT architecture and data monitoring.</p>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--signal-2);">
+        <div class="flow" style="margin:0;"><span class="step">Device</span><span class="arrow">→</span><span class="step">Azure cloud</span><span class="arrow">→</span><span class="step">Real-time processing</span><span class="arrow">→</span><span class="step">Monitoring</span></div>
+        <div class="tech-row"><span>Microsoft Azure</span><span>IoT</span><span>Cloud (foundational)</span></div>
       </div></div>
     </div>
 
@@ -1176,6 +1217,14 @@
 (function(){
   var root = document.documentElement;
   root.classList.add('rails-ready');
+  /* a section with only one item shows it directly instead of as a row */
+  document.querySelectorAll('.rail-wrap').forEach(function(wrap){
+    if(wrap.querySelectorAll('.tile').length > 1) return;
+    wrap.classList.add('single');
+    var sec = wrap.closest('section');
+    var det = sec && sec.querySelector('.rail-details');
+    if(det) det.classList.add('single');
+  });
 
   /* Work filters now filter the title row */
   var bar = document.getElementById('workFilters');
