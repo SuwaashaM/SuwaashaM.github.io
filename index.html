@@ -563,7 +563,7 @@
     <div class="building-card reveal" data-tilt data-tilt-max="4">
       <div class="building-top">
         <span class="eyebrow" style="margin:0;">Featured</span>
-        <span class="status-chip"><span class="pulse"></span>Hackathon entry · October 2026</span>
+        <span class="status-chip"><span class="pulse"></span>Hackathon entry · Completed October 2026</span>
       </div>
       <h3>ResultWise</h3>
       <div class="building-sub">AI in Healthcare Hackathon, Leeds · Team of four · Live prototype on synthetic data</div>
@@ -695,10 +695,25 @@
 
   <div class="wrap">
 
-    <div class="project-block" id="hack-resultwise">
+    <div class="project-block" id="hack-nvidia">
       <div>
         <span class="project-num">01</span>
-        <span class="project-cat">Hackathon · Team participant · October 2026</span>
+        <span class="project-cat">Hackathon · Solo · In Development</span>
+        <h3>AI Research<br>Assistant</h3>
+        <p class="p-justify" style="margin-top:8px;">A planned AI research assistant that helps people investigate a research question, find relevant sources, weigh the evidence and produce answers with citations they can check.</p>
+        <dl class="hack-facts"><div><dt>Event</dt><dd>Nebius × NVIDIA Global AI Hackathon 2026</dd></div><div><dt>Participation</dt><dd>Solo</dd></div><div><dt>Status</dt><dd>In development: concept and development planning. Nothing has been built or submitted yet.</dd></div><div><dt>Deadline</dt><dd>30 October 2026</dd></div><div><dt>Challenge</dt><dd>Answers from AI tools are hard to trust when you can't see where each claim came from or whether the sources disagree.</dd></div><div><dt>Planned features</dt><dd>Research question input; multi-step research planning; source discovery and document analysis; source-linked answers with citations; flagging unsupported claims; comparing conflicting evidence; structured research summaries.</dd></div><div><dt>Intended architecture</dt><dd>NVIDIA open-source models served through Nebius Token Factory or Nebius AI Cloud. Not yet integrated.</dd></div></dl>
+        <div class="key-takeaway"><span class="kt-label">Next update</span><p>Once the app is built and submitted, this entry will be updated with its status, links and a full case study.</p></div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--signal-2);">
+        <div class="tech-row"><span>NVIDIA open models (planned)</span><span>Nebius (planned)</span><span>Citations (planned)</span></div>
+        <div class="flow" style="margin:0;"><span class="step">Question</span><span class="arrow">→</span><span class="step">Plan</span><span class="arrow">→</span><span class="step">Sources</span><span class="arrow">→</span><span class="step">Evidence check</span><span class="arrow">→</span><span class="step">Cited answer</span></div>
+        <p class="visual-note">Planned research flow, not yet implemented.</p>
+      </div></div>
+    </div>
+    <div class="project-block" id="hack-resultwise">
+      <div>
+        <span class="project-num">02</span>
+        <span class="project-cat">Hackathon · Team participant · Completed · October 2026</span>
         <h3>ResultWise</h3>
         <p class="p-justify" style="margin-top:8px;">No follow-up silently lost: a prototype that reads breast cancer scan reports, tracks every recommended follow-up across two hospitals, and reaches the patient in her own language, with a clinician approving every step.</p>
         <dl class="hack-facts"><div><dt>Event</dt><dd>AI in Healthcare Hackathon, Leeds</dd></div><div><dt>Date</dt><dd>24–25 October 2026</dd></div><div><dt>Team</dt><dd>Vishalakshi Murali, Suwaasha Murugaperumal, Chihiro Egawa, Jyoti Harpal</dd></div><div><dt>Challenge</dt><dd>Follow-up recommendations sit in free-text scan reports. When care moves between hospitals, each system only sees its own bookings, so a recommended scan can be missed without anyone noticing.</dd></div><div><dt>Solution</dt><dd>AI extracts the test, due date, urgency and the exact sentence it came from. Plain rules check bookings at both hospitals and escalate when a test is overdue. A clinician confirms each extraction and approves every patient message, which is translated, back-translated and fact-checked. The patient portal works in eight languages, and urgent findings always go to a phone call.</dd></div><div><dt>My contribution</dt><dd>Set up the repository and built the first working Python/Streamlit prototype; built the clinician review-and-approve flow and the visible-translation interface; added Gemini and Groq support with a connection test and shorter timeouts; wrote the held-out evaluation and documentation; created and maintained the Lovable web app the team demoed.</dd></div><div><dt>Technologies</dt><dd>Lovable (React, TanStack Start, TypeScript, Tailwind), Supabase Postgres and Realtime, Zod, Python, Streamlit, Pydantic, SQLite, Gemini, Groq, Ollama, FHIR R4, pytest, GitHub Actions.</dd></div><div><dt>Lessons learned</dt><dd>Our keyword rules scored 97% on the reports we tuned them on and 22% on new ones, so a number only counts on held-out data. Limiting what the AI is allowed to do made the rest of the system easier to trust and test.</dd></div><div><dt>Limitations</dt><dd>A hackathon prototype on synthetic data (fictional hospitals and patients). It is not a medical device, not clinically validated and not deployed.</dd></div></dl>
@@ -716,7 +731,7 @@
 
     <div class="project-block" id="hack-hauntify">
       <div>
-        <span class="project-num">02</span>
+        <span class="project-num">03</span>
         <span class="project-cat">Hackathon · Participant, Top 10 finalist · October 2025</span>
         <h3>Hauntify</h3>
         <p class="p-justify" style="margin-top:8px;">An interactive app combining computer vision and NLP, built and shipped in a hackathon timeframe.</p>
@@ -746,9 +761,26 @@
 
   <div class="wrap">
 
-    <div class="project-block">
+    <div class="project-block" id="research-continuing">
       <div>
         <span class="project-num">01</span>
+        <span class="project-cat">Research · Ongoing · University of Leeds</span>
+        <h3>Machine Learning for Hidden Grip Strategies in Human Reach-to-Grasp Movements</h3>
+        <p class="p-justify" style="margin-top:8px;">Continuing my MSc dissertation research with Dr Carlo Campagnoli and Dr Elham Mirfarah.</p>
+        <div class="key-takeaway"><span class="kt-label">Status</span><p>Completed MSc dissertation. A research extension and potential publication are in preparation; the paper has not yet been submitted or accepted.</p></div>
+        <div class="key-takeaway"><span class="kt-label">Original research</span><p>Investigated whether machine-learning models could identify differences in visual-feedback conditions from human reach-to-grasp movements, using two experimental datasets, participant-independent model evaluation and analysis of the grasp and transport components of the movement.</p></div>
+        <div class="key-takeaway"><span class="kt-label">Current development</span><p>Discussions with Dr Carlo Campagnoli have identified potential for a research paper based on the existing data. The immediate next step is a matched analysis across both experiments and both the grasp and transport components.</p></div>
+        <div class="key-takeaway"><span class="kt-label">Longer-term direction</span><p>Exploring whether similar movement-based measurements could eventually contribute to research on stroke-related visuomotor difficulties. This is exploratory: no patient study is underway.</p></div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6">
+        <div class="tech-row"><span>Reach-to-grasp kinematics</span><span>Participant-independent ML</span><span>Grasp + transport</span></div>
+        <div class="flow" style="margin:0;"><span class="step">MSc dissertation</span><span class="arrow">→</span><span class="step">Matched analysis</span><span class="arrow">→</span><span class="step">Paper in preparation</span></div>
+        <p class="visual-note">Completed work, then the next planned steps. Nothing beyond the dissertation is published yet.</p>
+      </div></div>
+    </div>
+    <div class="project-block">
+      <div>
+        <span class="project-num">02</span>
         <span class="project-cat">MSc Dissertation · University of Leeds · Completed</span>
         <h3>Machine Learning<br>× Human Movement</h3>
         <p class="p-justify" style="margin-top:8px;">Participant-independent decoding of visual-feedback information from reach-to-grasp kinematics.</p>
@@ -790,7 +822,7 @@
 
     <div class="project-block">
       <div>
-        <span class="project-num">02</span>
+        <span class="project-num">03</span>
         <span class="project-cat">Clinical Research · Proposal Stage</span>
         <h3>Visuomotor Control<br>After Stroke</h3>
         <p class="p-justify" style="margin-top:8px;">A research proposal extending my MSc dissertation into the clinical domain, using reach-to-grasp kinematics and machine learning to study visuomotor control after stroke.</p>
@@ -831,12 +863,12 @@
       <div>
         <span class="project-num">01</span>
         <span class="project-cat">Work experience · Client project · Aug – Sep 2026</span>
-        <h3>Children's Bedtime<br>Routine App</h3>
-        <p class="p-justify" style="margin-top:8px;">A University of Leeds MSc work-experience project with an early-stage startup client building a children's bedtime app around brushing, a story and sleep. I worked in a multidisciplinary team, alongside technical and non-technical members, on user-experience research, competitive analysis, technical feasibility and proof-of-concept development.</p>
-        <div class="key-takeaway"><span class="kt-label">Research</span><p>Mapped existing children's brushing, story and sleep apps and connected toothbrushes, and reviewed NHS oral-health guidance and recent evidence on how brushing is measured. This reframed the problem around the gap between parent-reported and device-recorded brushing.</p></div>
+        <h3>Confidential Industry<br>Product Project</h3>
+        <p class="p-justify" style="margin-top:8px;">University of Leeds MSc work experience with an early-stage startup client. Worked within a multidisciplinary team to evaluate an early-stage digital product, contributing to user-experience research, competitive analysis, technical feasibility assessment and proof-of-concept development.</p>
+        <div class="key-takeaway"><span class="kt-label">Research</span><p>Competitor and evidence research, using published studies and official guidance to test the product's assumptions and sharpen the problem it should solve.</p></div>
         <div class="key-takeaway"><span class="kt-label">Product design</span><p>Contributed to interface decisions and the team's product recommendations, delivered as a feasibility report and a client-facing presentation.</p></div>
-        <div class="key-takeaway"><span class="kt-label">Development</span><p>Built a mobile-first proof of concept in Lovable that set the child-friendly visual language, navigation and placeholder screens (brushing timer, story library, voice recordings, playback and wind-down) for teammates to build features on. Also built a standalone 90-second bedtime play-session demo with saved progress and a calm handover to brushing.</p></div>
-        <div class="key-takeaway"><span class="kt-label">Testing</span><p>Added a "simulate next day" control so the client could test resume-from-checkpoint behaviour in a single sitting, and kept the play length as one setting so other durations could be tried.</p></div>
+        <div class="key-takeaway"><span class="kt-label">Development</span><p>Built a mobile-first proof of concept in Lovable that set the visual language, navigation and screen structure for teammates to build features on, plus a standalone interactive demo of one core product idea.</p></div>
+        <div class="key-takeaway"><span class="kt-label">Testing</span><p>Built in controls so the client could try key behaviours, such as progress saved across sessions, in a single sitting.</p></div>
         <div class="key-takeaway"><span class="kt-label">Collaboration</span><p>Worked across the research and product sides with teammates who each owned individual features, and presented the findings to the client.</p></div>
         <p style="font-family:var(--font-serif); font-style:italic; color:var(--muted); font-size:clamp(17px, 0.3vw + 16px, 19px); margin-top:18px;">Some of my most interesting work can't live publicly on the internet.</p>
         <div class="project-actions"><span class="lock-note">🔒 Client-confidential project — selected details available during interview.</span></div>
