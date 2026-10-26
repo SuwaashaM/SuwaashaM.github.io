@@ -511,6 +511,8 @@
   .tile:hover, .tile:focus-visible{transform:translateY(-4px) scale(1.045); border-color:color-mix(in srgb, var(--tile) 60%, transparent); box-shadow:var(--shadow-deep), 0 0 0 1px color-mix(in srgb, var(--tile) 30%, transparent); z-index:2;}
   .tile-num{position:absolute; top:6px; right:14px; font-family:var(--font-display); font-weight:800; font-size:clamp(54px, 5vw, 72px); line-height:1; color:transparent; -webkit-text-stroke:1px color-mix(in srgb, var(--tile) 55%, transparent); opacity:.7; pointer-events:none;}
   .tile-badge{position:absolute; top:16px; left:18px; font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:4px 9px; border-radius:6px; background:rgba(10,10,19,0.55); border:1px solid var(--hair-strong); color:var(--ivory);}
+  .tile:has(.tile-badge){padding-top:58px;}
+  @media (max-width:600px){ .tile{aspect-ratio:auto; min-height:200px;} }
   .tile-badge.top10{background:var(--oxblood); border-color:var(--oxblood); color:#fff; font-weight:700;}
   .tile-title{font-family:var(--font-display); font-weight:700; font-size:clamp(20px, 1.4vw + 12px, 25px); line-height:1.1; letter-spacing:-.01em; text-wrap:balance;}
   .tile-genre{font-family:var(--font-mono); font-size:clamp(11.5px, 0.1vw + 11px, 12.5px); color:var(--muted); letter-spacing:.03em;}
