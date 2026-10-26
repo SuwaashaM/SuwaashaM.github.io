@@ -464,6 +464,20 @@
   }
 
 
+  /* work filters + hackathon fact lists (added for the five-section structure; existing tokens only) */
+  .work-filters{display:flex; flex-wrap:wrap; gap:8px; margin:-8px 0 36px;}
+  .work-filters button{font-family:var(--font-mono); font-size:clamp(12.5px, 0.15vw + 12px, 13.5px); letter-spacing:.03em; color:var(--muted); background:transparent; border:1px solid var(--hair-strong); border-radius:999px; padding:9px 16px; cursor:pointer; transition:color .2s ease, background .2s ease, border-color .2s ease;}
+  .work-filters button:hover{color:var(--ivory); border-color:var(--amethyst);}
+  .work-filters button[aria-pressed="true"]{color:var(--bg); background:var(--ivory); border-color:var(--ivory);}
+  .project-block[hidden]{display:none;}
+  #work .project-block.first-visible{padding-top:0; border-top:none;}
+  .hack-facts{margin:22px 0 0; border-top:1px solid var(--hair);}
+  .hack-facts div{display:grid; grid-template-columns:150px 1fr; gap:14px; padding:12px 0; border-bottom:1px solid var(--hair);}
+  .hack-facts dt{font-family:var(--font-mono); font-size:clamp(11px, 0.1vw + 10.5px, 12px); text-transform:uppercase; letter-spacing:.1em; color:var(--burgundy); padding-top:3px;}
+  .hack-facts dd{margin:0; color:var(--muted); font-size:clamp(14.5px, 0.3vw + 13.5px, 16px); line-height:1.6;}
+  @media (max-width:560px){ .hack-facts div{grid-template-columns:1fr; gap:4px;} }
+  .project-actions .gh-link{margin-right:18px;}
+
 </style>
 
 <div class="topbar" id="topbar"></div>
@@ -482,13 +496,11 @@
   <div class="wrap">
     <a class="brand" href="#home"><span class="dot"></span>SUWAASHA MURUGAPERUMAL</a>
     <ul class="navlinks" id="navlinks">
-      <li><a href="#home" data-sec="home"><span class="n">01</span>Home</a></li>
-      <li><a href="#about" data-sec="about"><span class="n">02</span>About</a></li>
-      <li><a href="#work" data-sec="work"><span class="n">03</span>Work</a></li>
-      <li><a href="#journey" data-sec="journey"><span class="n">04</span>Journey</a></li>
-      <li><a href="#beyond" data-sec="beyond"><span class="n">05</span>Beyond Data</a></li>
-      <li><a href="#profile" data-sec="profile"><span class="n">06</span>Profile</a></li>
-      <li><a href="#contact" data-sec="contact"><span class="n">07</span>Contact</a></li>
+      <li><a href="#work" data-sec="work"><span class="n">01</span>Work</a></li>
+      <li><a href="#hackathons" data-sec="hackathons"><span class="n">02</span>Hackathons</a></li>
+      <li><a href="#research" data-sec="research"><span class="n">03</span>Research</a></li>
+      <li><a href="#experience" data-sec="experience"><span class="n">04</span>Experience</a></li>
+      <li><a href="#about" data-sec="about"><span class="n">05</span>About</a></li>
     </ul>
     <div style="display:flex; align-items:center; gap:12px;">
       <button class="navcv" id="navViewCv" type="button">View CV</button>
@@ -497,23 +509,25 @@
   </div>
 </nav>
 <div class="mobilemenu" id="mobileMenu">
-  <a href="#home"><span class="n">01</span>Home</a>
-  <a href="#about"><span class="n">02</span>About</a>
-  <a href="#work"><span class="n">03</span>Work</a>
-  <a href="#journey"><span class="n">04</span>Journey</a>
-  <a href="#beyond"><span class="n">05</span>Beyond Data</a>
-  <a href="#profile"><span class="n">06</span>Profile</a>
+  <a href="#home"><span class="n">00</span>Home</a>
+  <a href="#work"><span class="n">01</span>Work</a>
+  <a href="#hackathons"><span class="n">02</span>Hackathons</a>
+  <a href="#research"><span class="n">03</span>Research</a>
+  <a href="#experience"><span class="n">04</span>Experience</a>
+  <a href="#community"><span class="n">05</span>Community &amp; Learning</a>
+  <a href="#about"><span class="n">06</span>About</a>
   <a href="#contact"><span class="n">07</span>Contact</a>
   <button class="navcv" id="mobileViewCv" type="button">View CV</button>
 </div>
 
 <div class="progress-rail" id="progressRail" aria-hidden="true">
   <span class="node" data-sec="home"></span><span class="seg"></span>
-  <span class="node" data-sec="about"></span><span class="seg"></span>
   <span class="node" data-sec="work"></span><span class="seg"></span>
-  <span class="node" data-sec="journey"></span><span class="seg"></span>
-  <span class="node" data-sec="beyond"></span><span class="seg"></span>
-  <span class="node" data-sec="profile"></span><span class="seg"></span>
+  <span class="node" data-sec="hackathons"></span><span class="seg"></span>
+  <span class="node" data-sec="research"></span><span class="seg"></span>
+  <span class="node" data-sec="experience"></span><span class="seg"></span>
+  <span class="node" data-sec="community"></span><span class="seg"></span>
+  <span class="node" data-sec="about"></span><span class="seg"></span>
   <span class="node" data-sec="contact"></span>
 </div>
 
@@ -544,176 +558,40 @@
   <div class="scrollcue" style="position:relative; z-index:2;"><span>Scroll to explore</span><span class="line"></span></div>
 </header>
 
-<section id="about">
-  <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">02 — About</span><h2><span class="rl"><span>Point of view.</span></span></h2></div>
-    <div class="about-layout">
-      <div class="reveal about-col">
-        <p class="about-statement"><span class="rl"><span>"I don't just train models.</span></span><span class="rl"><span>I question what the data is actually telling us."</span></span></p>
-        <div class="about-tags"><span>DATA</span><span>× HUMAN BEHAVIOUR</span><span>× AI</span><span>× PRODUCT</span></div>
-        <p class="p-justify">I'm completing my MSc in Data Science and Analytics at the University of Leeds, building on a B.Tech in Information Technology. My work sits at the intersection of machine learning, statistical rigour and product thinking — I'm as interested in why a model works as in whether it does, and in what a result actually means for the person who has to act on it.</p>
-        <p class="p-justify">That shows up as a habit: engineer interpretable features before reaching for complexity, validate honestly enough to trust the result, and communicate findings so a non-technical stakeholder can act on them. It's carried me from movement-kinematics research to customer analytics to a computer-vision hackathon build — different data, same discipline.</p>
-        <div class="building-inline">
-          <p>Currently, I'm exploring agentic AI by building an intelligent Personal Assistant designed to coordinate tasks, analyse information, support decision-making and automate useful workflows.</p>
-        </div>
-      </div>
-      <div class="reveal about-side">
-        <div class="quiz-card" id="quizCard">
-          <span class="quiz-kicker">🧠 Common belief, checked</span>
-          <p class="quiz-q">"A deep learning model will always beat a simpler one like logistic regression." True or false?</p>
-          <div class="quiz-options">
-            <button class="quiz-opt" type="button" data-correct="false">True</button>
-            <button class="quiz-opt" type="button" data-correct="true">False</button>
-          </div>
-          <p class="quiz-feedback" id="quizFeedback"></p>
-        </div>
-        <a class="github-badge" href="https://github.com/SuwaashaM" target="_blank" rel="noopener">
-          <span class="gh-icon"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></span>
-          <span class="gh-text"><strong>@SuwaashaM</strong><em>Browse my repositories</em></span>
-          <span class="gh-go"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="building-section" style="padding:0 0 clamp(2rem,4vw,3rem);">
+<section id="featured" style="padding:0 0 clamp(2rem,4vw,3rem);">
   <div class="wrap">
     <div class="building-card reveal" data-tilt data-tilt-max="4">
       <div class="building-top">
-        <span class="eyebrow" style="margin:0;">Currently Building</span>
-        <span class="status-chip"><span class="pulse"></span>Building now — In development</span>
+        <span class="eyebrow" style="margin:0;">Featured</span>
+        <span class="status-chip"><span class="pulse"></span>Hackathon entry · October 2026</span>
       </div>
-      <h3>AI Personal Assistant Agent</h3>
-      <div class="building-sub">Agentic AI · R&amp;D project · Not yet public</div>
-      <p class="p-justify">An evolving agentic AI project exploring how an intelligent personal assistant can coordinate tasks, analyse information, support decision-making and automate useful workflows — while keeping the user in control.</p>
-      <div class="flow">
-        <span class="step">User</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
-        <span class="step">Agent</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
-        <span class="step">Planner</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
-        <span class="step">Tools / APIs</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
-        <span class="step">Memory / Context</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
-        <span class="step">Actions / Recommendations</span>
-      </div>
-      <div class="tech-cats">
-        <div><span class="lbl">Currently Using</span><div class="chips"><span class="chip">Python</span></div></div>
-        <div><span class="lbl">Exploring</span><div class="chips"><span class="chip exploring">Agentic AI</span><span class="chip exploring">LLMs</span><span class="chip exploring">Automation</span><span class="chip exploring">APIs</span><span class="chip exploring">Workflow Intelligence</span></div></div>
-      </div>
+      <h3>ResultWise</h3>
+      <div class="building-sub">AI in Healthcare Hackathon, Leeds · Team of four · Live prototype on synthetic data</div>
+      <p class="p-justify">A safety net for scan follow-ups that get lost when care moves between hospitals. AI reads the report, plain rules track the follow-up at every hospital, and a clinician approves each step before anything reaches the patient, in her own language.</p>
+      <div class="flow"><span class="step">Scan report</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span><span class="step">AI reads it</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span><span class="step">Clinician confirms</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span><span class="step">Rules track both hospitals</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span><span class="step">Patient message</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span><span class="step">Patient reply</span></div>
+      <div class="project-actions"><a class="gh-link" href="#hack-resultwise">Read the hackathon entry <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(90deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a><a class="gh-link" href="https://resultwise.lovable.app/" target="_blank" rel="noopener">Open the live app <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a><a class="gh-link" href="https://github.com/SuwaashaM/RESULTWISE" target="_blank" rel="noopener">View on GitHub <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a></div>
     </div>
   </div>
 </section>
 
 <section id="work" class="section-major">
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">03 — Work</span><h2><span class="rl"><span>Selected work.</span></span></h2></div>
+    <div class="section-head reveal"><span class="eyebrow">01 — Work</span><h2><span class="rl"><span>Projects.</span></span></h2></div>
+    <div class="work-filters reveal" id="workFilters" role="group" aria-label="Filter projects">
+      <button type="button" data-filter="all" aria-pressed="true">All Projects</button>
+      <button type="button" data-filter="independent" aria-pressed="false">Independent</button>
+      <button type="button" data-filter="academic" aria-pressed="false">Academic</button>
+      <button type="button" data-filter="aiml" aria-pressed="false">AI / ML</button>
+    </div>
+    <p class="sr-only" id="workFilterStatus" aria-live="polite"></p>
   </div>
 
   <div class="wrap">
 
-    <div class="project-block">
+    <div class="project-block" data-cat="academic aiml">
       <div>
         <span class="project-num">01</span>
-        <span class="project-cat">MSc Dissertation · Completed</span>
-        <h3>Machine Learning<br>× Human Movement</h3>
-        <p class="p-justify" style="margin-top:8px;">Participant-independent decoding of visual-feedback information from reach-to-grasp kinematics.</p>
-        <p style="font-family:var(--font-mono); font-size:clamp(13px, 0.15vw + 12.5px, 14px); color:var(--muted); margin-top:10px; line-height:1.6;">"Machine Learning Decoding of Reach-to-Grasp Kinematics" — University of Leeds. Supervised by Dr Carlo Campagnoli and Dr Elham Mirfarah. Submitted 3 Sep 2026, viva completed 15 Sep 2026.</p>
-        <div class="project-metrics featured">
-          <div class="m"><span class="n" data-count="2600" data-suffix="+">2,600+</span><div class="stat-rule"><i></i></div><span class="l">Trials analysed</span></div>
-          <div class="m"><span class="n" data-count="23">23</span><div class="stat-rule"><i></i></div><span class="l">Participants</span></div>
-          <div class="m"><span class="n" data-count="6">6</span><div class="stat-rule"><i></i></div><span class="l">ML / DL architectures</span></div>
-          <div class="m"><span class="n" data-count="64.2" data-decimals="1" data-suffix="%">64.2%</span><div class="stat-rule"><i></i></div><span class="l">Best accuracy</span></div>
-        </div>
-        <div class="key-takeaway">
-          <span class="kt-label">Key Takeaway</span>
-          <p>Grasp and Transport reach trajectories carried statistically significant information about visual-feedback conditions — confirmed above chance via permutation testing across 2,600+ trials and 23 participants, under leave-one-participant-out validation. Logistic Regression was the strongest of six classical and deep-sequence models tried (64.2% accuracy), though decoding performance was modest overall, and Transport showed an edge over Grasp in one multiclass analysis.</p>
-        </div>
-      </div>
-      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6">
-        <svg class="trajectory-fig" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs><linearGradient id="trajGrad1" x1="0" y1="1" x2="1" y2="0">
-            <stop offset="0%" style="stop-color:var(--signal)"/><stop offset="100%" style="stop-color:var(--amethyst)"/>
-          </linearGradient></defs>
-          <path d="M30,112 C140,118 200,60 250,50 C290,45 330,45 360,32" fill="none" stroke="var(--hair-strong)" stroke-width="1.5"/>
-          <path d="M30,108 C100,70 160,30 220,25 C270,20 320,35 360,28" fill="none" stroke="var(--hair-strong)" stroke-width="1.5"/>
-          <path d="M30,110 C120,100 180,40 230,35 C280,30 320,40 360,30" fill="none" stroke="url(#trajGrad1)" stroke-width="2.6" stroke-linecap="round"/>
-          <circle cx="110" cy="95" r="2.6" fill="var(--signal)"/><circle cx="195" cy="55" r="2.6" fill="var(--signal)"/>
-          <circle cx="260" cy="38" r="2.6" fill="var(--amethyst)"/><circle cx="320" cy="33" r="2.6" fill="var(--amethyst)"/>
-          <circle cx="30" cy="110" r="5" fill="var(--ivory)"/>
-          <circle cx="360" cy="30" r="7" fill="none" stroke="var(--amethyst)" stroke-width="2"/>
-        </svg>
-        <p class="trajectory-cap">Illustrative reach-to-grasp trajectory — not raw trial data</p>
-        <div class="tech-row"><span>Python</span><span>scikit-learn</span><span>TensorFlow/Keras</span><span>R</span></div>
-        <div class="visual-bar-label"><span>Logistic Regression (best model)</span><span>64.2%</span></div>
-        <div class="visual-bar"><i data-fill="64.2"></i></div>
-        <p class="visual-note">Random Forest and all four deep sequence models (TCN, 1D-CNN, LSTM, GRU) scored lower under the same participant-independent validation.</p>
-      </div></div>
-    </div>
-
-    <div class="project-block">
-      <div>
-        <span class="project-num">02</span>
-        <span class="project-cat">Clinical Research · Proposal Stage</span>
-        <h3>Visuomotor Control<br>After Stroke</h3>
-        <p class="p-justify" style="margin-top:8px;">A research proposal extending my MSc dissertation into the clinical domain, using reach-to-grasp kinematics and machine learning to study visuomotor control after stroke.</p>
-        <p style="font-family:var(--font-mono); font-size:clamp(13px, 0.15vw + 12.5px, 14px); color:var(--muted); margin-top:10px; line-height:1.6;">"Quantifying Visuomotor Control After Stroke Using Reach-to-Grasp Kinematics and Machine Learning" — prepared October 2026.</p>
-        <div class="key-takeaway">
-          <span class="kt-label">Status</span>
-          <p>Early-stage proposal, awaiting academic feedback. It proposes comparing reaching and grasping — velocity, smoothness, coordination and movement time — between stroke survivors and healthy individuals under limited visual feedback, and relating these to established clinical assessments, with the long-term aim of informing understanding of motor impairment and recovery. This is a proposed study, not completed clinical research or a published paper.</p>
-        </div>
-      </div>
-      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6">
-        <svg class="trajectory-fig" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M30,100 C120,90 200,50 280,40 C310,37 335,38 360,40" fill="none" stroke="var(--signal)" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M30,102 C80,60 110,130 160,90 C210,50 250,110 300,70 C330,50 345,80 360,90" fill="none" stroke="var(--amethyst)" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="2 7"/>
-          <circle cx="30" cy="101" r="5" fill="var(--ivory)"/>
-          <circle cx="360" cy="40" r="6" fill="none" stroke="var(--signal)" stroke-width="2"/>
-          <circle cx="360" cy="90" r="6" fill="none" stroke="var(--amethyst)" stroke-width="2"/>
-        </svg>
-        <div style="display:flex; gap:18px; flex-wrap:wrap; font-family:var(--font-mono); font-size:clamp(11.5px, 0.1vw + 11px, 12.5px); color:var(--muted);">
-          <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--signal);display:inline-block;"></span>Typical control</span>
-          <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--amethyst);display:inline-block;"></span>Illustrative — after stroke</span>
-        </div>
-        <p class="trajectory-cap">Conceptual diagram for the proposal — not measured data</p>
-        <div class="tech-row"><span>Reach-to-Grasp Kinematics</span><span>Machine Learning</span><span>Stroke Rehabilitation</span></div>
-      </div></div>
-    </div>
-
-    <div class="project-block">
-      <div>
-        <span class="project-num">03</span>
-        <span class="project-cat">Business Analytics · 2024</span>
-        <h3>Customer Lifetime<br>Value Prediction</h3>
-        <p class="p-justify" style="margin-top:8px;">Modelled purchasing behaviour across 10,000+ transaction records to identify high-value customer segments.</p>
-        <div class="project-metrics">
-          <div class="m"><span class="n" data-count="10000" data-suffix="+">10,000+</span><span class="l">Records</span></div>
-          <div class="m"><span class="n" data-count="22" data-prefix="+" data-suffix="%">+22%</span><span class="l">Predictive lift</span></div>
-          <div class="m"><span class="n">IJRAR</span><span class="l">Published, 2024</span></div>
-        </div>
-        <div class="key-takeaway">
-          <span class="kt-label">Key Takeaway</span>
-          <p>Feature engineering — not a more complex model — drove a confirmed +22% lift in predictive performance across 10,000+ transaction records; the approach later contributed to a peer-reviewed publication (IJRAR, 2024).</p>
-        </div>
-      </div>
-      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--champagne);">
-        <svg class="trajectory-fig" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <line x1="18" y1="130" x2="202" y2="130" stroke="var(--hair-strong)" stroke-width="1"/>
-          <line x1="18" y1="70" x2="202" y2="70" stroke="var(--hair-strong)" stroke-width="1" stroke-dasharray="3 4"/>
-          <rect x="45" y="70" width="46" height="60" rx="4" fill="rgba(232,184,109,0.30)"/>
-          <rect x="129" y="46" width="46" height="84" rx="4" fill="var(--champagne)"/>
-          <text x="68" y="148" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--muted)">Baseline</text>
-          <text x="152" y="148" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--champagne)" font-weight="700">+22%</text>
-        </svg>
-        <div class="tech-row"><span>Python</span><span>Pandas</span><span>Regression</span></div>
-        <div class="visual-bar-label"><span>Predictive lift after feature engineering</span><span>+22%</span></div>
-        <div class="visual-bar"><i data-fill="100"></i></div>
-        <p class="visual-note">Relative improvement over the baseline model, measured with cross-validation.</p>
-      </div></div>
-    </div>
-
-    <div class="project-block">
-      <div>
-        <span class="project-num">04</span>
-        <span class="project-cat">Business Analytics · 2026</span>
+        <span class="project-cat">Academic · MSc coursework, refactored · 2026</span>
         <h3>ICO Fundraising<br>Prediction</h3>
         <p class="p-justify" style="margin-top:8px;">Modelled Initial Coin Offering outcomes from digital-presence, compliance and geographic signals.</p>
         <div class="key-takeaway">
@@ -751,22 +629,104 @@
       </div></div>
     </div>
 
-    <div class="project-block">
+    <div class="project-block" data-cat="academic aiml">
       <div>
-        <span class="project-num">05</span>
-        <span class="project-cat">Hackathon · Top 10 Finalist</span>
-        <h3>Halloween<br>Application</h3>
+        <span class="project-num">02</span>
+        <span class="project-cat">Academic · Undergraduate project · 2024</span>
+        <h3>Customer Lifetime<br>Value Prediction</h3>
+        <p class="p-justify" style="margin-top:8px;">Modelled purchasing behaviour across 10,000+ transaction records to identify high-value customer segments.</p>
+        <div class="project-metrics">
+          <div class="m"><span class="n" data-count="10000" data-suffix="+">10,000+</span><span class="l">Records</span></div>
+          <div class="m"><span class="n" data-count="22" data-prefix="+" data-suffix="%">+22%</span><span class="l">Predictive lift</span></div>
+          <div class="m"><span class="n">IJRAR</span><span class="l">Published, 2024</span></div>
+        </div>
+        <div class="key-takeaway">
+          <span class="kt-label">Key Takeaway</span>
+          <p>Feature engineering — not a more complex model — drove a confirmed +22% lift in predictive performance across 10,000+ transaction records; the approach later contributed to a peer-reviewed publication (IJRAR, 2024).</p>
+        </div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--champagne);">
+        <svg class="trajectory-fig" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="18" y1="130" x2="202" y2="130" stroke="var(--hair-strong)" stroke-width="1"/>
+          <line x1="18" y1="70" x2="202" y2="70" stroke="var(--hair-strong)" stroke-width="1" stroke-dasharray="3 4"/>
+          <rect x="45" y="70" width="46" height="60" rx="4" fill="rgba(232,184,109,0.30)"/>
+          <rect x="129" y="46" width="46" height="84" rx="4" fill="var(--champagne)"/>
+          <text x="68" y="148" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--muted)">Baseline</text>
+          <text x="152" y="148" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--champagne)" font-weight="700">+22%</text>
+        </svg>
+        <div class="tech-row"><span>Python</span><span>Pandas</span><span>Regression</span></div>
+        <div class="visual-bar-label"><span>Predictive lift after feature engineering</span><span>+22%</span></div>
+        <div class="visual-bar"><i data-fill="100"></i></div>
+        <p class="visual-note">Relative improvement over the baseline model, measured with cross-validation.</p>
+      </div></div>
+    </div>
+
+    <div class="project-block" data-cat="independent aiml">
+      <div>
+        <span class="project-num">03</span>
+        <span class="project-cat">Independent · Agentic AI · In progress · Not yet public</span>
+        <h3>AI Personal<br>Assistant Agent</h3>
+        <p class="p-justify" style="margin-top:8px;">Exploring an agentic AI system designed to act as an intelligent Personal Assistant — helping organise tasks, analyse information, support decisions and automate useful workflows, while keeping the user in control.</p>
+        <div class="key-takeaway">
+          <span class="kt-label">Current Status</span>
+          <p>In development — architecture and prototyping stage (User → Agent → Planner → Tools/APIs → Memory/Context → Actions), no completed results yet. Next milestone: the planner and memory layers.</p>
+        </div>
+        <div style="margin-top:22px;"><div class="flow">
+        <span class="step">User</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
+        <span class="step">Agent</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
+        <span class="step">Planner</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
+        <span class="step">Tools / APIs</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
+        <span class="step">Memory / Context</span><span class="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
+        <span class="step">Actions / Recommendations</span>
+      </div></div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--signal-2);">
+        <div class="tech-row"><span>Python</span><span>Agentic AI (exploring)</span><span>LLMs (exploring)</span><span>Automation (exploring)</span><span>APIs (exploring)</span><span>Workflow Intelligence (exploring)</span></div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<section id="hackathons" class="section-major">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="eyebrow">02 — Hackathons</span><h2><span class="rl"><span>Hackathons.</span></span></h2></div>
+  </div>
+
+  <div class="wrap">
+
+    <div class="project-block" id="hack-resultwise">
+      <div>
+        <span class="project-num">01</span>
+        <span class="project-cat">Hackathon · Team participant · October 2026</span>
+        <h3>ResultWise</h3>
+        <p class="p-justify" style="margin-top:8px;">No follow-up silently lost: a prototype that reads breast cancer scan reports, tracks every recommended follow-up across two hospitals, and reaches the patient in her own language, with a clinician approving every step.</p>
+        <dl class="hack-facts"><div><dt>Event</dt><dd>AI in Healthcare Hackathon, Leeds</dd></div><div><dt>Date</dt><dd>24–25 October 2026</dd></div><div><dt>Team</dt><dd>Vishalakshi Murali, Suwaasha Murugaperumal, Chihiro Egawa, Jyoti Harpal</dd></div><div><dt>Challenge</dt><dd>Follow-up recommendations sit in free-text scan reports. When care moves between hospitals, each system only sees its own bookings, so a recommended scan can be missed without anyone noticing.</dd></div><div><dt>Solution</dt><dd>AI extracts the test, due date, urgency and the exact sentence it came from. Plain rules check bookings at both hospitals and escalate when a test is overdue. A clinician confirms each extraction and approves every patient message, which is translated, back-translated and fact-checked. The patient portal works in eight languages, and urgent findings always go to a phone call.</dd></div><div><dt>My contribution</dt><dd>Set up the repository and built the first working Python/Streamlit prototype; built the clinician review-and-approve flow and the visible-translation interface; added Gemini and Groq support with a connection test and shorter timeouts; wrote the held-out evaluation and documentation; created and maintained the Lovable web app the team demoed.</dd></div><div><dt>Technologies</dt><dd>Lovable (React, TanStack Start, TypeScript, Tailwind), Supabase Postgres and Realtime, Zod, Python, Streamlit, Pydantic, SQLite, Gemini, Groq, Ollama, FHIR R4, pytest, GitHub Actions.</dd></div><div><dt>Lessons learned</dt><dd>Our keyword rules scored 97% on the reports we tuned them on and 22% on new ones, so a number only counts on held-out data. Limiting what the AI is allowed to do made the rest of the system easier to trust and test.</dd></div><div><dt>Limitations</dt><dd>A hackathon prototype on synthetic data (fictional hospitals and patients). It is not a medical device, not clinically validated and not deployed.</dd></div></dl>
+        <div class="project-actions" style="margin-top:22px;"><a class="gh-link" href="https://resultwise.lovable.app/demo" target="_blank" rel="noopener">Guided demo <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a><a class="gh-link" href="https://resultwise.lovable.app/" target="_blank" rel="noopener">Live app <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a><a class="gh-link" href="https://resultwise.lovable.app/film" target="_blank" rel="noopener">Demo film <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a><a class="gh-link" href="https://github.com/SuwaashaM/RESULTWISE" target="_blank" rel="noopener">GitHub <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a></div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--signal-2);">
+        <div class="tech-row"><span>LLM extraction</span><span>Rule engine</span><span>Human review</span><span>FHIR R4</span></div>
+        <div class="visual-bar-label"><span>AI: follow-ups found (held-out)</span><span>100%</span></div>
+        <div class="visual-bar"><i data-fill="100"></i></div>
+        <div class="visual-bar-label"><span>Keyword rules: follow-ups found</span><span>22%</span></div>
+        <div class="visual-bar"><i data-fill="22"></i></div>
+        <p class="visual-note">10 held-out synthetic reports never used for tuning. The AI found 90% real items (rules 100%) and every urgent follow-up (rules 50%). A small synthetic test set; real validation would be needed before clinical use.</p>
+      </div></div>
+    </div>
+
+    <div class="project-block" id="hack-hauntify">
+      <div>
+        <span class="project-num">02</span>
+        <span class="project-cat">Hackathon · Participant, Top 10 finalist · October 2025</span>
+        <h3>Hauntify</h3>
         <p class="p-justify" style="margin-top:8px;">An interactive app combining computer vision and NLP, built and shipped in a hackathon timeframe.</p>
         <div class="project-metrics">
           <div class="m"><span class="n" data-count="90" data-prefix="~" data-suffix="%">~90%</span><span class="l">Model accuracy</span></div>
           <div class="m"><span class="n">Top 10</span><span class="l">Finalist</span></div>
         </div>
-        <div class="key-takeaway">
-          <span class="kt-label">Key Takeaway</span>
-          <p>Shipped a working computer-vision + NLP app inside a single hackathon sprint — ~90% model accuracy, selected as a Top 10 finalist.</p>
-        </div>
+        <dl class="hack-facts"><div><dt>Event</dt><dd>Halloween Hackathon</dd></div><div><dt>Date</dt><dd>October 2025</dd></div><div><dt>Challenge</dt><dd>Build an interactive, Halloween-themed app within the hackathon window.</dd></div><div><dt>Solution</dt><dd>A Streamlit app: take a webcam photo, apply Vampire, Ghost, Zombie or Witch filters with distortion, fog and sparkle effects, score how spooky a sentence is with a confidence level, and get a costume suggestion.</dd></div><div><dt>My contribution</dt><dd>Built and published the app and its code.</dd></div><div><dt>Technologies</dt><dd>Python, Streamlit, OpenCV, Pillow, NumPy, scikit-learn.</dd></div><div><dt>Lessons learned</dt><dd>Shipping a working computer-vision and NLP app inside one sprint means keeping the user journey to a couple of clicks.</dd></div></dl>
         <div class="project-actions">
-          <a class="gh-link" href="https://github.com/SuwaashaM/hauntify-halloween-app" target="_blank" rel="noopener">View on GitHub <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a>
+          <a class="gh-link" href="https://github.com/SuwaashaM/hauntify-halloween-app" target="_blank" rel="noopener">GitHub <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a>
         </div>
       </div>
       <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--amethyst);">
@@ -776,12 +736,108 @@
       </div></div>
     </div>
 
+  </div>
+</section>
+
+<section id="research" class="section-major">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="eyebrow">03 — Research</span><h2><span class="rl"><span>Research.</span></span></h2></div>
+  </div>
+
+  <div class="wrap">
+
     <div class="project-block">
       <div>
-        <span class="project-num">06</span>
-        <span class="project-cat">UX Research · Product Feasibility · Prototyping · Market Research</span>
-        <h3>Confidential Industry<br>Product Project</h3>
-        <p class="p-justify" style="margin-top:8px;">Worked within a multidisciplinary team to evaluate an early-stage digital product, contributing to user-experience research, competitive analysis, technical feasibility assessment and proof-of-concept development.</p>
+        <span class="project-num">01</span>
+        <span class="project-cat">MSc Dissertation · University of Leeds · Completed</span>
+        <h3>Machine Learning<br>× Human Movement</h3>
+        <p class="p-justify" style="margin-top:8px;">Participant-independent decoding of visual-feedback information from reach-to-grasp kinematics.</p>
+        <p style="font-family:var(--font-mono); font-size:clamp(13px, 0.15vw + 12.5px, 14px); color:var(--muted); margin-top:10px; line-height:1.6;">"Machine Learning Decoding of Reach-to-Grasp Kinematics" — University of Leeds. Supervised by Dr Carlo Campagnoli and Dr Elham Mirfarah. Submitted 3 Sep 2026, viva completed 15 Sep 2026.</p>
+        <div class="project-metrics featured">
+          <div class="m"><span class="n" data-count="2600" data-suffix="+">2,600+</span><div class="stat-rule"><i></i></div><span class="l">Trials analysed</span></div>
+          <div class="m"><span class="n" data-count="23">23</span><div class="stat-rule"><i></i></div><span class="l">Participants</span></div>
+          <div class="m"><span class="n" data-count="6">6</span><div class="stat-rule"><i></i></div><span class="l">ML / DL architectures</span></div>
+          <div class="m"><span class="n" data-count="64.2" data-decimals="1" data-suffix="%">64.2%</span><div class="stat-rule"><i></i></div><span class="l">Best accuracy</span></div>
+        </div>
+        <div class="key-takeaway"><span class="kt-label">Research question</span><p>Can reach-to-grasp kinematics reveal whether visual feedback was available, in participants the model has never seen?</p></div>
+        <div class="key-takeaway"><span class="kt-label">Methodology</span><p>Two motion-capture experiments (10 participants and 1,151 trials; 13 participants and 1,523 trials). Each grasp was time-normalised and summarised as ten movement phases × seven grip-aperture features. Logistic Regression and Random Forest were evaluated with leave-one-participant-out validation, within-participant permutation tests (200 shuffles) and Benjamini–Hochberg correction. Four deep sequence models (TCN, 1D-CNN, LSTM, GRU) were explored under repeated 10-fold cross-validation.</p></div>
+        <div class="key-takeaway">
+          <span class="kt-label">Key Findings</span>
+          <p>Grasp and Transport reach trajectories carried statistically significant information about visual-feedback conditions — confirmed above chance via permutation testing across 2,600+ trials and 23 participants, under leave-one-participant-out validation. Logistic Regression gave the best participant-independent result (64.2% accuracy), and neither Random Forest nor the exploratory deep sequence models reliably improved on it, though decoding performance was modest overall, and Transport showed an edge over Grasp in one multiclass analysis.</p>
+        </div>
+        <div class="key-takeaway"><span class="kt-label">My technical contribution</span><p>Owned the Grasp stream of a two-stream project (a fellow student analysed the Transport stream). Rebuilt the analysis pipeline from the raw time-series files in Python and R, implemented the validation and permutation framework, and prepared the matched Grasp–Transport comparison without claiming either stream was superior.</p></div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6">
+        <svg class="trajectory-fig" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs><linearGradient id="trajGrad1" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" style="stop-color:var(--signal)"/><stop offset="100%" style="stop-color:var(--amethyst)"/>
+          </linearGradient></defs>
+          <path d="M30,112 C140,118 200,60 250,50 C290,45 330,45 360,32" fill="none" stroke="var(--hair-strong)" stroke-width="1.5"/>
+          <path d="M30,108 C100,70 160,30 220,25 C270,20 320,35 360,28" fill="none" stroke="var(--hair-strong)" stroke-width="1.5"/>
+          <path d="M30,110 C120,100 180,40 230,35 C280,30 320,40 360,30" fill="none" stroke="url(#trajGrad1)" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="110" cy="95" r="2.6" fill="var(--signal)"/><circle cx="195" cy="55" r="2.6" fill="var(--signal)"/>
+          <circle cx="260" cy="38" r="2.6" fill="var(--amethyst)"/><circle cx="320" cy="33" r="2.6" fill="var(--amethyst)"/>
+          <circle cx="30" cy="110" r="5" fill="var(--ivory)"/>
+          <circle cx="360" cy="30" r="7" fill="none" stroke="var(--amethyst)" stroke-width="2"/>
+        </svg>
+        <p class="trajectory-cap">Illustrative reach-to-grasp trajectory — not raw trial data</p>
+        <div class="tech-row"><span>Python</span><span>scikit-learn</span><span>TensorFlow/Keras</span><span>R</span></div>
+        <div class="visual-bar-label"><span>Logistic Regression (best model)</span><span>64.2%</span></div>
+        <div class="visual-bar"><i data-fill="64.2"></i></div>
+        <p class="visual-note">Random Forest scored lower under the same leave-one-participant-out validation. Deep sequence models (TCN, 1D-CNN, LSTM, GRU), explored separately under repeated 10-fold cross-validation, did not reliably improve on it.</p>
+      </div></div>
+    </div>
+
+    <div class="project-block">
+      <div>
+        <span class="project-num">02</span>
+        <span class="project-cat">Clinical Research · Proposal Stage</span>
+        <h3>Visuomotor Control<br>After Stroke</h3>
+        <p class="p-justify" style="margin-top:8px;">A research proposal extending my MSc dissertation into the clinical domain, using reach-to-grasp kinematics and machine learning to study visuomotor control after stroke.</p>
+        <p style="font-family:var(--font-mono); font-size:clamp(13px, 0.15vw + 12.5px, 14px); color:var(--muted); margin-top:10px; line-height:1.6;">"Quantifying Visuomotor Control After Stroke Using Reach-to-Grasp Kinematics and Machine Learning" — prepared October 2026.</p>
+        <div class="key-takeaway">
+          <span class="kt-label">Status</span>
+          <p>Early-stage proposal, awaiting academic feedback. It proposes comparing reaching and grasping — velocity, smoothness, coordination and movement time — between stroke survivors and healthy individuals under limited visual feedback, and relating these to established clinical assessments, with the long-term aim of informing understanding of motor impairment and recovery. This is a proposed study, not completed clinical research or a published paper.</p>
+        </div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6">
+        <svg class="trajectory-fig" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M30,100 C120,90 200,50 280,40 C310,37 335,38 360,40" fill="none" stroke="var(--signal)" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M30,102 C80,60 110,130 160,90 C210,50 250,110 300,70 C330,50 345,80 360,90" fill="none" stroke="var(--amethyst)" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="2 7"/>
+          <circle cx="30" cy="101" r="5" fill="var(--ivory)"/>
+          <circle cx="360" cy="40" r="6" fill="none" stroke="var(--signal)" stroke-width="2"/>
+          <circle cx="360" cy="90" r="6" fill="none" stroke="var(--amethyst)" stroke-width="2"/>
+        </svg>
+        <div style="display:flex; gap:18px; flex-wrap:wrap; font-family:var(--font-mono); font-size:clamp(11.5px, 0.1vw + 11px, 12.5px); color:var(--muted);">
+          <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--signal);display:inline-block;"></span>Typical control</span>
+          <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--amethyst);display:inline-block;"></span>Illustrative — after stroke</span>
+        </div>
+        <p class="trajectory-cap">Conceptual diagram for the proposal — not measured data</p>
+        <div class="tech-row"><span>Reach-to-Grasp Kinematics</span><span>Machine Learning</span><span>Stroke Rehabilitation</span></div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience" class="section-major">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="eyebrow">04 — Experience</span><h2><span class="rl"><span>Experience.</span></span></h2></div>
+  </div>
+
+  <div class="wrap">
+
+    <div class="project-block" id="exp-startup">
+      <div>
+        <span class="project-num">01</span>
+        <span class="project-cat">Work experience · Client project · Aug – Sep 2026</span>
+        <h3>Children's Bedtime<br>Routine App</h3>
+        <p class="p-justify" style="margin-top:8px;">A University of Leeds MSc work-experience project with an early-stage startup client building a children's bedtime app around brushing, a story and sleep. I worked in a multidisciplinary team, alongside technical and non-technical members, on user-experience research, competitive analysis, technical feasibility and proof-of-concept development.</p>
+        <div class="key-takeaway"><span class="kt-label">Research</span><p>Mapped existing children's brushing, story and sleep apps and connected toothbrushes, and reviewed NHS oral-health guidance and recent evidence on how brushing is measured. This reframed the problem around the gap between parent-reported and device-recorded brushing.</p></div>
+        <div class="key-takeaway"><span class="kt-label">Product design</span><p>Contributed to interface decisions and the team's product recommendations, delivered as a feasibility report and a client-facing presentation.</p></div>
+        <div class="key-takeaway"><span class="kt-label">Development</span><p>Built a mobile-first proof of concept in Lovable that set the child-friendly visual language, navigation and placeholder screens (brushing timer, story library, voice recordings, playback and wind-down) for teammates to build features on. Also built a standalone 90-second bedtime play-session demo with saved progress and a calm handover to brushing.</p></div>
+        <div class="key-takeaway"><span class="kt-label">Testing</span><p>Added a "simulate next day" control so the client could test resume-from-checkpoint behaviour in a single sitting, and kept the play length as one setting so other durations could be tried.</p></div>
+        <div class="key-takeaway"><span class="kt-label">Collaboration</span><p>Worked across the research and product sides with teammates who each owned individual features, and presented the findings to the client.</p></div>
         <p style="font-family:var(--font-serif); font-style:italic; color:var(--muted); font-size:clamp(17px, 0.3vw + 16px, 19px); margin-top:18px;">Some of my most interesting work can't live publicly on the internet.</p>
         <div class="project-actions"><span class="lock-note">🔒 Client-confidential project — selected details available during interview.</span></div>
       </div>
@@ -797,28 +853,12 @@
       </div></div>
     </div>
 
-    <div class="project-block">
-      <div>
-        <span class="project-num">07</span>
-        <span class="project-cat">Agentic AI · Currently Building</span>
-        <h3>AI Personal<br>Assistant Agent</h3>
-        <p class="p-justify" style="margin-top:8px;">Exploring an agentic AI system designed to act as an intelligent Personal Assistant — helping organise tasks, analyse information, support decisions and automate useful workflows.</p>
-        <div class="key-takeaway">
-          <span class="kt-label">Current Status</span>
-          <p>In development — architecture and prototyping stage (User → Agent → Planner → Tools/APIs → Memory/Context → Actions), no completed results yet. Next milestone: the planner and memory layers.</p>
-        </div>
-      </div>
-      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--signal-2);">
-        <div class="tech-row"><span>Python</span><span>Agentic AI (exploring)</span><span>LLMs (exploring)</span></div>
-      </div></div>
-    </div>
-
   </div>
 </section>
 
 <section id="journey">
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">04 — Journey</span><h2><span class="rl"><span>Growth, experimentation,</span></span><span class="rl"><span>direction.</span></span></h2></div>
+    <div class="section-head reveal"><span class="eyebrow">Journey</span><h2><span class="rl"><span>Growth, experimentation,</span></span><span class="rl"><span>direction.</span></span></h2></div>
     <div class="timeline" id="timeline">
       <div class="timeline-fill" id="timelineFill"></div>
       <div class="tl-row left reveal">
@@ -845,10 +885,10 @@
   </div>
 </section>
 
-<section id="beyond" class="beyond">
+<section id="community" class="beyond">
   <div class="beyond-glow"></div>
   <div class="wrap beyond-inner reveal">
-    <span class="eyebrow">05 — Beyond the Data</span>
+    <span class="eyebrow">05 — Community &amp; Learning</span>
     <h2 style="margin-top:16px;"><span class="rl"><span>TEDx University of Leeds</span></span></h2>
     <div class="beyond-role">"Convergence" — Speaker Coordination &amp; Event Operations</div>
     <p class="p-justify">Supported speaker coordination during TEDx Convergence, guiding speakers between the audience, backstage green room and stage while helping deliver a smooth and welcoming event experience.</p>
@@ -861,12 +901,51 @@
     <h2 style="margin-top:72px;"><span class="rl"><span>AI Lab UK</span></span></h2>
     <div class="beyond-role">Incoming Volunteer — Leeds, from October 2026</div>
     <p class="p-justify">Preparing to support the Leeds AI community and attend the October meetup.</p>
+    <h2 style="margin-top:72px;"><span class="rl"><span>Technical Symposium</span></span></h2>
+    <div class="beyond-role">Organiser — SRM Valliammai Engineering College</div>
+    <p class="p-justify">Organised a technical symposium for around 170 participants.</p>
+    <h2 style="margin-top:72px;"><span class="rl"><span>National Conference on Computational Intelligence</span></span></h2>
+    <div class="beyond-role">Presenter — during B.Tech</div>
+    <p class="p-justify">Presented at the conference during my undergraduate degree, alongside the customer lifetime value research published in IJRAR (2024).</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="eyebrow">06 — About</span><h2><span class="rl"><span>Point of view.</span></span></h2></div>
+    <div class="about-layout">
+      <div class="reveal about-col">
+        <p class="about-statement"><span class="rl"><span>"I don't just train models.</span></span><span class="rl"><span>I question what the data is actually telling us."</span></span></p>
+        <div class="about-tags"><span>DATA</span><span>× HUMAN BEHAVIOUR</span><span>× AI</span><span>× PRODUCT</span></div>
+        <p class="p-justify">I'm completing my MSc in Data Science and Analytics at the University of Leeds, building on a B.Tech in Information Technology. My work sits at the intersection of machine learning, statistical rigour and product thinking — I'm as interested in why a model works as in whether it does, and in what a result actually means for the person who has to act on it.</p>
+        <p class="p-justify">That shows up as a habit: engineer interpretable features before reaching for complexity, validate honestly enough to trust the result, and communicate findings so a non-technical stakeholder can act on them. It's carried me from movement-kinematics research to customer analytics to a computer-vision hackathon build — different data, same discipline.</p>
+        <div class="building-inline">
+          <p>Currently, I'm exploring agentic AI by building an intelligent Personal Assistant designed to coordinate tasks, analyse information, support decision-making and automate useful workflows.</p>
+        </div>
+      </div>
+      <div class="reveal about-side">
+        <div class="quiz-card" id="quizCard">
+          <span class="quiz-kicker">🧠 Common belief, checked</span>
+          <p class="quiz-q">"A deep learning model will always beat a simpler one like logistic regression." True or false?</p>
+          <div class="quiz-options">
+            <button class="quiz-opt" type="button" data-correct="false">True</button>
+            <button class="quiz-opt" type="button" data-correct="true">False</button>
+          </div>
+          <p class="quiz-feedback" id="quizFeedback"></p>
+        </div>
+        <a class="github-badge" href="https://github.com/SuwaashaM" target="_blank" rel="noopener">
+          <span class="gh-icon"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></span>
+          <span class="gh-text"><strong>@SuwaashaM</strong><em>Browse my repositories</em></span>
+          <span class="gh-go"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="profile">
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">06 — Profile</span><h2><span class="rl"><span>The toolkit, and the concise version</span></span><span class="rl"><span>of everything you've just explored.</span></span></h2></div>
+    <div class="section-head reveal"><span class="eyebrow">07 — Profile</span><h2><span class="rl"><span>The toolkit, and the concise version</span></span><span class="rl"><span>of everything you've just explored.</span></span></h2></div>
 
     <div class="skills-grid reveal">
       <div class="skill-col"><span class="lbl">Data</span><ul><li>Python</li><li>R</li><li>SQL</li><li>Pandas</li><li>NumPy</li></ul></div>
@@ -939,6 +1018,33 @@
   <div class="quiz-popup-text"><strong>Correct — nice instinct.</strong><span>Simpler models can win, and here they did.</span></div>
 </div>
 </main>
+<script>
+(function(){
+  var bar = document.getElementById('workFilters');
+  if(!bar) return;
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('#work .project-block'));
+  var status = document.getElementById('workFilterStatus');
+  function apply(f){
+    var shown = 0, first = true;
+    blocks.forEach(function(b){
+      var ok = f === 'all' || (' ' + b.getAttribute('data-cat') + ' ').indexOf(' ' + f + ' ') !== -1;
+      b.hidden = !ok;
+      b.classList.toggle('first-visible', ok && first);
+      if(ok){ shown++; first = false; }
+    });
+    if(status) status.textContent = shown + (shown === 1 ? ' project' : ' projects') + ' shown';
+    window.dispatchEvent(new Event('scroll'));
+  }
+  bar.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-filter]');
+    if(!btn) return;
+    bar.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-pressed', String(b === btn)); });
+    apply(btn.getAttribute('data-filter'));
+  });
+  apply('all');
+})();
+</script>
+
 
 <script>
 (function(){
@@ -978,7 +1084,7 @@
   mobileMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ mobileMenu.classList.remove('open'); }); });
 
   /* ---------- active section tracking ---------- */
-  var sections = ['home','about','work','journey','beyond','profile','contact'];
+  var sections = ['home','work','hackathons','research','experience','journey','community','about','profile','contact'];
   var navAnchors = document.querySelectorAll('#navlinks a');
   var railNodes = document.querySelectorAll('.progress-rail .node');
   var activeSection = 'home';
@@ -1199,6 +1305,7 @@
        during which the hop plays — kept narrow so the bot is absent most of the time. */
     var hops = [
       {id:'home',    from:0.70, to:0.94, x:[104, 82], y:[90, 76]},
+      {id:'hackathons', from:0.03, to:0.20, x:[88, 46],  y:[68, 54]},
       {id:'about',   from:0.06, to:0.28, x:[88, 46],  y:[68, 54]},
       {id:'work',    from:0.03, to:0.20, x:[82, 22],  y:[87, 87]},
       {id:'journey', from:0.34, to:0.54, x:[78, 44],  y:[74, 60]},
