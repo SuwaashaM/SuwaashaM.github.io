@@ -493,6 +493,45 @@
   .connect-cta{margin-top:auto; padding-top:6px; font-family:var(--font-mono); font-size:clamp(12px, 0.15vw + 11.5px, 13px); color:var(--signal-ink); overflow-wrap:anywhere;}
   @media (prefers-reduced-motion: reduce){ .connect-card:hover{transform:none;} }
 
+  /* title rows ("genres") + detail panel — existing tokens only */
+  .rail-wrap{position:relative; margin-top:6px;}
+  .rail{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:18px 4px 26px; margin:0 -4px; scrollbar-width:none;}
+  .rail::-webkit-scrollbar{display:none;}
+  .tile{position:relative; flex:0 0 clamp(230px, 26vw, 300px); aspect-ratio:16/10; scroll-snap-align:start; border-radius:16px; overflow:hidden; text-decoration:none; color:var(--ivory); display:flex; flex-direction:column; justify-content:flex-end; gap:6px; padding:18px 20px;
+    background:radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--tile) 38%, transparent), transparent 62%), linear-gradient(160deg, var(--surface-2), var(--surface) 70%);
+    border:1px solid var(--hair); box-shadow:0 10px 30px rgba(0,0,0,0.35); transition:transform .35s var(--ease-premium), box-shadow .35s var(--ease-premium), border-color .25s ease;}
+  .tile::after{content:""; position:absolute; left:0; right:0; bottom:0; height:3px; background:var(--tile); opacity:.85;}
+  .tile:hover, .tile:focus-visible{transform:translateY(-4px) scale(1.045); border-color:color-mix(in srgb, var(--tile) 60%, transparent); box-shadow:var(--shadow-deep), 0 0 0 1px color-mix(in srgb, var(--tile) 30%, transparent); z-index:2;}
+  .tile-num{position:absolute; top:6px; right:14px; font-family:var(--font-display); font-weight:800; font-size:clamp(54px, 5vw, 72px); line-height:1; color:transparent; -webkit-text-stroke:1px color-mix(in srgb, var(--tile) 55%, transparent); opacity:.7; pointer-events:none;}
+  .tile-badge{position:absolute; top:16px; left:18px; font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:4px 9px; border-radius:6px; background:rgba(10,10,19,0.55); border:1px solid var(--hair-strong); color:var(--ivory);}
+  .tile-badge.top10{background:var(--oxblood); border-color:var(--oxblood); color:#fff; font-weight:700;}
+  .tile-title{font-family:var(--font-display); font-weight:700; font-size:clamp(20px, 1.4vw + 12px, 25px); line-height:1.1; letter-spacing:-.01em; text-wrap:balance;}
+  .tile-genre{font-family:var(--font-mono); font-size:clamp(11.5px, 0.1vw + 11px, 12.5px); color:var(--muted); letter-spacing:.03em;}
+  .tile-more{font-family:var(--font-mono); font-size:12px; color:var(--signal-ink); max-height:0; opacity:0; overflow:hidden; transition:max-height .3s ease, opacity .3s ease;}
+  .tile:hover .tile-more, .tile:focus-visible .tile-more{max-height:20px; opacity:1;}
+  .tile[hidden]{display:none;}
+  .rail-arrow{position:absolute; top:50%; transform:translateY(-50%); z-index:3; width:42px; height:42px; border-radius:50%; border:1px solid var(--hair-strong); background:var(--glass); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); color:var(--ivory); font-size:22px; line-height:1; cursor:pointer; display:none; align-items:center; justify-content:center;}
+  .rail-arrow.prev{left:-18px;} .rail-arrow.next{right:-18px;}
+  .rail-wrap.can-scroll .rail-arrow{display:flex;}
+  .rail-arrow[disabled]{opacity:0; pointer-events:none;}
+  @media (hover:none){ .rail-wrap.can-scroll .rail-arrow{display:none;} }
+  @media (prefers-reduced-motion: reduce){ .tile, .tile:hover{transition:none; transform:none;} }
+  .rails-ready .rail-details{display:none;}
+  .rails-ready section.section-major{padding-block:clamp(3rem,6vw,5.5rem);}
+
+  .detail-modal{position:fixed; inset:0; z-index:200; display:flex; align-items:flex-start; justify-content:center; padding:clamp(12px,4vh,48px) 16px; overflow-y:auto;}
+  .detail-modal[hidden]{display:none;}
+  .detail-backdrop{position:fixed; inset:0; background:rgba(10,10,19,0.78); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);}
+  .detail-panel{position:relative; width:min(1120px,100%); background:var(--surface); border:1px solid var(--hair-strong); border-radius:24px; box-shadow:var(--shadow-deep), var(--shadow-glow); padding:clamp(22px,4vw,48px); animation:panelIn .45s var(--ease-premium);}
+  .detail-panel:focus{outline:none;}
+  @keyframes panelIn{from{opacity:0; transform:translateY(24px) scale(.98);} to{opacity:1; transform:none;}}
+  @media (prefers-reduced-motion: reduce){ .detail-panel{animation:none;} }
+  .detail-close{position:absolute; top:16px; right:16px; width:40px; height:40px; border-radius:50%; border:1px solid var(--hair-strong); background:var(--surface-2); color:var(--ivory); font-size:16px; cursor:pointer; z-index:2; transition:border-color .2s ease;}
+  .detail-close:hover{border-color:var(--amethyst);}
+  .detail-body .project-block{padding:0 !important; border-top:none !important; transform:none !important; opacity:1 !important; filter:none !important; margin:0;}
+  @media (max-width:640px){ .detail-modal{padding:0;} .detail-panel{border-radius:0; min-height:100%; padding:64px 20px 32px;} }
+  html.modal-open{overflow:hidden;}
+
 </style>
 
 <div class="topbar" id="topbar"></div>
@@ -599,11 +638,35 @@
       <button type="button" data-filter="aiml" aria-pressed="false">AI / ML</button>
     </div>
     <p class="sr-only" id="workFilterStatus" aria-live="polite"></p>
+    <div class="rail-wrap reveal">
+      <button class="rail-arrow prev" type="button" aria-label="Scroll left" data-dir="-1">‹</button>
+      <div class="rail" role="list" aria-label="Work titles">
+        <a class="tile" href="#work-ico" data-open="work-ico" data-cat="academic aiml" style="--tile:var(--champagne);" role="listitem">
+          <span class="tile-num" aria-hidden="true">01</span>
+          <span class="tile-title">ICO Fundraising Prediction</span>
+          <span class="tile-genre">Academic · 2026</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#work-clv" data-open="work-clv" data-cat="academic aiml" style="--tile:var(--champagne);" role="listitem">
+          <span class="tile-num" aria-hidden="true">02</span><span class="tile-badge">Published</span>
+          <span class="tile-title">Customer Lifetime Value Prediction</span>
+          <span class="tile-genre">Academic · 2024</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#work-agent" data-open="work-agent" data-cat="independent aiml" style="--tile:var(--signal-2);" role="listitem">
+          <span class="tile-num" aria-hidden="true">03</span><span class="tile-badge">In progress</span>
+          <span class="tile-title">AI Personal Assistant Agent</span>
+          <span class="tile-genre">Independent · Agentic AI</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+      </div>
+      <button class="rail-arrow next" type="button" aria-label="Scroll right" data-dir="1">›</button>
+    </div>
   </div>
 
-  <div class="wrap">
+  <div class="wrap rail-details">
 
-    <div class="project-block" data-cat="academic aiml">
+    <div class="project-block" data-cat="academic aiml" id="work-ico">
       <div>
         <span class="project-num">01</span>
         <span class="project-cat">Academic · MSc coursework, refactored · 2026</span>
@@ -644,7 +707,7 @@
       </div></div>
     </div>
 
-    <div class="project-block" data-cat="academic aiml">
+    <div class="project-block" data-cat="academic aiml" id="work-clv">
       <div>
         <span class="project-num">02</span>
         <span class="project-cat">Academic · Undergraduate project · 2024</span>
@@ -676,7 +739,7 @@
       </div></div>
     </div>
 
-    <div class="project-block" data-cat="independent aiml">
+    <div class="project-block" data-cat="independent aiml" id="work-agent">
       <div>
         <span class="project-num">03</span>
         <span class="project-cat">Independent · Agentic AI · In progress · Not yet public</span>
@@ -706,9 +769,33 @@
 <section id="hackathons" class="section-major">
   <div class="wrap">
     <div class="section-head reveal"><span class="eyebrow">02 — Hackathons</span><h2><span class="rl"><span>Hackathons.</span></span></h2></div>
+    <div class="rail-wrap reveal">
+      <button class="rail-arrow prev" type="button" aria-label="Scroll left" data-dir="-1">‹</button>
+      <div class="rail" role="list" aria-label="Hackathons titles">
+        <a class="tile" href="#hack-nvidia" data-open="hack-nvidia" style="--tile:var(--signal-2);" role="listitem">
+          <span class="tile-num" aria-hidden="true">01</span><span class="tile-badge">In development</span>
+          <span class="tile-title">AI Research Assistant</span>
+          <span class="tile-genre">Nebius × NVIDIA · Solo</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#hack-resultwise" data-open="hack-resultwise" style="--tile:var(--signal);" role="listitem">
+          <span class="tile-num" aria-hidden="true">02</span><span class="tile-badge">Completed</span>
+          <span class="tile-title">ResultWise</span>
+          <span class="tile-genre">AI in Healthcare · Team of four</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#hack-hauntify" data-open="hack-hauntify" style="--tile:var(--amethyst);" role="listitem">
+          <span class="tile-num" aria-hidden="true">03</span><span class="tile-badge top10">Top 10</span>
+          <span class="tile-title">Hauntify</span>
+          <span class="tile-genre">Halloween Hackathon · 2025</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+      </div>
+      <button class="rail-arrow next" type="button" aria-label="Scroll right" data-dir="1">›</button>
+    </div>
   </div>
 
-  <div class="wrap">
+  <div class="wrap rail-details">
 
     <div class="project-block" id="hack-nvidia">
       <div>
@@ -772,9 +859,33 @@
 <section id="research" class="section-major">
   <div class="wrap">
     <div class="section-head reveal"><span class="eyebrow">03 — Research</span><h2><span class="rl"><span>Research.</span></span></h2></div>
+    <div class="rail-wrap reveal">
+      <button class="rail-arrow prev" type="button" aria-label="Scroll left" data-dir="-1">‹</button>
+      <div class="rail" role="list" aria-label="Research titles">
+        <a class="tile" href="#research-continuing" data-open="research-continuing" style="--tile:var(--signal);" role="listitem">
+          <span class="tile-num" aria-hidden="true">01</span><span class="tile-badge">Paper in preparation</span>
+          <span class="tile-title">Hidden Grip Strategies</span>
+          <span class="tile-genre">Ongoing research</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#research-dissertation" data-open="research-dissertation" style="--tile:var(--amethyst);" role="listitem">
+          <span class="tile-num" aria-hidden="true">02</span><span class="tile-badge">Completed</span>
+          <span class="tile-title">Machine Learning × Human Movement</span>
+          <span class="tile-genre">MSc dissertation · 2026</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#research-stroke" data-open="research-stroke" style="--tile:var(--lavender);" role="listitem">
+          <span class="tile-num" aria-hidden="true">03</span><span class="tile-badge">Proposal</span>
+          <span class="tile-title">Visuomotor Control After Stroke</span>
+          <span class="tile-genre">Research proposal</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+      </div>
+      <button class="rail-arrow next" type="button" aria-label="Scroll right" data-dir="1">›</button>
+    </div>
   </div>
 
-  <div class="wrap">
+  <div class="wrap rail-details">
 
     <div class="project-block" id="research-continuing">
       <div>
@@ -793,7 +904,7 @@
         <p class="visual-note">Completed work, then the next planned steps. Nothing beyond the dissertation is published yet.</p>
       </div></div>
     </div>
-    <div class="project-block">
+    <div class="project-block" id="research-dissertation">
       <div>
         <span class="project-num">02</span>
         <span class="project-cat">MSc Dissertation · University of Leeds · Completed</span>
@@ -835,7 +946,7 @@
       </div></div>
     </div>
 
-    <div class="project-block">
+    <div class="project-block" id="research-stroke">
       <div>
         <span class="project-num">03</span>
         <span class="project-cat">Clinical Research · Proposal Stage</span>
@@ -870,9 +981,21 @@
 <section id="experience" class="section-major">
   <div class="wrap">
     <div class="section-head reveal"><span class="eyebrow">04 — Experience</span><h2><span class="rl"><span>Experience.</span></span></h2></div>
+    <div class="rail-wrap reveal">
+      <button class="rail-arrow prev" type="button" aria-label="Scroll left" data-dir="-1">‹</button>
+      <div class="rail" role="list" aria-label="Experience titles">
+        <a class="tile" href="#exp-startup" data-open="exp-startup" style="--tile:var(--champagne);" role="listitem">
+          <span class="tile-num" aria-hidden="true">01</span><span class="tile-badge">NDA</span>
+          <span class="tile-title">Confidential Industry Product Project</span>
+          <span class="tile-genre">Work experience · 2026</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+      </div>
+      <button class="rail-arrow next" type="button" aria-label="Scroll right" data-dir="1">›</button>
+    </div>
   </div>
 
-  <div class="wrap">
+  <div class="wrap rail-details">
 
     <div class="project-block" id="exp-startup">
       <div>
@@ -1089,31 +1212,110 @@
   <div class="quiz-popup-icon">✓</div>
   <div class="quiz-popup-text"><strong>Correct — nice instinct.</strong><span>Simpler models can win, and here they did.</span></div>
 </div>
+<div class="detail-modal" id="detailModal" hidden>
+  <div class="detail-backdrop" data-close></div>
+  <div class="detail-panel" role="dialog" aria-modal="true" aria-label="Project details" tabindex="-1">
+    <button class="detail-close" type="button" data-close aria-label="Close details">✕</button>
+    <div class="detail-body" id="detailBody"></div>
+  </div>
+</div>
 </main>
 <script>
 (function(){
+  var root = document.documentElement;
+  root.classList.add('rails-ready');
+
+  /* Work filters now filter the title row */
   var bar = document.getElementById('workFilters');
-  if(!bar) return;
-  var blocks = Array.prototype.slice.call(document.querySelectorAll('#work .project-block'));
-  var status = document.getElementById('workFilterStatus');
-  function apply(f){
-    var shown = 0, first = true;
-    blocks.forEach(function(b){
-      var ok = f === 'all' || (' ' + b.getAttribute('data-cat') + ' ').indexOf(' ' + f + ' ') !== -1;
-      b.hidden = !ok;
-      b.classList.toggle('first-visible', ok && first);
-      if(ok){ shown++; first = false; }
+  if(bar){
+    var tiles = Array.prototype.slice.call(document.querySelectorAll('#work .tile'));
+    var status = document.getElementById('workFilterStatus');
+    bar.addEventListener('click', function(e){
+      var btn = e.target.closest('button[data-filter]'); if(!btn) return;
+      var f = btn.getAttribute('data-filter'), shown = 0;
+      bar.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-pressed', String(b === btn)); });
+      tiles.forEach(function(t){
+        var ok = f === 'all' || (' ' + t.getAttribute('data-cat') + ' ').indexOf(' ' + f + ' ') !== -1;
+        t.hidden = !ok; if(ok) shown++;
+      });
+      if(status) status.textContent = shown + (shown === 1 ? ' project' : ' projects') + ' shown';
+      document.querySelectorAll('.rail-wrap').forEach(updateArrows);
     });
-    if(status) status.textContent = shown + (shown === 1 ? ' project' : ' projects') + ' shown';
-    window.dispatchEvent(new Event('scroll'));
   }
-  bar.addEventListener('click', function(e){
-    var btn = e.target.closest('button[data-filter]');
-    if(!btn) return;
-    bar.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-pressed', String(b === btn)); });
-    apply(btn.getAttribute('data-filter'));
+
+  /* Row arrows */
+  function updateArrows(wrap){
+    var rail = wrap.querySelector('.rail');
+    var max = rail.scrollWidth - rail.clientWidth;
+    wrap.classList.toggle('can-scroll', max > 4);
+    wrap.querySelector('.prev').disabled = rail.scrollLeft <= 4;
+    wrap.querySelector('.next').disabled = rail.scrollLeft >= max - 4;
+  }
+  document.querySelectorAll('.rail-wrap').forEach(function(wrap){
+    var rail = wrap.querySelector('.rail');
+    wrap.querySelectorAll('.rail-arrow').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        rail.scrollBy({left: Number(btn.dataset.dir) * rail.clientWidth * 0.85, behavior:'smooth'});
+      });
+    });
+    rail.addEventListener('scroll', function(){ updateArrows(wrap); }, {passive:true});
+    window.addEventListener('resize', function(){ updateArrows(wrap); });
+    updateArrows(wrap);
   });
-  apply('all');
+
+  /* Detail panel: moves the existing project block in, and back out on close */
+  var modal = document.getElementById('detailModal');
+  var body = document.getElementById('detailBody');
+  var panel = modal.querySelector('.detail-panel');
+  var current = null, marker = null, opener = null;
+
+  function open(id, from){
+    var block = document.getElementById(id);
+    if(!block || !block.classList.contains('project-block')) return false;
+    if(current) close(true);
+    opener = from || document.activeElement;
+    marker = document.createComment('detail-placeholder');
+    block.parentNode.insertBefore(marker, block);
+    body.appendChild(block);
+    current = block;
+    var h = block.querySelector('h3');
+    panel.setAttribute('aria-label', h ? h.textContent.replace(/\s+/g,' ').trim() : 'Project details');
+    modal.hidden = false;
+    root.classList.add('modal-open');
+    modal.scrollTop = 0;
+    panel.focus({preventScroll:true});
+    if(history.replaceState) history.replaceState(null, '', '#' + id);
+    window.dispatchEvent(new Event('scroll'));
+    return true;
+  }
+  function close(silent){
+    if(!current) return;
+    marker.parentNode.insertBefore(current, marker);
+    marker.remove(); current = null; marker = null;
+    modal.hidden = true;
+    root.classList.remove('modal-open');
+    if(history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+    if(!silent && opener && opener.focus) opener.focus({preventScroll:true});
+  }
+  modal.addEventListener('click', function(e){ if(e.target.closest('[data-close]')) close(); });
+  document.addEventListener('keydown', function(e){
+    if(modal.hidden) return;
+    if(e.key === 'Escape'){ e.preventDefault(); close(); return; }
+    if(e.key === 'Tab'){
+      var f = panel.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
+      if(!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if(e.shiftKey && (document.activeElement === first || document.activeElement === panel)){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  });
+  /* tiles and any in-page link to a project (e.g. the featured card) open the panel */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]'); if(!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if(id && open(id, a)) e.preventDefault();
+  });
+  if(location.hash) open(location.hash.slice(1));
 })();
 </script>
 
