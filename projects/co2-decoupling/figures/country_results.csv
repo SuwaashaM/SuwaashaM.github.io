@@ -1,0 +1,118 @@
+country,gdp_chg,co2_chg,consumption_co2_chg,territorial,consumption,gap_2019
+Albania,0.619,0.16,0.029,Relative decoupling,Relative decoupling,0.219
+Argentina,0.359,0.116,0.171,Relative decoupling,Relative decoupling,-0.043
+Armenia,0.522,0.436,0.53,Relative decoupling,No decoupling,0.3
+Australia,0.494,0.077,0.091,Relative decoupling,Relative decoupling,-0.075
+Austria,0.247,-0.141,-0.176,Absolute decoupling,Absolute decoupling,0.275
+Azerbaijan,1.588,0.104,0.059,Relative decoupling,Relative decoupling,-0.001
+Bahrain,1.519,0.536,0.951,Relative decoupling,Relative decoupling,-0.366
+Bangladesh,1.559,1.514,2.747,Relative decoupling,No decoupling,0.567
+Belarus,0.467,0.047,0.611,Relative decoupling,No decoupling,0.162
+Belgium,0.242,-0.206,-0.042,Absolute decoupling,Absolute decoupling,1.049
+Benin,0.915,1.118,0.652,No decoupling,Relative decoupling,0.315
+Bolivia,0.938,0.833,1.248,Relative decoupling,No decoupling,0.039
+Botswana,1.023,0.828,3.835,Relative decoupling,No decoupling,0.832
+Brazil,0.433,0.308,0.392,Relative decoupling,Relative decoupling,0.019
+Bulgaria,0.444,-0.166,-0.182,Absolute decoupling,Absolute decoupling,-0.054
+Burkina Faso,0.884,4.089,2.679,No decoupling,No decoupling,-0.094
+Cambodia,1.182,7.432,1.907,No decoupling,No decoupling,0.909
+Cameroon,0.893,0.771,0.551,Relative decoupling,Relative decoupling,-0.032
+Canada,0.304,0.015,-0.108,Relative decoupling,Absolute decoupling,-0.052
+Chile,0.501,0.505,0.551,No decoupling,No decoupling,0.065
+China,1.747,0.821,1.102,Relative decoupling,Relative decoupling,-0.088
+Colombia,0.703,0.642,0.686,Relative decoupling,Relative decoupling,0.136
+Costa Rica,0.719,0.15,0.343,Relative decoupling,Relative decoupling,0.874
+Cote d'Ivoire,1.265,0.393,1.131,Relative decoupling,Relative decoupling,0.367
+Croatia,0.266,-0.235,-0.197,Absolute decoupling,Absolute decoupling,0.351
+Cyprus,0.382,-0.079,0.054,Absolute decoupling,Relative decoupling,0.264
+Czechia,0.518,-0.197,-0.005,Absolute decoupling,Absolute decoupling,0.098
+Denmark,0.225,-0.399,-0.211,Absolute decoupling,Absolute decoupling,0.713
+Dominican Republic,1.39,0.595,0.051,Relative decoupling,Relative decoupling,0.312
+Ecuador,0.567,0.308,0.425,Relative decoupling,Relative decoupling,0.16
+Egypt,1.148,0.402,0.668,Relative decoupling,Relative decoupling,0.053
+El Salvador,0.484,0.219,0.22,Relative decoupling,Relative decoupling,0.385
+Estonia,0.234,-0.281,-0.247,Absolute decoupling,Absolute decoupling,0.241
+Ethiopia,2.6,2.466,4.654,Relative decoupling,No decoupling,0.252
+Finland,0.141,-0.256,-0.323,Absolute decoupling,Absolute decoupling,0.333
+France,0.181,-0.24,-0.189,Absolute decoupling,Absolute decoupling,0.399
+Georgia,0.897,1.084,0.696,No decoupling,Relative decoupling,0.33
+Germany,0.319,-0.183,-0.19,Absolute decoupling,Absolute decoupling,0.194
+Ghana,1.456,1.685,1.026,No decoupling,Relative decoupling,0.332
+Greece,-0.107,-0.423,-0.401,GDP fell,GDP fell,0.146
+Guatemala,0.638,0.6,1.406,Relative decoupling,No decoupling,0.278
+Guinea,1.044,1.3,2.906,No decoupling,No decoupling,0.492
+Honduras,0.685,0.604,0.688,Relative decoupling,No decoupling,-0.173
+Hong Kong,0.432,-0.033,0.21,Absolute decoupling,Relative decoupling,1.953
+Hungary,0.456,-0.183,-0.269,Absolute decoupling,Absolute decoupling,0.324
+India,1.557,1.184,1.053,Relative decoupling,Relative decoupling,-0.132
+Indonesia,1.219,0.915,1.051,Relative decoupling,Relative decoupling,-0.001
+Iran,0.583,0.558,0.552,Relative decoupling,Relative decoupling,-0.155
+Ireland,0.437,-0.227,-0.335,Absolute decoupling,Absolute decoupling,0.243
+Israel,0.719,0.043,0.217,Relative decoupling,Relative decoupling,0.5
+Italy,0.043,-0.323,-0.256,Absolute decoupling,Absolute decoupling,0.326
+Jamaica,0.065,-0.094,0.254,Absolute decoupling,No decoupling,-0.035
+Japan,0.086,-0.143,-0.176,Absolute decoupling,Absolute decoupling,0.13
+Jordan,0.84,0.182,0.28,Relative decoupling,Relative decoupling,0.329
+Kazakhstan,1.005,0.492,0.403,Relative decoupling,Relative decoupling,-0.286
+Kenya,1.171,1.148,1.456,Relative decoupling,No decoupling,0.663
+Kuwait,0.535,0.403,0.468,Relative decoupling,Relative decoupling,0.033
+Kyrgyzstan,0.742,0.639,1.177,Relative decoupling,No decoupling,0.934
+Laos,1.862,12.717,4.057,No decoupling,No decoupling,-0.268
+Latvia,0.295,-0.023,0.101,Absolute decoupling,Relative decoupling,0.975
+Lithuania,0.485,-0.016,0.09,Absolute decoupling,Relative decoupling,0.643
+Madagascar,0.631,1.382,0.915,No decoupling,No decoupling,0.389
+Malawi,0.985,1.006,2.567,No decoupling,No decoupling,0.599
+Malaysia,1.074,0.634,0.926,Relative decoupling,Relative decoupling,-0.009
+Mauritius,0.54,0.374,0.432,Relative decoupling,Relative decoupling,0.619
+Mexico,0.435,0.01,0.098,Relative decoupling,Relative decoupling,0.202
+Mongolia,2.505,4.534,3.652,No decoupling,No decoupling,-0.118
+Morocco,0.764,0.539,0.488,Relative decoupling,Relative decoupling,0.057
+Mozambique,0.445,3.01,1.097,No decoupling,No decoupling,0.825
+Namibia,0.59,0.473,2.708,Relative decoupling,No decoupling,1.505
+Nepal,0.914,3.268,6.631,No decoupling,No decoupling,1.728
+Netherlands,0.258,-0.143,-0.201,Absolute decoupling,Absolute decoupling,0.065
+New Zealand,0.474,-0.018,-0.044,Absolute decoupling,Absolute decoupling,0.145
+Nicaragua,0.641,0.225,0.355,Relative decoupling,Relative decoupling,0.35
+Nigeria,1.24,0.258,0.472,Relative decoupling,Relative decoupling,0.035
+Norway,0.446,-0.01,-0.047,Absolute decoupling,Absolute decoupling,0.127
+Oman,1.109,1.263,1.654,No decoupling,No decoupling,0.091
+Pakistan,0.829,0.468,0.495,Relative decoupling,Relative decoupling,0.15
+Panama,1.495,0.846,20.575,Relative decoupling,No decoupling,0.506
+Paraguay,0.778,1.192,1.377,No decoupling,No decoupling,0.592
+Peru,1.014,0.935,1.184,Relative decoupling,No decoupling,0.24
+Philippines,1.31,0.971,0.981,Relative decoupling,Relative decoupling,0.307
+Poland,0.881,-0.016,0.048,Absolute decoupling,Relative decoupling,-0.025
+Portugal,0.127,-0.317,-0.578,Absolute decoupling,Absolute decoupling,0.136
+Qatar,3.861,1.127,1.895,Relative decoupling,Relative decoupling,-0.232
+Romania,0.871,-0.243,-0.17,Absolute decoupling,Absolute decoupling,0.11
+Russia,0.589,0.09,0.067,Relative decoupling,Relative decoupling,-0.245
+Rwanda,1.378,1.749,4.338,No decoupling,No decoupling,0.912
+Saudi Arabia,1.194,0.718,0.891,Relative decoupling,Relative decoupling,-0.051
+Senegal,0.837,1.295,1.456,No decoupling,No decoupling,0.351
+Singapore,1.233,0.237,0.38,Relative decoupling,Relative decoupling,2.585
+Slovakia,0.573,-0.21,-0.034,Absolute decoupling,Absolute decoupling,0.146
+Slovenia,0.264,-0.171,-0.032,Absolute decoupling,Absolute decoupling,0.426
+South Africa,0.535,0.131,0.242,Relative decoupling,Relative decoupling,-0.219
+South Korea,0.524,0.296,0.238,Relative decoupling,Relative decoupling,0.138
+Spain,0.221,-0.318,-0.327,Absolute decoupling,Absolute decoupling,0.133
+Sri Lanka,1.081,0.809,1.057,Relative decoupling,Relative decoupling,1.045
+Sweden,0.317,-0.242,-0.227,Absolute decoupling,Absolute decoupling,0.643
+Switzerland,0.451,-0.196,0.118,Absolute decoupling,Relative decoupling,2.368
+Taiwan,0.559,0.029,-0.043,Relative decoupling,Absolute decoupling,0.046
+Tajikistan,1.488,2.57,0.65,No decoupling,Relative decoupling,0.364
+Tanzania,1.821,2.023,1.53,No decoupling,Relative decoupling,0.313
+Thailand,0.554,0.315,0.37,Relative decoupling,Relative decoupling,0.077
+Togo,0.966,0.373,6.142,Relative decoupling,No decoupling,2.381
+Trinidad and Tobago,0.129,0.067,0.592,Relative decoupling,No decoupling,-0.368
+Tunisia,0.477,0.358,0.946,Relative decoupling,No decoupling,-0.017
+Turkey,0.957,0.519,0.354,Relative decoupling,Relative decoupling,0.03
+Uganda,1.27,1.855,1.275,No decoupling,No decoupling,0.349
+Ukraine,0.116,-0.291,-0.109,Absolute decoupling,Absolute decoupling,-0.058
+United Arab Emirates,1.801,0.77,0.599,Relative decoupling,Relative decoupling,0.16
+United Kingdom,0.214,-0.36,-0.315,Absolute decoupling,Absolute decoupling,0.439
+United States,0.264,-0.145,-0.162,Absolute decoupling,Absolute decoupling,0.066
+Uruguay,0.6,0.117,0.264,Relative decoupling,Relative decoupling,0.488
+Venezuela,-0.486,-0.29,-0.563,GDP fell,GDP fell,-0.592
+Vietnam,1.368,2.54,2.43,No decoupling,No decoupling,-0.278
+Zambia,1.699,2.944,1.673,No decoupling,Relative decoupling,0.26
+Zimbabwe,0.363,-0.04,0.009,Absolute decoupling,Relative decoupling,0.132

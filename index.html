@@ -645,25 +645,49 @@
       <button class="rail-arrow prev" type="button" aria-label="Scroll left" data-dir="-1">‹</button>
       <div class="rail" role="list" aria-label="Work titles">
         <a class="tile" href="#work-netflix" data-open="work-netflix" data-cat="independent" style="--tile:var(--pink);" role="listitem">
-          <span class="tile-num" aria-hidden="true">01</span><span class="tile-badge">New</span>
+          <span class="tile-num" aria-hidden="true">01</span><span class="tile-badge">Streaming</span>
           <span class="tile-title">Netflix Went Global. Did Its Catalogue?</span>
           <span class="tile-genre">Independent · Data analysis</span>
           <span class="tile-more" aria-hidden="true">View details</span>
         </a>
+<a class="tile" href="#work-movies" data-open="work-movies" data-cat="independent" style="--tile:var(--lavender);" role="listitem">
+          <span class="tile-num" aria-hidden="true">02</span><span class="tile-badge">Enhanced</span>
+          <span class="tile-title">What Makes a Movie Popular?</span>
+          <span class="tile-genre">Independent · Data cleaning & analysis</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#work-co2" data-open="work-co2" data-cat="independent" style="--tile:var(--signal-2);" role="listitem">
+          <span class="tile-num" aria-hidden="true">03</span><span class="tile-badge">Climate</span>
+          <span class="tile-title">Can Countries Grow While Cutting Emissions?</span>
+          <span class="tile-genre">Independent · Climate data</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#work-smoking" data-open="work-smoking" data-cat="independent" style="--tile:var(--amethyst);" role="listitem">
+          <span class="tile-num" aria-hidden="true">04</span><span class="tile-badge">Health</span>
+          <span class="tile-title">Smoking, BMI and Medical Costs</span>
+          <span class="tile-genre">Independent · Health costs</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#work-churn" data-open="work-churn" data-cat="independent aiml" style="--tile:var(--signal);" role="listitem">
+          <span class="tile-num" aria-hidden="true">05</span><span class="tile-badge">ML</span>
+          <span class="tile-title">Predicting Customer Churn</span>
+          <span class="tile-genre">Independent · Machine learning</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
 <a class="tile" href="#work-ico" data-open="work-ico" data-cat="academic aiml" style="--tile:var(--champagne);" role="listitem">
-          <span class="tile-num" aria-hidden="true">02</span>
+          <span class="tile-num" aria-hidden="true">06</span>
           <span class="tile-title">ICO Fundraising Prediction</span>
           <span class="tile-genre">Academic · 2026</span>
           <span class="tile-more" aria-hidden="true">View details</span>
         </a>
 <a class="tile" href="#work-clv" data-open="work-clv" data-cat="academic aiml" style="--tile:var(--champagne);" role="listitem">
-          <span class="tile-num" aria-hidden="true">03</span><span class="tile-badge">Published</span>
+          <span class="tile-num" aria-hidden="true">07</span><span class="tile-badge">Published</span>
           <span class="tile-title">Customer Lifetime Value Prediction</span>
           <span class="tile-genre">Academic · 2024</span>
           <span class="tile-more" aria-hidden="true">View details</span>
         </a>
 <a class="tile" href="#work-agent" data-open="work-agent" data-cat="independent aiml" style="--tile:var(--signal-2);" role="listitem">
-          <span class="tile-num" aria-hidden="true">04</span><span class="tile-badge">In progress</span>
+          <span class="tile-num" aria-hidden="true">08</span><span class="tile-badge">In progress</span>
           <span class="tile-title">AI Personal Assistant Agent</span>
           <span class="tile-genre">Independent · Agentic AI</span>
           <span class="tile-more" aria-hidden="true">View details</span>
@@ -694,9 +718,69 @@
       </div></div>
     </div>
 
-    <div class="project-block" data-cat="academic aiml" id="work-ico">
+    <div class="project-block" data-cat="independent" id="work-movies">
       <div>
         <span class="project-num">02</span>
+        <span class="project-cat">Independent · Data analysis · 2026</span>
+        <h3>What Makes a<br>Movie Popular?</h3>
+        <p class="p-justify" style="margin-top:8px;">Is a film's popularity explained by its genre, how recent it is, or how well it's rated? I first cleaned and visualised 9,800 popular films from TMDB, then went back and audited my own notebook. That audit found four issues, including a binning step that silently dropped the 100 lowest-rated films. The corrected analysis shows recency matters most among the three: median popularity jumps from 22 for 2010s films to 35 for the 2020s. Rating barely matters (Spearman ρ = 0.13), and Drama is the most common genre but one of the least popular. Even together, genre, recency, rating and vote count explain only 30% of popularity.</p>
+        <div class="project-metrics"><div class="m"><span class="n">9,800</span><span class="l">Films analysed</span></div><div class="m"><span class="n">4</span><span class="l">Issues fixed in my own code</span></div></div>
+        <div class="project-actions"><a class="gh-link" href="https://github.com/SuwaashaM/Netflix-Data-Pre-processing-and-Analysis" target="_blank" rel="noopener">Code & write-up <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a></div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--lavender);">
+        <img src="https://raw.githubusercontent.com/SuwaashaM/Netflix-Data-Pre-processing-and-Analysis/main/figures/03_genre_common_vs_popular.png" alt="Two bar charts comparing how common each film genre is with its median popularity." loading="lazy" style="width:100%; height:auto; border-radius:10px;">
+        <div class="tech-row"><span>Python</span><span>pandas</span><span>statsmodels</span><span>Seaborn</span></div>
+      </div></div>
+    </div>
+
+    <div class="project-block" data-cat="independent" id="work-co2">
+      <div>
+        <span class="project-num">03</span>
+        <span class="project-cat">Independent · Data analysis · 2026</span>
+        <h3>Can Countries Grow<br>While Cutting Emissions?</h3>
+        <p class="p-justify" style="margin-top:8px;">Which countries grew their economies while cutting CO₂ between 2005 and 2019, and does that hold once emissions in imported goods are counted? Using Our World in Data's emissions and GDP data for 117 countries, I classified each on territorial and consumption-based emissions. 26 countries, including the UK, Germany and the US, decoupled on both. Counting imports shrank the list from 34 to 28: Switzerland's territorial emissions fell 20%, but its consumption emissions rose 12%. Decoupling was overwhelmingly a rich-country result, reached by 62% of the richest third and none of the poorest. Consumption figures are modelled estimates, which the write-up flags.</p>
+        <div class="project-metrics"><div class="m"><span class="n">117</span><span class="l">Countries</span></div><div class="m"><span class="n">26</span><span class="l">Decoupled on both measures</span></div></div>
+        <div class="project-actions"><a class="gh-link" href="https://github.com/SuwaashaM/SuwaashaM.github.io/tree/master/projects/co2-decoupling" target="_blank" rel="noopener">Code & write-up <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a></div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--signal-2);">
+        <img src="projects/co2-decoupling/figures/01_growth_vs_emissions.png" alt="Scatter plot of GDP growth against change in consumption-based CO2 emissions by country, 2005 to 2019." loading="lazy" style="width:100%; height:auto; border-radius:10px;">
+        <div class="tech-row"><span>Python</span><span>pandas</span><span>SciPy</span><span>Matplotlib</span></div>
+      </div></div>
+    </div>
+
+    <div class="project-block" data-cat="independent" id="work-smoking">
+      <div>
+        <span class="project-num">04</span>
+        <span class="project-cat">Independent · Data analysis · 2026</span>
+        <h3>Smoking, BMI and<br>Medical Costs</h3>
+        <p class="p-justify" style="margin-top:8px;">How much more are smokers charged for medical care, and is the penalty the same for everyone? Using the Kaggle medical cost dataset of 1,337 adults, I fitted regression models adjusting for age, sex, children and region, and checked them with 2,000 bootstrap resamples. Smokers' median charges were 4.7 times non-smokers'. The penalty more than doubled above BMI 30, from about $13,400 to $33,200 a year, while BMI made almost no difference for non-smokers. Adding that interaction raised the model's explained variation from 75% to 86%. The dataset is simulated from census figures, so these are patterns in the data, not real-world causes.</p>
+        <div class="project-metrics"><div class="m"><span class="n">×2.5</span><span class="l">Smoking penalty above BMI 30</span></div><div class="m"><span class="n">86%</span><span class="l">Variation explained</span></div></div>
+        <div class="project-actions"><a class="gh-link" href="https://github.com/SuwaashaM/SuwaashaM.github.io/tree/master/projects/smoking-medical-costs" target="_blank" rel="noopener">Code & write-up <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a></div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--amethyst);">
+        <img src="projects/smoking-medical-costs/figures/03_smoking_penalty.png" alt="Bar chart of the estimated smoking penalty: $13,360 below BMI 30 and $33,215 at BMI 30 or above." loading="lazy" style="width:100%; height:auto; border-radius:10px;">
+        <div class="tech-row"><span>Python</span><span>statsmodels</span><span>Bootstrap</span><span>Matplotlib</span></div>
+      </div></div>
+    </div>
+
+    <div class="project-block" data-cat="independent aiml" id="work-churn">
+      <div>
+        <span class="project-num">05</span>
+        <span class="project-cat">Independent · Machine learning · 2026</span>
+        <h3>Predicting<br>Customer Churn</h3>
+        <p class="p-justify" style="margin-top:8px;">Which customers are about to leave, and can a simple model find them in time? Using IBM's Telco Customer Churn data of 7,043 customers, I compared logistic regression with gradient boosting under cross-validation and a held-out test set. Churn was 43% on month-to-month contracts against 3% on two-year contracts, and 53% in a customer's first six months. The explainable logistic regression matched the more complex model (test ROC-AUC 0.85 vs 0.84) and was well calibrated. Contacting the riskiest 20% of customers would reach half of those who leave, 2.5 times better than random. It's a sample dataset, and the results show association rather than cause.</p>
+        <div class="project-metrics"><div class="m"><span class="n">0.85</span><span class="l">Test ROC-AUC</span></div><div class="m"><span class="n">50%</span><span class="l">Leavers in the riskiest 20%</span></div></div>
+        <div class="project-actions"><a class="gh-link" href="https://github.com/SuwaashaM/SuwaashaM.github.io/tree/master/projects/telco-churn" target="_blank" rel="noopener">Code & write-up <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a></div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--signal);">
+        <img src="projects/telco-churn/figures/02_targeting_and_roc.png" alt="Targeting curve and ROC curves for the churn models on the held-out test set." loading="lazy" style="width:100%; height:auto; border-radius:10px;">
+        <div class="tech-row"><span>Python</span><span>scikit-learn</span><span>pandas</span><span>Matplotlib</span></div>
+      </div></div>
+    </div>
+
+    <div class="project-block" data-cat="academic aiml" id="work-ico">
+      <div>
+        <span class="project-num">06</span>
         <span class="project-cat">Academic · MSc coursework, refactored · 2026</span>
         <h3>ICO Fundraising<br>Prediction</h3>
         <p class="p-justify" style="margin-top:8px;">Which token sales reach their fundraising target? I modelled Initial Coin Offering outcomes from digital-presence, compliance and geographic signals in R. The data was sparse and patchily reported, so careful imputation and strict leakage and class-imbalance controls mattered more than the choice of model. I later refactored my own coursework script into a tested pipeline. That rebuild caught a leak in the original, where KNN had been tuned on the test set. 34 automated checks now run on every change.</p>
@@ -733,7 +817,7 @@
 
     <div class="project-block" data-cat="academic aiml" id="work-clv">
       <div>
-        <span class="project-num">03</span>
+        <span class="project-num">07</span>
         <span class="project-cat">Academic · Undergraduate project · 2024</span>
         <h3>Customer Lifetime<br>Value Prediction</h3>
         <p class="p-justify" style="margin-top:8px;">Which customers are worth the most over time? I modelled purchasing behaviour across 10,000+ transaction records to find high-value segments. The lift came from better features, not a bigger model. Feature engineering improved predictive performance by 22% over the baseline, measured with cross-validation. The results became retention and growth recommendations. The work contributed to a peer-reviewed paper in IJRAR (2024).</p>
@@ -761,7 +845,7 @@
 
     <div class="project-block" data-cat="independent aiml" id="work-agent">
       <div>
-        <span class="project-num">04</span>
+        <span class="project-num">08</span>
         <span class="project-cat">Independent · Agentic AI · In progress · Not yet public</span>
         <h3>AI Personal<br>Assistant Agent</h3>
         <p class="p-justify" style="margin-top:8px;">An agentic personal assistant that plans, uses tools and remembers context, while the user stays in control. The aim is to organise tasks, analyse information, support decisions and automate useful workflows. It is at the architecture and prototyping stage, built in Python. The planned flow runs from user to agent, planner, tools and memory, then to actions. There are no results yet. The planner and memory layers come next.</p>
