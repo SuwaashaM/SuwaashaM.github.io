@@ -644,20 +644,26 @@
     <div class="rail-wrap reveal">
       <button class="rail-arrow prev" type="button" aria-label="Scroll left" data-dir="-1">‹</button>
       <div class="rail" role="list" aria-label="Work titles">
-        <a class="tile" href="#work-ico" data-open="work-ico" data-cat="academic aiml" style="--tile:var(--champagne);" role="listitem">
-          <span class="tile-num" aria-hidden="true">01</span>
+        <a class="tile" href="#work-netflix" data-open="work-netflix" data-cat="independent" style="--tile:var(--pink);" role="listitem">
+          <span class="tile-num" aria-hidden="true">01</span><span class="tile-badge">New</span>
+          <span class="tile-title">Netflix Went Global. Did Its Catalogue?</span>
+          <span class="tile-genre">Independent · Data analysis</span>
+          <span class="tile-more" aria-hidden="true">View details</span>
+        </a>
+<a class="tile" href="#work-ico" data-open="work-ico" data-cat="academic aiml" style="--tile:var(--champagne);" role="listitem">
+          <span class="tile-num" aria-hidden="true">02</span>
           <span class="tile-title">ICO Fundraising Prediction</span>
           <span class="tile-genre">Academic · 2026</span>
           <span class="tile-more" aria-hidden="true">View details</span>
         </a>
 <a class="tile" href="#work-clv" data-open="work-clv" data-cat="academic aiml" style="--tile:var(--champagne);" role="listitem">
-          <span class="tile-num" aria-hidden="true">02</span><span class="tile-badge">Published</span>
+          <span class="tile-num" aria-hidden="true">03</span><span class="tile-badge">Published</span>
           <span class="tile-title">Customer Lifetime Value Prediction</span>
           <span class="tile-genre">Academic · 2024</span>
           <span class="tile-more" aria-hidden="true">View details</span>
         </a>
 <a class="tile" href="#work-agent" data-open="work-agent" data-cat="independent aiml" style="--tile:var(--signal-2);" role="listitem">
-          <span class="tile-num" aria-hidden="true">03</span><span class="tile-badge">In progress</span>
+          <span class="tile-num" aria-hidden="true">04</span><span class="tile-badge">In progress</span>
           <span class="tile-title">AI Personal Assistant Agent</span>
           <span class="tile-genre">Independent · Agentic AI</span>
           <span class="tile-more" aria-hidden="true">View details</span>
@@ -669,9 +675,28 @@
 
   <div class="wrap rail-details">
 
-    <div class="project-block" data-cat="academic aiml" id="work-ico">
+    <div class="project-block" data-cat="independent" id="work-netflix">
       <div>
         <span class="project-num">01</span>
+        <span class="project-cat">Independent · Data analysis · 2026</span>
+        <h3>Netflix Went Global.<br>Did Its Catalogue?</h3>
+        <p class="p-justify" style="margin-top:8px;">Between 2016 and 2019 Netflix added five times more titles a year, so I asked whether that growth changed what it added: more TV shows, more international productions, newer releases? I analysed 5,884 titles from the Kaggle Netflix dataset, testing each idea with chi-square, Kruskal–Wallis and logistic regression. Two of the three predictions were not supported. TV's share showed no steady trend, and non-US additions rose to 61% in 2018 before falling back to 52%. Additions actually got older, with the share released within a year falling from 65% to 53%. The data is a January 2020 snapshot, so titles removed before then are missing, a limitation the write-up spells out.</p>
+        <div class="project-metrics">
+          <div class="m"><span class="n">5,884</span><span class="l">Titles analysed</span></div>
+          <div class="m"><span class="n">2 of 3</span><span class="l">Predictions not supported</span></div>
+        </div>
+        <div class="project-actions"><a class="gh-link" href="projects/netflix-content-strategy/" target="_blank" rel="noopener">Read the analysis <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a><a class="gh-link" href="https://github.com/SuwaashaM/SuwaashaM.github.io/blob/master/projects/netflix-content-strategy/netflix_content_strategy.ipynb" target="_blank" rel="noopener">Notebook <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></a></div>
+      </div>
+      <div class="visual-panel"><div class="visual-inner" data-tilt data-tilt-max="6" style="--accent:var(--champagne);">
+        <img src="projects/netflix-content-strategy/figures/02_international_share.png" alt="Share of Netflix additions with no US production country by year: 52%, 60%, 61%, 52%." loading="lazy" style="width:100%; height:auto; border-radius:10px;">
+        <div class="tech-row"><span>Python</span><span>pandas</span><span>statsmodels</span><span>SciPy</span><span>Matplotlib</span></div>
+        <p class="visual-note">Data: Kaggle, Netflix Movies and TV Shows (Shivam Bansal), January 2020 release.</p>
+      </div></div>
+    </div>
+
+    <div class="project-block" data-cat="academic aiml" id="work-ico">
+      <div>
+        <span class="project-num">02</span>
         <span class="project-cat">Academic · MSc coursework, refactored · 2026</span>
         <h3>ICO Fundraising<br>Prediction</h3>
         <p class="p-justify" style="margin-top:8px;">Which token sales reach their fundraising target? I modelled Initial Coin Offering outcomes from digital-presence, compliance and geographic signals in R. The data was sparse and patchily reported, so careful imputation and strict leakage and class-imbalance controls mattered more than the choice of model. I later refactored my own coursework script into a tested pipeline. That rebuild caught a leak in the original, where KNN had been tuned on the test set. 34 automated checks now run on every change.</p>
@@ -708,7 +733,7 @@
 
     <div class="project-block" data-cat="academic aiml" id="work-clv">
       <div>
-        <span class="project-num">02</span>
+        <span class="project-num">03</span>
         <span class="project-cat">Academic · Undergraduate project · 2024</span>
         <h3>Customer Lifetime<br>Value Prediction</h3>
         <p class="p-justify" style="margin-top:8px;">Which customers are worth the most over time? I modelled purchasing behaviour across 10,000+ transaction records to find high-value segments. The lift came from better features, not a bigger model. Feature engineering improved predictive performance by 22% over the baseline, measured with cross-validation. The results became retention and growth recommendations. The work contributed to a peer-reviewed paper in IJRAR (2024).</p>
@@ -736,7 +761,7 @@
 
     <div class="project-block" data-cat="independent aiml" id="work-agent">
       <div>
-        <span class="project-num">03</span>
+        <span class="project-num">04</span>
         <span class="project-cat">Independent · Agentic AI · In progress · Not yet public</span>
         <h3>AI Personal<br>Assistant Agent</h3>
         <p class="p-justify" style="margin-top:8px;">An agentic personal assistant that plans, uses tools and remembers context, while the user stays in control. The aim is to organise tasks, analyse information, support decisions and automate useful workflows. It is at the architecture and prototyping stage, built in Python. The planned flow runs from user to agent, planner, tools and memory, then to actions. There are no results yet. The planner and memory layers come next.</p>
