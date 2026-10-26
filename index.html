@@ -478,6 +478,21 @@
   @media (max-width:560px){ .hack-facts div{grid-template-columns:1fr; gap:4px;} }
   .project-actions .gh-link{margin-right:18px;}
 
+  /* contact & recommendations cards (existing tokens only) */
+  .connect{margin-top:44px; text-align:left;}
+  .connect-head{font-family:var(--font-mono); font-weight:500; font-size:clamp(12px, 0.15vw + 11.5px, 13px); letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 16px; text-align:center;}
+  .connect-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px;}
+  @media (max-width:560px){ .connect-grid{grid-template-columns:1fr;} }
+  .connect-card{display:flex; flex-direction:column; gap:8px; padding:22px; border-radius:18px; background:rgba(22,21,31,0.6); border:1px solid var(--hair); color:var(--ivory); text-decoration:none; transition:border-color .25s ease, transform .25s var(--ease-premium), box-shadow .25s ease;}
+  .connect-card:hover{border-color:var(--signal); transform:translateY(-3px); box-shadow:var(--shadow-deep);}
+  .connect-icon{width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:var(--surface-2); color:var(--ivory); margin-bottom:4px;}
+  .connect-title{font-family:var(--font-body); font-weight:700; font-size:clamp(16px, 0.3vw + 15px, 17.5px);}
+  .connect-desc{color:var(--muted); font-size:clamp(14px, 0.2vw + 13.5px, 15px); line-height:1.55;}
+  .connect-note{color:var(--muted); font-size:clamp(12.5px, 0.15vw + 12px, 13.5px); line-height:1.55; padding-top:8px; border-top:1px solid var(--hair);}
+  .connect-note b{color:var(--lavender); font-weight:600; white-space:nowrap;}
+  .connect-cta{margin-top:auto; padding-top:6px; font-family:var(--font-mono); font-size:clamp(12px, 0.15vw + 11.5px, 13px); color:var(--signal-ink); overflow-wrap:anywhere;}
+  @media (prefers-reduced-motion: reduce){ .connect-card:hover{transform:none;} }
+
 </style>
 
 <div class="topbar" id="topbar"></div>
@@ -516,7 +531,7 @@
   <a href="#experience"><span class="n">04</span>Experience</a>
   <a href="#community"><span class="n">05</span>Community &amp; Learning</a>
   <a href="#about"><span class="n">06</span>About</a>
-  <a href="#contact"><span class="n">07</span>Contact</a>
+  <a href="#contact"><span class="n">07</span>Contact &amp; Recommendations</a>
   <button class="navcv" id="mobileViewCv" type="button">View CV</button>
 </div>
 
@@ -1008,6 +1023,7 @@
 <section id="contact">
   <div class="wrap contact-wrap">
     <div class="reveal">
+      <span class="eyebrow" style="display:block; margin-bottom:16px;">08 — Contact &amp; Recommendations</span>
       <h2><span class="rl"><span>The next interesting</span></span><span class="rl"><span>problem could be ours.</span></span></h2>
       <p class="lede">I'm open to Data Science, AI, Analytics, research and ambitious product conversations. I'm especially drawn to early-stage startups where there's a gap for someone who pairs technical rigour with creative execution.</p>
       <div class="contact-card">
@@ -1032,10 +1048,34 @@
           <div class="formstate success" id="successState">✓ Message sent — I'll get back to you soon.</div>
           <div class="formstate error" id="errorState">Something went wrong sending that. Please email me directly instead.</div>
         </form>
-        <div class="contact-links">
-          <a href="mailto:suwaashaperumal@gmail.com">Email</a>
-          <a href="https://www.linkedin.com/in/suwaasham" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://github.com/SuwaashaM" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      <div class="connect">
+        <h3 class="connect-head">Other ways to reach me</h3>
+        <div class="connect-grid">
+          <a class="connect-card" href="mailto:suwaashaperumal@gmail.com">
+            <span class="connect-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+            <span class="connect-title">Email Me</span>
+            <span class="connect-desc">For roles, projects or research conversations.</span>
+            <span class="connect-cta">suwaashaperumal@gmail.com</span>
+          </a>
+          <a class="connect-card" href="https://www.linkedin.com/in/suwaasham" target="_blank" rel="noopener">
+            <span class="connect-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg></span>
+            <span class="connect-title">Connect on LinkedIn</span>
+            <span class="connect-desc">Explore my professional network and experience.</span>
+            <span class="connect-cta">linkedin.com/in/suwaasham</span>
+          </a>
+          <a class="connect-card" href="https://github.com/SuwaashaM" target="_blank" rel="noopener">
+            <span class="connect-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></span>
+            <span class="connect-title">GitHub</span>
+            <span class="connect-desc">Code, notebooks and project write-ups.</span>
+            <span class="connect-cta">github.com/SuwaashaM</span>
+          </a>
+          <a class="connect-card" href="https://www.linkedin.com/in/suwaasham" target="_blank" rel="noopener">
+            <span class="connect-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M12 15.5l-2.6-2.5a1.6 1.6 0 0 1 2.3-2.3l.3.3.3-.3a1.6 1.6 0 0 1 2.3 2.3z"/></svg></span>
+            <span class="connect-title">Write a Recommendation</span>
+            <span class="connect-desc">Worked with me on a project, research or collaboration? I'd appreciate your feedback on LinkedIn.</span><span class="connect-note">If we're connected, open my profile and select <b>More → Recommend</b>. Recommendations are written and shown on LinkedIn, not on this site.</span>
+            <span class="connect-cta">Open my LinkedIn profile</span>
+          </a>
         </div>
       </div>
     </div>
