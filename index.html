@@ -497,6 +497,50 @@
 
 
   /* work filters + hackathon fact lists (added for the five-section structure; existing tokens only) */
+
+  /* ---------- editorial pass: sentence-style controls ---------- */
+  /* Work filter as a sentence */
+  .work-filters.ed{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 14px; margin:-8px 0 36px;}
+  .ed-count{font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; color:var(--muted);}
+  .ed-count b{color:var(--champagne); font-weight:600;}
+
+  /* Quiz: answer inline, in the sentence */
+  .quiz-options.ed{flex-direction:row; flex-wrap:wrap; align-items:baseline; gap:4px 10px; font-family:var(--font-serif); font-style:italic; font-size:clamp(20px,1.6vw + 14px,24px); color:var(--muted);}
+  .quiz-options.ed .quiz-opt{all:unset; cursor:pointer; position:relative; font-family:var(--font-serif); font-style:italic; font-weight:500; color:var(--ivory); padding:0 2px 3px; transition:color .25s ease, opacity .3s ease;}
+  .quiz-options.ed .quiz-opt::after{content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:repeating-linear-gradient(90deg, var(--champagne) 0 5px, transparent 5px 9px); opacity:.7; transition:opacity .2s ease;}
+  .quiz-options.ed .quiz-opt:hover:not(:disabled){color:var(--lavender);}
+  .quiz-options.ed .quiz-opt:hover::after{opacity:1;}
+  .quiz-options.ed .quiz-opt:focus-visible{outline:2px solid var(--amethyst); outline-offset:4px; border-radius:3px;}
+  .quiz-options.ed .quiz-opt.correct{color:var(--champagne);}
+  .quiz-options.ed .quiz-opt.correct::after{background:var(--champagne); height:2px; opacity:1;}
+  .quiz-options.ed .quiz-opt.wrong{color:var(--oxblood); text-decoration:line-through; animation:quizShake .35s ease;}
+  .quiz-options.ed .quiz-opt:disabled:not(.correct){opacity:.35; text-decoration:line-through;}
+  .quiz-options.ed .quiz-opt:disabled::after{display:none;}
+  .quiz-options.ed .quiz-opt.correct:disabled::after{display:block;}
+
+  /* Contact form as a letter */
+  .madlib{font-family:var(--font-serif); font-size:clamp(20px, 1.4vw + 14px, 26px); line-height:2.1; color:var(--muted);}
+  .madlib-line{margin:0 0 6px;}
+  .madlib-line em{font-style:italic; color:var(--ivory);}
+  .madlib .field.inline{display:inline-block; position:relative; margin:0; gap:0; vertical-align:baseline;}
+  .madlib .field.inline input{font:inherit; font-style:italic; color:var(--ivory); background:transparent; border:0; border-radius:0; padding:0 2px 2px; box-shadow:none;
+    border-bottom:1px dashed rgba(232,184,109,.7); field-sizing:content; min-width:7ch; width:11ch; max-width:100%;}
+  .madlib .field.inline input#cEmail{width:16ch; min-width:10ch;}
+  @supports (field-sizing:content){ .madlib .field.inline input{width:auto;} .madlib .field.inline input#cEmail{width:auto;} }
+  .madlib .field.inline input::placeholder{color:rgba(244,241,234,.32); font-style:italic;}
+  .madlib .field.inline input:focus{outline:none; border-bottom:1px solid var(--champagne); box-shadow:none;}
+  .madlib .field.inline .errmsg{position:absolute; left:2px; top:100%; white-space:nowrap; margin-top:6px; font-family:var(--font-mono); font-size:11.5px; line-height:1.3; font-style:normal;}
+  .madlib .field.inline.err input{border-bottom-color:var(--oxblood);}
+  .madlib .lens-word{vertical-align:baseline; line-height:1.25;}
+  .madlib .lens-roll > span{font-size:inherit; line-height:inherit;}
+  .madlib .field.block{margin:18px 0 22px;}
+  .madlib .field.block label{font-family:var(--font-mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);}
+  .madlib .field.block textarea{font-family:var(--font-serif); font-style:italic; font-size:clamp(17px,0.6vw + 14px,19px); line-height:1.6; background:transparent; border:0; border-radius:0; border-left:1px solid rgba(232,184,109,.5); padding:4px 0 4px 16px; box-shadow:none; min-height:110px;}
+  .madlib .field.block textarea:focus{border-left-color:var(--champagne); box-shadow:none;}
+  .madlib .field.block textarea::placeholder{color:rgba(244,241,234,.32);}
+  .madlib .submit-btn{width:auto; padding:14px 26px; border-radius:999px; display:inline-flex;}
+  .madlib .formstate{font-family:var(--font-mono); font-size:13px; line-height:1.5;}
+  @media (max-width:560px){ .madlib{line-height:2;} .madlib .submit-btn{width:100%; justify-content:center;} }
   .work-filters{display:flex; flex-wrap:wrap; gap:8px; margin:-8px 0 36px;}
   .work-filters button{font-family:var(--font-mono); font-size:clamp(12.5px, 0.15vw + 12px, 13.5px); letter-spacing:.03em; color:var(--muted); background:transparent; border:1px solid var(--hair-strong); border-radius:999px; padding:9px 16px; cursor:pointer; transition:color .2s ease, background .2s ease, border-color .2s ease;}
   .work-filters button:hover{color:var(--ivory); border-color:var(--amethyst);}
@@ -676,11 +720,10 @@
 <section id="work" class="section-major">
   <div class="wrap">
     <div class="section-head reveal"><span class="eyebrow">01 — Work</span><h2><span class="rl"><span>Projects.</span></span></h2></div>
-    <div class="work-filters reveal" id="workFilters" role="group" aria-label="Filter projects">
-      <button type="button" data-filter="all" aria-pressed="true">All Projects</button>
-      <button type="button" data-filter="independent" aria-pressed="false">Independent</button>
-      <button type="button" data-filter="academic" aria-pressed="false">Academic</button>
-      <button type="button" data-filter="aiml" aria-pressed="false">AI / ML</button>
+    <div class="work-filters ed reveal" id="workFilters">
+      <span class="lens-pre">Showing</span>
+      <button type="button" class="lens-word" id="workWord" aria-label="Change which projects are shown. Currently: all my work"><span class="lens-roll" id="workRoll"><span>all my work</span></span><svg class="lens-cycle" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9"/><path d="M13.5 2.5v3h-3"/></svg></button>
+      <span class="ed-count" id="workCount"><b>8</b> projects</span>
     </div>
     <p class="sr-only" id="workFilterStatus" aria-live="polite"></p>
     <div class="rail-wrap reveal">
@@ -1240,10 +1283,9 @@
       <div class="reveal about-side">
         <div class="quiz-card" id="quizCard">
           <span class="quiz-kicker">🧠 Common belief, checked</span>
-          <p class="quiz-q">"A deep learning model will always beat a simpler one like logistic regression." True or false?</p>
-          <div class="quiz-options">
-            <button class="quiz-opt" type="button" data-correct="false">True</button>
-            <button class="quiz-opt" type="button" data-correct="true">False</button>
+          <p class="quiz-q">"A deep learning model will always beat a simpler one like logistic regression."</p>
+          <div class="quiz-options ed" role="group" aria-label="Is that true or false?">
+            <button class="quiz-opt" type="button" data-correct="false">true</button><span aria-hidden="true">or</span><button class="quiz-opt" type="button" data-correct="true">false</button><span aria-hidden="true" style="margin-left:-8px">?</span>
           </div>
           <p class="quiz-feedback" id="quizFeedback"></p>
         </div>
@@ -1294,21 +1336,13 @@
       <h2><span class="rl"><span>The next interesting</span></span><span class="rl"><span>problem could be ours.</span></span></h2>
       <p class="lede">Open to AI, data science, research and ambitious product conversations, especially with early-stage startups that need technical rigour and creative execution in the same person.</p>
       <div class="contact-card">
-        <form id="contactForm" novalidate>
+        <form id="contactForm" class="madlib" novalidate>
           <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <div class="field" id="fName">
-            <label for="cName">Your name</label>
-            <input type="text" id="cName" name="name" placeholder="Your name" autocomplete="name">
-            <span class="errmsg">Please enter your name.</span>
-          </div>
-          <div class="field" id="fEmail">
-            <label for="cEmail">Your email</label>
-            <input type="email" id="cEmail" name="email" placeholder="you@example.com" autocomplete="email">
-            <span class="errmsg">Please enter a valid email address.</span>
-          </div>
-          <div class="field" id="fMessage">
-            <label for="cMessage">What are we talking about?</label>
-            <textarea id="cMessage" name="message" rows="4" placeholder="A role, a project, a question..."></textarea>
+          <p class="madlib-line"><em>Hello Suwaasha,</em> my name is <span class="field inline" id="fName"><label class="sr-only" for="cName">Your name</label><input type="text" id="cName" name="name" placeholder="your name" autocomplete="name"><span class="errmsg">Please enter your name.</span></span> and you can reach me at <span class="field inline" id="fEmail"><label class="sr-only" for="cEmail">Your email</label><input type="email" id="cEmail" name="email" placeholder="your email" autocomplete="email"><span class="errmsg">Please check your email.</span></span>.</p>
+          <p class="madlib-line">I'd like to talk about <button type="button" class="lens-word" id="topicWord" aria-label="Change the topic. Currently: a role"><span class="lens-roll" id="topicRoll"><span>a role</span></span><svg class="lens-cycle" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9"/><path d="M13.5 2.5v3h-3"/></svg></button>.</p>
+          <div class="field block" id="fMessage">
+            <label for="cMessage">A few more words</label>
+            <textarea id="cMessage" name="message" rows="4" placeholder="The team, the problem, and what you'd need from me…"></textarea>
             <span class="errmsg">Please add a short message.</span>
           </div>
           <button class="submit-btn" id="submitBtn" type="submit"><span id="submitLabel">Send Message <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span></span></button>
@@ -1365,6 +1399,31 @@
 </div>
 </main>
 <script>
+  /* Shared helper: roll an italic word out and a new one in, easing the width between them */
+  window.edRoll = function(roll, word, animate){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var old = roll.lastElementChild;
+    var next = document.createElement('span');
+    next.textContent = word;
+    if(!animate || reduce){ roll.innerHTML = ''; roll.appendChild(next); roll.style.width = ''; return; }
+    roll.style.width = roll.getBoundingClientRect().width + 'px';
+    next.className = 'enter';
+    roll.appendChild(next);
+    var pad = parseFloat(getComputedStyle(roll).paddingLeft) || 0;
+    var target = next.getBoundingClientRect().width + pad * 2;
+    requestAnimationFrame(function(){
+      roll.style.width = target + 'px';
+      next.classList.remove('enter');
+      if(old) old.classList.add('leave');
+    });
+    clearTimeout(roll._t);
+    roll._t = setTimeout(function(){
+      Array.prototype.slice.call(roll.children).forEach(function(c){ if(c !== next) c.remove(); });
+      roll.style.width = '';
+    }, 520);
+  };
+</script>
+<script>
 (function(){
   var root = document.documentElement;
   root.classList.add('rails-ready');
@@ -1377,20 +1436,35 @@
     if(det) det.classList.add('single');
   });
 
-  /* Work filters now filter the title row */
+  /* Work filter: a sentence whose last words roll through the categories */
   var bar = document.getElementById('workFilters');
   if(bar){
     var tiles = Array.prototype.slice.call(document.querySelectorAll('#work .tile'));
     var status = document.getElementById('workFilterStatus');
-    bar.addEventListener('click', function(e){
-      var btn = e.target.closest('button[data-filter]'); if(!btn) return;
-      var f = btn.getAttribute('data-filter'), shown = 0;
-      bar.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-pressed', String(b === btn)); });
+    var wordBtn = document.getElementById('workWord');
+    var countEl = document.getElementById('workCount');
+    var fOrder = ['all', 'independent', 'academic', 'aiml'];
+    var fWords = { all:'all my work', independent:'independent projects', academic:'academic work', aiml:'the AI & ML ones' };
+    var fCurrent = 'all';
+    function countFor(f){
+      return tiles.filter(function(t){ return f === 'all' || (' ' + t.getAttribute('data-cat') + ' ').indexOf(' ' + f + ' ') !== -1; }).length;
+    }
+    countEl.innerHTML = '<b>' + countFor('all') + '</b> projects';
+    wordBtn.addEventListener('click', function(){
+      var f = fOrder[(fOrder.indexOf(fCurrent) + 1) % fOrder.length];
+      while(f !== 'all' && countFor(f) === 0){ f = fOrder[(fOrder.indexOf(f) + 1) % fOrder.length]; }
+      fCurrent = f;
+      var shown = 0;
       tiles.forEach(function(t){
         var ok = f === 'all' || (' ' + t.getAttribute('data-cat') + ' ').indexOf(' ' + f + ' ') !== -1;
         t.hidden = !ok; if(ok) shown++;
       });
+      window.edRoll(document.getElementById('workRoll'), fWords[f], true);
+      wordBtn.setAttribute('aria-label', 'Change which projects are shown. Currently: ' + fWords[f]);
+      wordBtn.classList.remove('spin'); void wordBtn.offsetWidth; wordBtn.classList.add('spin');
+      countEl.innerHTML = '<b>' + shown + '</b> ' + (shown === 1 ? 'project' : 'projects');
       if(status) status.textContent = shown + (shown === 1 ? ' project' : ' projects') + ' shown';
+      var rail = bar.parentNode.querySelector('.rail'); if(rail) rail.scrollLeft = 0;
       document.querySelectorAll('.rail-wrap').forEach(updateArrows);
     });
   }
@@ -1844,6 +1918,21 @@
   var submitLabel = document.getElementById('submitLabel');
   var FORM_ENDPOINT = 'https://formsubmit.co/ajax/suwaashaperumal@gmail.com';
   var SEND_LABEL = 'Send Message <span class="btn-arrow"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-45deg); display:block;"><line x1="2" y1="8" x2="12" y2="8"/><path d="M8 3l5 5-5 5"/></svg></span>';
+  var topicBtn = document.getElementById('topicWord');
+  var topics = [
+    ['a role', 'The team, the problem, and what you’d need from me…'],
+    ['a project', 'What you’re building and where you’re stuck…'],
+    ['research', 'The question, the data, and how I might help…'],
+    ['something else', 'Whatever’s on your mind…']
+  ];
+  var topicIdx = 0;
+  topicBtn.addEventListener('click', function(){
+    topicIdx = (topicIdx + 1) % topics.length;
+    window.edRoll(document.getElementById('topicRoll'), topics[topicIdx][0], true);
+    topicBtn.setAttribute('aria-label', 'Change the topic. Currently: ' + topics[topicIdx][0]);
+    topicBtn.classList.remove('spin'); void topicBtn.offsetWidth; topicBtn.classList.add('spin');
+    document.getElementById('cMessage').placeholder = topics[topicIdx][1];
+  });
   function setErr(id, isErr){ document.getElementById(id).classList.toggle('err', isErr); }
   function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
@@ -1866,8 +1955,9 @@
       body: JSON.stringify({
         name: name,
         email: email,
+        topic: topics[topicIdx][0],
         message: message,
-        _subject: 'Portfolio contact from ' + name,
+        _subject: 'Portfolio: ' + topics[topicIdx][0] + ' — from ' + name,
         _template: 'table',
         _captcha: 'false'
       })
