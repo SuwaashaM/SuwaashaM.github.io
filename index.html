@@ -512,6 +512,7 @@
   .quiz-options.ed .quiz-opt:hover::after{opacity:1;}
   .quiz-options.ed .quiz-opt:focus-visible{outline:2px solid var(--amethyst); outline-offset:4px; border-radius:3px;}
   .quiz-options.ed .quiz-opt.correct{color:var(--champagne);}
+  .quiz-options.ed:has(.correct) .quiz-hint{display:none;}
   .quiz-options.ed .quiz-opt.correct::after{background:var(--champagne); height:2px; opacity:1;}
   .quiz-options.ed .quiz-opt.wrong{color:var(--oxblood); text-decoration:line-through; animation:quizShake .35s ease;}
   .quiz-options.ed .quiz-opt:disabled:not(.correct){opacity:.35; text-decoration:line-through;}
@@ -1284,8 +1285,8 @@
         <div class="quiz-card" id="quizCard">
           <span class="quiz-kicker">🧠 Common belief, checked</span>
           <p class="quiz-q">"A deep learning model will always beat a simpler one like logistic regression."</p>
-          <div class="quiz-options ed" role="group" aria-label="Is that true or false?">
-            <button class="quiz-opt" type="button" data-correct="false">true</button><span aria-hidden="true">or</span><button class="quiz-opt" type="button" data-correct="true">false</button><span aria-hidden="true" style="margin-left:-8px">?</span>
+          <div class="quiz-options ed" role="group" aria-label="True or false?">
+            <button class="quiz-opt" type="button" data-correct="false">True</button><span aria-hidden="true">or</span><button class="quiz-opt" type="button" data-correct="true">false</button><span aria-hidden="true" style="margin-left:-8px">?</span><span class="ed-count quiz-hint" style="margin-left:6px">← tap your answer</span>
           </div>
           <p class="quiz-feedback" id="quizFeedback"></p>
         </div>
