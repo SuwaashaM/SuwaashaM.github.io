@@ -134,14 +134,26 @@
 
   /* ---------- hero ---------- */
   .hero{min-height:100svh; display:flex; flex-direction:column; justify-content:center; position:relative; padding:clamp(5rem,11vh,7.5rem) 0 clamp(2.5rem,5vh,4rem); text-align:left;}
-  #constellation{position:absolute; inset:0; width:100%; height:100%; z-index:0; cursor:crosshair; opacity:0; transition:opacity 1.2s ease;}
-  #constellation.ready{opacity:1;}
-  .constellation-hint{position:absolute; top:28px; left:32px; z-index:1; display:flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); opacity:0; transition:opacity .8s ease; pointer-events:none;}
-  .constellation-hint.show{opacity:.75;}
-  .constellation-hint span{color:var(--signal-ink); animation:hintTwinkle 1.8s ease-in-out infinite;}
-  @keyframes hintTwinkle{0%,100%{opacity:.4; transform:scale(.85);} 50%{opacity:1; transform:scale(1.1);}}
-  @media (max-width:900px){ .constellation-hint{top:auto; bottom:14px; left:50%; transform:translateX(-50%);} }
-  @media (prefers-reduced-motion: reduce){ .constellation-hint span{animation:none;} }
+  /* ---------- hero lens switcher: "I'm a ..." ---------- */
+  .lens{display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; margin:-12px 0 30px;
+    opacity:0; transform:translateY(14px); animation:heroFade .6s var(--ease-premium) forwards; animation-delay:.9s;}
+  .lens-label{font-family:var(--font-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);}
+  .lens-opts{display:inline-flex; flex-wrap:wrap; gap:4px; padding:4px; border-radius:999px; border:1px solid var(--hair-strong); background:rgba(255,255,255,0.03);}
+  .lens-opts button{font-family:var(--font-mono); font-size:clamp(12px, 0.15vw + 11.5px, 13px); letter-spacing:.03em; color:var(--muted); background:transparent; border:0; border-radius:999px; padding:8px 14px; cursor:pointer; transition:color .2s ease, background .25s var(--ease-premium), box-shadow .25s ease;}
+  .lens-opts button:hover{color:var(--ivory); background:rgba(255,255,255,0.06);}
+  .lens-opts button[aria-pressed="true"]{color:var(--bg); background:var(--ivory); box-shadow:0 8px 22px rgba(109,94,245,0.25);}
+  .hero-statement, .hero-now{transition:opacity .28s ease, transform .28s var(--ease-premium);}
+  .lens-swap{opacity:0 !important; transform:translateY(6px) !important;}
+  .lens-facts{display:block; color:var(--ivory); margin-bottom:6px;}
+  .lens-start{display:flex; flex-wrap:wrap; align-items:center; gap:8px 10px;}
+  .lens-start b{color:var(--champagne); font-weight:600;}
+  .hero-now .lens-start a{border:1px solid rgba(232,184,109,.35); border-radius:999px; padding:4px 12px; color:var(--ivory); transition:background .2s ease, border-color .2s ease;}
+  .hero-now .lens-start a:hover{background:rgba(232,184,109,.12); border-color:var(--champagne);}
+  .tile.lens-match{border-color:color-mix(in srgb, var(--signal-ink) 70%, transparent); box-shadow:0 0 0 1px rgba(185,174,255,.45), 0 18px 40px rgba(109,94,245,.28);}
+  .tile.lens-match::before{content:"Start here"; position:absolute; top:14px; right:14px; left:auto; bottom:auto; height:auto; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--bg); background:var(--signal-ink); padding:3px 9px; border-radius:999px; z-index:3;}
+  @media (max-width:900px){ .lens{justify-content:center;} .lens-start{justify-content:center;} }
+  @media (max-width:520px){ .lens{flex-direction:column; gap:10px;} .lens-opts{border-radius:20px; justify-content:center;} .lens-opts button{padding:7px 11px;} }
+  @media (prefers-reduced-motion: reduce){ .lens{animation:none; opacity:1; transform:none;} .hero-statement, .hero-now{transition:none;} }
   .hero-inner{position:relative; z-index:2; max-width:980px; margin:0; will-change:transform; transition:transform .4s var(--ease-premium);}
   .hero-kicker{font-family:var(--font-mono); font-size:clamp(13px, 0.3vw + 12px, 14.5px); letter-spacing:.14em; color:var(--muted); margin-bottom:30px; text-transform:uppercase;
     opacity:0; transform:translateY(14px); animation:heroFade .6s var(--ease-premium) forwards; animation-delay:.05s;}
@@ -599,16 +611,24 @@
 
 <main>
 <header class="hero" id="home">
-  <canvas id="constellation" aria-hidden="true"></canvas>
-  <div class="constellation-hint" id="constellationHint" aria-hidden="true"><span>✦</span> click to add a star</div>
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-inner">
         <div class="hero-kicker">Data Scientist <b>·</b> AI Builder <b>·</b> Product Thinker</div>
         <h1 id="heroName"><span class="word"><span>Suwaasha</span></span><span class="word"><span>Murugaperumal</span></span></h1>
         <div class="hero-role">MSc graduate in <em>Data Science &amp; Analytics</em> — University of Leeds</div>
-        <p class="hero-statement">"Some problems hide in plain sight. I build the systems that notice them."</p>
-        <p class="hero-now"><span class="dot" aria-hidden="true"></span><b>Now building:</b> an AI research assistant with checkable citations for the Nebius × NVIDIA hackathon. <a href="#hack-resultwise" data-open="hack-resultwise">ResultWise</a> and <a href="#hack-hauntify" data-open="hack-hauntify">Hauntify</a> are live.</p>
+        <div class="lens" role="group" aria-label="Tailor this page to who you are">
+          <span class="lens-label" id="lensLabel">I'm a</span>
+          <div class="lens-opts" id="lensOpts">
+            <button type="button" data-lens="recruiter" aria-pressed="false">Recruiter</button>
+            <button type="button" data-lens="researcher" aria-pressed="false">Researcher</button>
+            <button type="button" data-lens="founder" aria-pressed="false">Founder</button>
+            <button type="button" data-lens="all" aria-pressed="true">Just browsing</button>
+          </div>
+          <p class="sr-only" id="lensStatus" aria-live="polite"></p>
+        </div>
+        <p class="hero-statement" id="heroStatement">"Some problems hide in plain sight. I build the systems that notice them."</p>
+        <p class="hero-now" id="heroNow"><span class="dot" aria-hidden="true"></span><b>Now building:</b> an AI research assistant with checkable citations for the Nebius × NVIDIA hackathon. <a href="#hack-resultwise" data-open="hack-resultwise">ResultWise</a> and <a href="#hack-hauntify" data-open="hack-hauntify">Hauntify</a> are live.</p>
         <div class="hero-tags">
           <span>Data Science</span><span>Machine Learning</span><span>Generative AI</span><span>Human-in-the-loop AI</span><span>Product Thinking</span>
         </div>
@@ -1909,131 +1929,66 @@
     });
   })();
 
-  /* ---------- interactive constellation: ambient data-wave drift + click-to-add stars ---------- */
+  /* ---------- hero lens: rewrite the headline and point each visitor to the right work ---------- */
   (function(){
-    var canvas = document.getElementById('constellation');
-    var heroEl = document.getElementById('home');
-    var hint = document.getElementById('constellationHint');
-    if(!canvas || !heroEl || !canvas.getContext) return;
-    var ctx = canvas.getContext('2d');
-    var W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 1.6);
-    var points = [];
-    var mouse = {x:null, y:null};
-    var baseCount = isTouch ? 26 : 46;
-    var maxUserPoints = 22;
-    var linkDist = isTouch ? 100 : 130;
-    var mouseLinkDist = 160;
-
-    function resize(){
-      var r = heroEl.getBoundingClientRect();
-      W = r.width; H = r.height;
-      canvas.width = Math.round(W * dpr);
-      canvas.height = Math.round(H * dpr);
-      canvas.style.width = W + 'px';
-      canvas.style.height = H + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    function makePoint(x, y, userAdded){
-      return {
-        x: x != null ? x : Math.random() * W,
-        baseY: y != null ? y : Math.random() * H,
-        y: y != null ? y : Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.14,
-        phase: Math.random() * Math.PI * 2,
-        speed: 0.35 + Math.random() * 0.5,
-        amp: 7 + Math.random() * 16,
-        r: userAdded ? 2.4 : (1.2 + Math.random() * 1.5),
-        userAdded: !!userAdded,
-        born: performance.now()
-      };
-    }
-
-    function seed(){
-      points = [];
-      for(var i = 0; i < baseCount; i++){ points.push(makePoint()); }
-    }
-
-    function draw(t){
-      ctx.clearRect(0, 0, W, H);
-
-      if(!reduceMotion){
-        points.forEach(function(p){
-          p.x += p.vx;
-          if(p.x < -20) p.x = W + 20;
-          if(p.x > W + 20) p.x = -20;
-          p.y = p.baseY + Math.sin(t * 0.0012 * p.speed + p.phase) * p.amp;
-        });
+    var opts = document.getElementById('lensOpts');
+    var statement = document.getElementById('heroStatement');
+    var now = document.getElementById('heroNow');
+    var status = document.getElementById('lensStatus');
+    if(!opts || !statement || !now) return;
+    var original = { statement: statement.innerHTML, now: now.innerHTML };
+    var lenses = {
+      recruiter: {
+        statement: '"I turn messy data into decisions people can act on, and I check my own work first."',
+        facts: 'MSc Data Science &amp; Analytics, Leeds · Python, SQL, scikit-learn · Open to AI and data science roles',
+        picks: [['hack-resultwise','ResultWise'],['work-churn','Customer churn model'],['exp-startup','Startup project']]
+      },
+      researcher: {
+        statement: '"Can a model tell what someone could see from the way they reach? I’m still asking."',
+        facts: '2,600+ trials · 23 participants · Leave-one-participant-out validation · Paper in preparation',
+        picks: [['research-dissertation','MSc dissertation'],['research-continuing','Hidden grip strategies'],['research-stroke','Stroke proposal']]
+      },
+      founder: {
+        statement: '"I prototype fast, test the assumptions early, and keep a human in the loop."',
+        facts: 'Live prototypes built in days · Lovable, Figma, Python · Early-stage startup experience',
+        picks: [['hack-resultwise','ResultWise'],['exp-startup','Startup project'],['hack-hauntify','Hauntify']]
       }
+    };
+    var labels = { recruiter:'recruiters', researcher:'researchers', founder:'founders' };
 
-      for(var i = 0; i < points.length; i++){
-        for(var j = i + 1; j < points.length; j++){
-          var a = points[i], b = points[j];
-          var dx = a.x - b.x, dy = a.y - b.y;
-          var d = Math.sqrt(dx*dx + dy*dy);
-          if(d < linkDist){
-            ctx.strokeStyle = 'rgba(109,94,245,' + ((1 - d/linkDist) * 0.32).toFixed(3) + ')';
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-          }
-        }
-        if(mouse.x != null){
-          var dxm = points[i].x - mouse.x, dym = points[i].y - mouse.y;
-          var dm = Math.sqrt(dxm*dxm + dym*dym);
-          if(dm < mouseLinkDist){
-            ctx.strokeStyle = 'rgba(232,87,124,' + ((1 - dm/mouseLinkDist) * 0.5).toFixed(3) + ')';
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(points[i].x, points[i].y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
-          }
-        }
-      }
+    function render(key){
+      var L = lenses[key];
+      if(!L){ statement.innerHTML = original.statement; now.innerHTML = original.now; return; }
+      statement.innerHTML = L.statement;
+      now.innerHTML = '<span class="lens-facts">' + L.facts + '</span><span class="lens-start"><b>Start here:</b>' +
+        L.picks.map(function(p){ return '<a href="#' + p[0] + '">' + p[1] + '</a>'; }).join('') + '</span>';
+    }
 
-      points.forEach(function(p){
-        var age = Math.min((performance.now() - p.born) / 450, 1);
-        var col = p.userAdded ? '232,87,124' : '186,178,255';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * age, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + col + ',' + (0.85 * age).toFixed(3) + ')';
-        ctx.fill();
+    function apply(key, animate){
+      opts.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.lens === key)); });
+      var picks = lenses[key] ? lenses[key].picks.map(function(p){ return p[0]; }) : [];
+      document.querySelectorAll('.tile[data-open]').forEach(function(t){
+        t.classList.toggle('lens-match', picks.indexOf(t.dataset.open) !== -1);
       });
-
-      if(mouse.x != null){
-        ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 2.4, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(232,87,124,0.9)';
-        ctx.fill();
-      }
-
-      if(!reduceMotion){ requestAnimationFrame(draw); }
+      if(status) status.textContent = lenses[key] ? 'Showing the page for ' + labels[key] + '.' : 'Showing the full page.';
+      if(!animate || reduceMotion){ render(key); return; }
+      statement.classList.add('lens-swap'); now.classList.add('lens-swap');
+      setTimeout(function(){
+        render(key);
+        statement.classList.remove('lens-swap'); now.classList.remove('lens-swap');
+      }, 280);
     }
 
-    resize();
-    seed();
-    window.addEventListener('resize', resize);
-
-    if(!isTouch){
-      heroEl.addEventListener('mousemove', function(e){
-        var r = heroEl.getBoundingClientRect();
-        mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
-      });
-      heroEl.addEventListener('mouseleave', function(){ mouse.x = null; mouse.y = null; });
-    }
-
-    heroEl.addEventListener('click', function(e){
-      if(e.target.closest('a,button')) return;
-      var r = heroEl.getBoundingClientRect();
-      var userPts = points.filter(function(p){ return p.userAdded; });
-      if(userPts.length >= maxUserPoints){ points.splice(points.indexOf(userPts[0]), 1); }
-      points.push(makePoint(e.clientX - r.left, e.clientY - r.top, true));
-      hint.classList.remove('show');
+    opts.addEventListener('click', function(e){
+      var b = e.target.closest('button[data-lens]'); if(!b) return;
+      if(b.getAttribute('aria-pressed') === 'true') return;
+      apply(b.dataset.lens, true);
+      try{ sessionStorage.setItem('heroLens', b.dataset.lens); }catch(err){}
     });
 
-    setTimeout(function(){
-      canvas.classList.add('ready');
-      if(!reduceMotion && !isTouch) hint.classList.add('show');
-    }, 900);
-
-    draw(0);
+    var saved = null;
+    try{ saved = sessionStorage.getItem('heroLens'); }catch(err){}
+    if(saved && lenses[saved]) apply(saved, false);
   })();
 })();
 </script>
