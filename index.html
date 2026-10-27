@@ -480,20 +480,6 @@
 
   .sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap;}
 
-  /* sparkle-trail mascot — pointer-events:none throughout, never intercepts UI */
-  .bot-layer{position:fixed; inset:0; z-index:45; pointer-events:none; overflow:hidden;}
-  .bot-svg{position:absolute; left:0; top:0; width:50px; height:42px; opacity:0; will-change:transform,opacity;
-    filter:drop-shadow(0 6px 16px rgba(109,94,245,0.5));}
-  .trail-sparkle{transform-box:fill-box; transform-origin:center; animation:sparkleTwinkle 1.9s ease-in-out infinite;}
-  .trail-sparkle.s1{animation-delay:0s;}
-  .trail-sparkle.s2{animation-delay:.3s;}
-  .trail-sparkle.s3{animation-delay:.55s;}
-  .trail-sparkle.s4{animation-delay:.8s;}
-  @keyframes sparkleTwinkle{ 0%,100%{opacity:.5; transform:scale(0.78);} 50%{opacity:1; transform:scale(1.15);} }
-  @media (max-width:900px){ .bot-svg{width:38px; height:32px;} }
-  @media (prefers-reduced-motion: reduce){
-    .trail-sparkle{animation:none; opacity:.9;}
-  }
 
 
   /* work filters + hackathon fact lists (added for the five-section structure; existing tokens only) */
@@ -617,15 +603,6 @@
 </style>
 
 <div class="topbar" id="topbar"></div>
-<div class="bot-layer" id="botLayer" aria-hidden="true">
-  <svg class="bot-svg" id="botSvg" viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9,9 C16,13 18,16 22,17 C27,18 30,15 33,13 C36,17 38,21 40,27" fill="none" stroke="var(--amethyst)" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="0.4 3" opacity="0.65"/>
-    <path class="trail-sparkle s1" d="M9,2 L10.26,7.74 L16,9 L10.26,10.26 L9,16 L7.74,10.26 L2,9 L7.74,7.74 Z" fill="var(--signal-ink)"/>
-    <path class="trail-sparkle s2" d="M22,12.5 L22.81,15.19 L26.5,17 L22.81,18.81 L22,21.5 L21.19,18.81 L17.5,17 L21.19,15.19 Z" fill="var(--ivory)"/>
-    <path class="trail-sparkle s3" d="M33,9.8 L33.576,11.624 L36.2,13 L33.576,14.376 L33,16.2 L32.424,14.376 L29.8,13 L32.424,11.624 Z" fill="var(--champagne)"/>
-    <path class="trail-sparkle s4" d="M40,24.8 L40.396,25.956 L42.2,27 L40.396,28.044 L40,29.2 L39.604,28.044 L37.8,27 L39.604,25.956 Z" fill="var(--amethyst)"/>
-  </svg>
-</div>
 <div class="glow-field" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span><span class="g4"></span></div>
 
 <nav id="nav">
@@ -1777,109 +1754,6 @@
       portraitSection.addEventListener('mouseleave', function(){ portraitFrame.style.transform = 'perspective(1200px) rotateY(0) rotateX(0)'; });
     }
   }
-
-  /* ---------- bot mascot: scroll-driven right-to-left hops through the page ----------
-     Purely reactive to native scroll position (getBoundingClientRect reads on scroll/resize) —
-     never touches scroll itself, never calls preventDefault, never hijacks the wheel. */
-  (function(){
-    var botSvg = document.getElementById('botSvg');
-    if(!botSvg) return;
-
-    if(reduceMotion){
-      /* one tasteful static appearance, no motion at all */
-      botSvg.style.left = 'auto';
-      botSvg.style.right = '18px';
-      botSvg.style.bottom = '18px';
-      botSvg.style.top = 'auto';
-      botSvg.style.position = 'fixed';
-      botSvg.style.opacity = '0.9';
-      return;
-    }
-
-    var isNarrow = window.innerWidth < 640;
-    var isTablet = !isNarrow && window.innerWidth < 1024;
-    var travelScale = isNarrow ? 0.25 : (isTablet ? 0.6 : 1);
-    var liftScale = isNarrow ? 0.35 : (isTablet ? 0.7 : 1);
-
-    /* x/y are viewport-percentage points [start, end] for that hop;
-       from/to are the LOCAL transit-progress window of that section (0=entering, 1=leaving)
-       during which the hop plays — kept narrow so the bot is absent most of the time. */
-    var hops = [
-      {id:'home',    from:0.70, to:0.94, x:[104, 82], y:[90, 76]},
-      {id:'hackathons', from:0.03, to:0.20, x:[88, 46],  y:[68, 54]},
-      {id:'about',   from:0.06, to:0.28, x:[88, 46],  y:[68, 54]},
-      {id:'work',    from:0.03, to:0.20, x:[82, 22],  y:[87, 87]},
-      {id:'journey', from:0.34, to:0.54, x:[78, 44],  y:[74, 60]},
-      {id:'profile', from:0.08, to:0.26, x:[82, 48],  y:[70, 58]},
-      {id:'contact', from:0.55, to:0.78, x:[72, 50],  y:[84, 80]}
-    ];
-    var sectionEls = {};
-    hops.forEach(function(h){ sectionEls[h.id] = document.getElementById(h.id); });
-
-    function ease(t){ return 1 - Math.pow(1-t, 2); }
-
-    function place(){
-      var vh = window.innerHeight, vw = window.innerWidth;
-      var active = null, localT = 0;
-
-      for(var i=0;i<hops.length;i++){
-        var h = hops[i];
-        var el = sectionEls[h.id];
-        if(!el) continue;
-        var r = el.getBoundingClientRect();
-        var totalDist = r.height + vh;
-        var traveled = vh - r.top;
-        var progress = Math.min(Math.max(traveled/totalDist, 0), 1);
-        if(progress >= h.from && progress <= h.to){
-          active = h;
-          localT = (progress - h.from) / (h.to - h.from);
-          break;
-        }
-      }
-
-      if(!active){
-        botSvg.style.opacity = '0';
-        return;
-      }
-
-      var t = ease(localT);
-      var x0 = 50 + (active.x[0]-50)*travelScale, x1 = 50 + (active.x[1]-50)*travelScale;
-      var y0 = active.y[0], y1 = active.y[1];
-      var x = x0 + (x1-x0)*t;
-      var peak = 10 * liftScale;
-      var arc = Math.sin(localT*Math.PI) * peak;
-      var y = (y0 + (y1-y0)*t) - arc;
-
-      var fadeEdge = 0.16;
-      var fadeIn = Math.min(localT/fadeEdge, 1);
-      var fadeOut = Math.min((1-localT)/fadeEdge, 1);
-      var opacity = Math.min(fadeIn, fadeOut);
-
-      var squash = Math.sin(localT*Math.PI);
-      var scaleY = 1 + squash*0.05 - (localT<0.08||localT>0.92 ? 0.06 : 0);
-      var scaleX = 1 - squash*0.03 + (localT<0.08||localT>0.92 ? 0.04 : 0);
-      var rotate = Math.sin(localT*Math.PI) * -8;
-
-      botSvg.style.left = x + 'vw';
-      botSvg.style.top = y + 'vh';
-      botSvg.style.opacity = opacity.toFixed(2);
-      botSvg.style.transform = 'translate(-50%,-50%) scale('+scaleX.toFixed(3)+','+scaleY.toFixed(3)+') rotate('+rotate.toFixed(1)+'deg)';
-    }
-
-    var botTicking = false;
-    function requestPlace(){
-      if(!botTicking){ botTicking = true; requestAnimationFrame(function(){ place(); botTicking = false; }); }
-    }
-    window.addEventListener('scroll', requestPlace, {passive:true});
-    window.addEventListener('resize', function(){
-      isNarrow = window.innerWidth < 640;
-      isTablet = !isNarrow && window.innerWidth < 1024;
-      travelScale = isNarrow ? 0.25 : (isTablet ? 0.6 : 1);
-      liftScale = isNarrow ? 0.35 : (isTablet ? 0.7 : 1);
-      requestPlace();
-    });
-    place();
-  })();
 
   /* ---------- CV: real "view in new tab" + real "download", now that this
      runs on a normal deployed site rather than a sandboxed preview ---------- */
