@@ -134,26 +134,39 @@
 
   /* ---------- hero ---------- */
   .hero{min-height:100svh; display:flex; flex-direction:column; justify-content:center; position:relative; padding:clamp(5rem,11vh,7.5rem) 0 clamp(2.5rem,5vh,4rem); text-align:left;}
-  /* ---------- hero lens switcher: "You're a ..." ---------- */
-  .lens{display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; margin:-12px 0 30px;
+  /* ---------- hero lens: "You're here as a <word>" ---------- */
+  .lens{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 14px; margin:-14px 0 30px;
     opacity:0; transform:translateY(14px); animation:heroFade .6s var(--ease-premium) forwards; animation-delay:.9s;}
-  .lens-label{font-family:var(--font-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);}
-  .lens-opts{display:inline-flex; flex-wrap:wrap; gap:4px; padding:4px; border-radius:999px; border:1px solid var(--hair-strong); background:rgba(255,255,255,0.03);}
-  .lens-opts button{font-family:var(--font-mono); font-size:clamp(12px, 0.15vw + 11.5px, 13px); letter-spacing:.03em; color:var(--muted); background:transparent; border:0; border-radius:999px; padding:8px 14px; cursor:pointer; transition:color .2s ease, background .25s var(--ease-premium), box-shadow .25s ease;}
-  .lens-opts button:hover{color:var(--ivory); background:rgba(255,255,255,0.06);}
-  .lens-opts button[aria-pressed="true"]{color:var(--bg); background:var(--ivory); box-shadow:0 8px 22px rgba(109,94,245,0.25);}
+  .lens-pre{font-family:var(--font-mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted);}
+  .lens-word{all:unset; cursor:pointer; display:inline-flex; align-items:baseline; gap:10px; position:relative; padding-bottom:4px;}
+  .lens-word:focus-visible{outline:2px solid var(--amethyst); outline-offset:6px; border-radius:4px;}
+  .lens-roll{display:inline-grid; overflow:hidden; vertical-align:bottom; transition:width .45s var(--ease-premium); padding:0 .08em; margin:0 -.08em;}
+  .lens-roll > span{grid-area:1/1; white-space:nowrap; font-family:var(--font-serif); font-style:italic; font-weight:500; font-size:clamp(24px,2.4vw,30px); line-height:1.2;
+    background:linear-gradient(100deg, var(--ivory) 30%, var(--lavender) 100%); -webkit-background-clip:text; background-clip:text; color:transparent;
+    transition:transform .5s var(--ease-premium), opacity .4s ease;}
+  .lens-roll > span.enter{transform:translateY(105%); opacity:0;}
+  .lens-roll > span.leave{transform:translateY(-105%); opacity:0;}
+  .lens-word::after{content:""; position:absolute; left:0; right:28px; bottom:0; height:1px;
+    background:repeating-linear-gradient(90deg, var(--champagne) 0 5px, transparent 5px 9px); opacity:.7; transition:opacity .2s ease;}
+  .lens-word:hover::after{opacity:1;}
+  .lens-cycle{width:16px; height:16px; color:var(--champagne); align-self:center; transition:transform .6s var(--ease-premium);}
+  .lens-word:hover .lens-cycle{transform:rotate(-90deg);}
+  .lens-word.spin .lens-cycle{transform:rotate(-360deg);}
+  .lens-hint{font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; color:var(--muted); opacity:.8; transition:opacity .5s ease;}
+  .lens-hint.gone{opacity:0;}
   .hero-statement, .hero-now{transition:opacity .28s ease, transform .28s var(--ease-premium);}
   .lens-swap{opacity:0 !important; transform:translateY(6px) !important;}
-  .lens-facts{display:block; color:var(--ivory); margin-bottom:6px;}
-  .lens-start{display:flex; flex-wrap:wrap; align-items:center; gap:8px 10px;}
-  .lens-start b{color:var(--champagne); font-weight:600;}
-  .hero-now .lens-start a{border:1px solid rgba(232,184,109,.35); border-radius:999px; padding:4px 12px; color:var(--ivory); transition:background .2s ease, border-color .2s ease;}
-  .hero-now .lens-start a:hover{background:rgba(232,184,109,.12); border-color:var(--champagne);}
-  .tile.lens-match{border-color:color-mix(in srgb, var(--signal-ink) 70%, transparent); box-shadow:0 0 0 1px rgba(185,174,255,.45), 0 18px 40px rgba(109,94,245,.28);}
-  .tile.lens-match::before{content:"Start here"; position:absolute; top:14px; right:14px; left:auto; bottom:auto; height:auto; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--bg); background:var(--signal-ink); padding:3px 9px; border-radius:999px; z-index:3;}
+  .lens-facts{display:block; color:var(--ivory); margin-bottom:8px;}
+  .lens-start{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 20px;}
+  .lens-start > b{font-weight:500; color:var(--muted); text-transform:uppercase; letter-spacing:.14em; font-size:11px;}
+  .hero-now .lens-start a{border:0; color:var(--ivory); background:linear-gradient(var(--champagne),var(--champagne)) 0 100%/0 1px no-repeat; transition:background-size .35s var(--ease-premium); padding-bottom:1px;}
+  .hero-now .lens-start a:hover{background-size:100% 1px;}
+  .lens-start a i{font-style:normal; color:var(--champagne); margin-right:6px;}
+  .tile.lens-match{border-color:color-mix(in srgb, var(--champagne) 70%, transparent); box-shadow:0 0 0 1px rgba(232,184,109,.4), 0 18px 40px rgba(232,184,109,.14);}
+  .tile.lens-match::before{content:"Start here"; position:absolute; top:14px; right:14px; left:auto; bottom:auto; height:auto; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--bg); background:var(--champagne); padding:3px 9px; border-radius:999px; z-index:3;}
   @media (max-width:900px){ .lens{justify-content:center;} .lens-start{justify-content:center;} }
-  @media (max-width:520px){ .lens{flex-direction:column; gap:10px;} .lens-opts{border-radius:20px; justify-content:center;} .lens-opts button{padding:7px 11px;} }
-  @media (prefers-reduced-motion: reduce){ .lens{animation:none; opacity:1; transform:none;} .hero-statement, .hero-now{transition:none;} }
+  @media (max-width:520px){ .lens{flex-direction:column; align-items:center; gap:4px;} }
+  @media (prefers-reduced-motion: reduce){ .lens{animation:none; opacity:1; transform:none;} .hero-statement, .hero-now, .lens-roll, .lens-roll > span, .lens-cycle{transition:none;} }
   .hero-inner{position:relative; z-index:2; max-width:980px; margin:0; will-change:transform; transition:transform .4s var(--ease-premium);}
   .hero-kicker{font-family:var(--font-mono); font-size:clamp(13px, 0.3vw + 12px, 14.5px); letter-spacing:.14em; color:var(--muted); margin-bottom:30px; text-transform:uppercase;
     opacity:0; transform:translateY(14px); animation:heroFade .6s var(--ease-premium) forwards; animation-delay:.05s;}
@@ -617,14 +630,13 @@
         <div class="hero-kicker">Data Scientist <b>·</b> AI Builder <b>·</b> Product Thinker</div>
         <h1 id="heroName"><span class="word"><span>Suwaasha</span></span><span class="word"><span>Murugaperumal</span></span></h1>
         <div class="hero-role">MSc graduate in <em>Data Science &amp; Analytics</em> — University of Leeds</div>
-        <div class="lens" role="group" aria-label="Tailor this page to who you are">
-          <span class="lens-label" id="lensLabel">You're a</span>
-          <div class="lens-opts" id="lensOpts">
-            <button type="button" data-lens="recruiter" aria-pressed="false">Recruiter</button>
-            <button type="button" data-lens="researcher" aria-pressed="false">Researcher</button>
-            <button type="button" data-lens="founder" aria-pressed="false">Founder</button>
-            <button type="button" data-lens="all" aria-pressed="true">Just browsing</button>
-          </div>
+        <div class="lens" id="lens">
+          <span class="lens-pre">You're here as a</span>
+          <button type="button" class="lens-word" id="lensWord" aria-label="Change who this page is for. Currently: curious mind">
+            <span class="lens-roll" id="lensRoll"><span>curious mind</span></span>
+            <svg class="lens-cycle" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9"/><path d="M13.5 2.5v3h-3"/></svg>
+          </button>
+          <span class="lens-hint" id="lensHint" aria-hidden="true">← tap to switch</span>
           <p class="sr-only" id="lensStatus" aria-live="polite"></p>
         </div>
         <p class="hero-statement" id="heroStatement">"Some problems hide in plain sight. I build the systems that notice them."</p>
@@ -1931,12 +1943,16 @@
 
   /* ---------- hero lens: rewrite the headline and point each visitor to the right work ---------- */
   (function(){
-    var opts = document.getElementById('lensOpts');
+    var btn = document.getElementById('lensWord');
+    var roll = document.getElementById('lensRoll');
+    var hint = document.getElementById('lensHint');
     var statement = document.getElementById('heroStatement');
     var now = document.getElementById('heroNow');
     var status = document.getElementById('lensStatus');
-    if(!opts || !statement || !now) return;
+    if(!btn || !roll || !statement || !now) return;
     var original = { statement: statement.innerHTML, now: now.innerHTML };
+    var order = ['all', 'recruiter', 'researcher', 'founder'];
+    var words = { all:'curious mind', recruiter:'recruiter', researcher:'researcher', founder:'founder' };
     var lenses = {
       recruiter: {
         statement: '"I turn messy data into decisions people can act on, and I check my own work first."',
@@ -1954,23 +1970,45 @@
         picks: [['hack-resultwise','ResultWise'],['exp-startup','Startup project'],['hack-hauntify','Hauntify']]
       }
     };
-    var labels = { recruiter:'recruiters', researcher:'researchers', founder:'founders' };
+    var current = 'all';
 
     function render(key){
       var L = lenses[key];
       if(!L){ statement.innerHTML = original.statement; now.innerHTML = original.now; return; }
       statement.innerHTML = L.statement;
-      now.innerHTML = '<span class="lens-facts">' + L.facts + '</span><span class="lens-start"><b>Start here:</b>' +
-        L.picks.map(function(p){ return '<a href="#' + p[0] + '">' + p[1] + '</a>'; }).join('') + '</span>';
+      now.innerHTML = '<span class="lens-facts">' + L.facts + '</span><span class="lens-start"><b>Start with</b>' +
+        L.picks.map(function(p, i){ return '<a href="#' + p[0] + '"><i>0' + (i + 1) + '</i>' + p[1] + '</a>'; }).join('') + '</span>';
+    }
+
+    function rollTo(word, animate){
+      var old = roll.lastElementChild;
+      var next = document.createElement('span');
+      next.textContent = word;
+      if(!animate || reduceMotion){ roll.innerHTML = ''; roll.appendChild(next); roll.style.width = ''; return; }
+      roll.style.width = roll.getBoundingClientRect().width + 'px';
+      next.className = 'enter';
+      roll.appendChild(next);
+      var target = next.getBoundingClientRect().width;
+      requestAnimationFrame(function(){
+        roll.style.width = (target + parseFloat(getComputedStyle(roll).paddingLeft) * 2) + 'px';
+        next.classList.remove('enter');
+        if(old) old.classList.add('leave');
+      });
+      setTimeout(function(){
+        Array.prototype.slice.call(roll.children).forEach(function(c){ if(c !== next) c.remove(); });
+        roll.style.width = '';
+      }, 520);
     }
 
     function apply(key, animate){
-      opts.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.lens === key)); });
+      current = key;
+      rollTo(words[key], animate);
+      btn.setAttribute('aria-label', 'Change who this page is for. Currently: ' + words[key]);
       var picks = lenses[key] ? lenses[key].picks.map(function(p){ return p[0]; }) : [];
       document.querySelectorAll('.tile[data-open]').forEach(function(t){
         t.classList.toggle('lens-match', picks.indexOf(t.dataset.open) !== -1);
       });
-      if(status) status.textContent = lenses[key] ? 'Showing the page for ' + labels[key] + '.' : 'Showing the full page.';
+      if(status) status.textContent = lenses[key] ? 'Showing the page for a ' + words[key] + '.' : 'Showing the full page.';
       if(!animate || reduceMotion){ render(key); return; }
       statement.classList.add('lens-swap'); now.classList.add('lens-swap');
       setTimeout(function(){
@@ -1979,16 +2017,17 @@
       }, 280);
     }
 
-    opts.addEventListener('click', function(e){
-      var b = e.target.closest('button[data-lens]'); if(!b) return;
-      if(b.getAttribute('aria-pressed') === 'true') return;
-      apply(b.dataset.lens, true);
-      try{ sessionStorage.setItem('heroLens', b.dataset.lens); }catch(err){}
+    btn.addEventListener('click', function(){
+      var next = order[(order.indexOf(current) + 1) % order.length];
+      apply(next, true);
+      if(hint) hint.classList.add('gone');
+      btn.classList.remove('spin'); void btn.offsetWidth; btn.classList.add('spin');
+      try{ sessionStorage.setItem('heroLens', next); }catch(err){}
     });
 
     var saved = null;
     try{ saved = sessionStorage.getItem('heroLens'); }catch(err){}
-    if(saved && lenses[saved]) apply(saved, false);
+    if(saved && lenses[saved]){ apply(saved, false); if(hint) hint.classList.add('gone'); }
   })();
 })();
 </script>
