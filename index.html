@@ -2873,8 +2873,8 @@
   .tile:hover .tile-title{color:var(--v3-plum-700);}
   .tile-badge{backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);}
   /* close the empty band between card art and title */
-  .tile{min-height:330px !important;}
-  .tile-media{height:54% !important;}
+  .tile{min-height:360px !important;}
+  .tile-media{height:50% !important;}
 
   .connect-grid{align-items:stretch;}
   .connect-card{height:100%; transition:transform .4s var(--v3-ease), box-shadow .4s var(--v3-ease), border-color .3s ease !important;}
@@ -2979,5 +2979,181 @@
     });
     b.addEventListener('pointerleave', function(){ b.style.transform=''; });
   });
+})();
+</script>
+
+<!-- =====================================================================
+     v3.1 motion layer — ported from the Figma "Aurora Silk" shader and the
+     "05 — Hero motion" board: WebGL silk background in the hero, an
+     interactive neural constellation in dark sections, and drifting
+     dot-grid backgrounds in light sections. Pauses off-screen, renders a
+     single still frame under prefers-reduced-motion.
+     ===================================================================== -->
+<style id="v3-motion">
+  .v3-silk{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; opacity:0; transition:opacity 1.6s cubic-bezier(0.22,1,0.36,1);}
+  .v3-silk.on{opacity:1;}
+  .cx.has-silk .v3-aurora{opacity:.35;}
+  .cx::after{z-index:1;}
+
+  .v3-net{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; opacity:0; transition:opacity 1.2s ease;}
+  .v3-net.on{opacity:1;}
+  .beyond, #featured{position:relative; isolation:isolate; overflow:hidden;}
+  .beyond > *:not(.v3-net), #featured > *:not(.v3-net){position:relative; z-index:1;}
+
+  /* light sections: drifting aurora + fine dot grid */
+  #work::before, #research::before, #about::before, #contact::before{animation:v3Float 22s ease-in-out infinite alternate;}
+  #research::before, #contact::before{animation-duration:26s; animation-direction:alternate-reverse;}
+  @keyframes v3Float{
+    0%{transform:translate3d(0,0,0) scale(1);}
+    50%{transform:translate3d(-6vw,8vh,0) scale(1.15);}
+    100%{transform:translate3d(4vw,-4vh,0) scale(.92);}
+  }
+  #work::after, #research::after, #about::after, #contact::after, #experience::after, #hackathons::after{
+    content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+    background-image:radial-gradient(rgba(84,35,68,.16) 1px, transparent 1.4px); background-size:26px 26px;
+    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 70% 30%, #000 0%, transparent 70%);
+            mask-image:radial-gradient(ellipse 70% 60% at 70% 30%, #000 0%, transparent 70%);
+    animation:v3Grid 40s linear infinite;
+  }
+  #experience, #hackathons{position:relative; isolation:isolate;}
+  @keyframes v3Grid{to{background-position:26px 52px;}}
+
+  /* film grain over the whole page for a printed, premium feel */
+  .v3-grain{position:fixed; inset:-50%; z-index:150; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation:v3GrainShift .9s steps(6) infinite;}
+  @keyframes v3GrainShift{
+    0%{transform:translate(0,0);} 20%{transform:translate(-3%,2%);} 40%{transform:translate(2%,-3%);}
+    60%{transform:translate(-2%,-1%);} 80%{transform:translate(3%,3%);} 100%{transform:translate(0,0);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    #work::before, #research::before, #about::before, #contact::before,
+    #work::after, #research::after, #about::after, #contact::after, #experience::after, #hackathons::after,
+    .v3-grain{animation:none !important;}
+  }
+</style>
+
+<script id="v3-motion-js">
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* ---------- film grain ---------- */
+  var grain = document.createElement('div'); grain.className='v3-grain'; grain.setAttribute('aria-hidden','true'); document.body.appendChild(grain);
+
+  /* ---------- Aurora Silk (WebGL port of the Figma shader) ---------- */
+  function silk(host){
+    var c = document.createElement('canvas'); c.className='v3-silk'; c.setAttribute('aria-hidden','true');
+    var gl = c.getContext('webgl', {antialias:false, alpha:false, premultipliedAlpha:false, powerPreference:'low-power'});
+    if(!gl) return;
+    var vs = 'attribute vec2 p; varying vec2 v; void main(){ v = p*0.5+0.5; v.y = 1.0-v.y; gl_Position = vec4(p,0.0,1.0); }';
+    var fs = [
+      'precision highp float;',
+      'varying vec2 v;',
+      'uniform vec3 uBase, uA, uB, uC;',
+      'uniform vec4 uTR;   // time, w, h, speed',
+      'uniform vec4 uMM;   // mx, my, intensity, grain',
+      'uniform vec4 uEx;   // glow, scale, sheen, vignette',
+      'float h21(vec2 p){ p = fract(p*vec2(123.34,456.21)); p += dot(p,p+45.32); return fract(p.x*p.y); }',
+      'float vn(vec2 p){ vec2 i=floor(p), f=fract(p), w=f*f*(3.0-2.0*f);',
+      '  return mix(mix(h21(i),h21(i+vec2(1,0)),w.x), mix(h21(i+vec2(0,1)),h21(i+vec2(1,1)),w.x), w.y); }',
+      'float fbm(vec2 p){ float a=0.5, s=0.0; mat2 r=mat2(0.8,0.6,-0.6,0.8);',
+      '  for(int i=0;i<5;i++){ s+=a*vn(p); p=r*p*2.02+vec2(1.7,9.2); a*=0.5; } return s; }',
+      'void main(){',
+      '  float time=uTR.x; vec2 res=max(uTR.yz,vec2(1.0)); float asp=res.x/res.y;',
+      '  float t=time*uTR.w*0.06; vec2 p=(v-0.5)*vec2(asp,1.0)*uEx.y;',
+      '  vec2 q=vec2(fbm(p+vec2(0.0,t)), fbm(p+vec2(5.2,1.3)-t));',
+      '  vec2 r=vec2(fbm(p+4.0*q+vec2(1.7,9.2)+0.15*t), fbm(p+4.0*q+vec2(8.3,2.8)-0.12*t));',
+      '  float f=fbm(p+3.5*r); float I=uMM.z;',
+      '  vec3 col=uBase;',
+      '  col=mix(col,uC,smoothstep(0.25,0.95,length(q))*0.55*I);',
+      '  col=mix(col,uB,smoothstep(0.40,0.95,r.y)*0.60*I);',
+      '  col=mix(col,uA,smoothstep(0.55,1.00,f)*0.80*I);',
+      '  float b=0.5+0.5*sin(f*7.0+r.x*5.0+t*2.0); col+=uA*pow(b,10.0)*smoothstep(0.35,0.8,f)*uEx.z*I;',
+      '  vec2 m=vec2(uMM.x*asp,uMM.y); float d=distance(vec2(v.x*asp,v.y),m);',
+      '  col+=mix(uA,uC,0.5)*exp(-d*d*7.0)*uEx.x*0.35;',
+      '  col=mix(col,uBase*0.55,smoothstep(0.35,0.85,distance(v,vec2(0.5)))*uEx.w);',
+      '  col+=vec3((h21(v*res+fract(time*7.0)*100.0)-0.5)*uMM.w*0.08);',
+      '  gl_FragColor=vec4(clamp(col,0.0,1.0),1.0);',
+      '}'
+    ].join('\n');
+    function sh(type, src){ var s=gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; }
+    var a=sh(gl.VERTEX_SHADER,vs), b=sh(gl.FRAGMENT_SHADER,fs); if(!a||!b) return;
+    var pr=gl.createProgram(); gl.attachShader(pr,a); gl.attachShader(pr,b); gl.linkProgram(pr);
+    if(!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+    gl.useProgram(pr);
+    var buf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+    var loc=gl.getAttribLocation(pr,'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+    var U={}; ['uBase','uA','uB','uC','uTR','uMM','uEx'].forEach(function(n){ U[n]=gl.getUniformLocation(pr,n); });
+    gl.uniform3f(U.uBase,0.09,0.059,0.082); gl.uniform3f(U.uA,0.949,0.667,0.553);
+    gl.uniform3f(U.uB,0.91,0.518,0.608);    gl.uniform3f(U.uC,0.788,0.714,0.941);
+    gl.uniform4f(U.uEx,0.8,1.6,0.4,0.75);
+
+    host.insertBefore(c, host.firstChild); host.classList.add('has-silk');
+    var scale = Math.min(window.devicePixelRatio||1, 1.5) * 0.5; /* half-res: soft silk, cheap on laptops */
+    function size(){ var r=host.getBoundingClientRect(); c.width=Math.max(2,Math.round(r.width*scale)); c.height=Math.max(2,Math.round(r.height*scale)); gl.viewport(0,0,c.width,c.height); }
+    size(); addEventListener('resize', size);
+    var mx=0.62, my=0.38, tx=mx, ty=my;
+    if(fine) host.addEventListener('pointermove', function(e){ var r=host.getBoundingClientRect(); tx=(e.clientX-r.left)/r.width; ty=(e.clientY-r.top)/r.height; });
+    var visible=true, start=performance.now(), last=0;
+    if('IntersectionObserver' in window) new IntersectionObserver(function(es){ visible=es[0].isIntersecting; if(visible) loop(); }).observe(host);
+    function draw(now){
+      mx+=(tx-mx)*0.06; my+=(ty-my)*0.06;
+      gl.uniform4f(U.uTR,(now-start)/1000+12.0,c.width,c.height,1.0);
+      gl.uniform4f(U.uMM,mx,my,0.72,0.6);
+      gl.drawArrays(gl.TRIANGLES,0,6);
+    }
+    var running=false;
+    function loop(){ if(running) return; running=true; requestAnimationFrame(function tick(now){
+      if(!visible || document.hidden){ running=false; return; }
+      if(now-last>=33){ last=now; draw(now); }  /* ~30fps is plenty for slow silk */
+      requestAnimationFrame(tick);
+    }); }
+    draw(performance.now()); requestAnimationFrame(function(){ c.classList.add('on'); });
+    if(!reduce){ loop(); document.addEventListener('visibilitychange', function(){ if(!document.hidden) loop(); }); }
+  }
+  var hero=document.querySelector('.cx'); if(hero) silk(hero);
+
+  /* ---------- Neural constellation (from the Figma motion board) ---------- */
+  function constellation(host, opts){
+    var c=document.createElement('canvas'); c.className='v3-net'; c.setAttribute('aria-hidden','true');
+    var ctx=c.getContext('2d'); if(!ctx) return;
+    host.insertBefore(c, host.firstChild);
+    var dpr=Math.min(window.devicePixelRatio||1,2), W=0, H=0, pts=[], mouse={x:-9999,y:-9999};
+    var cols=['242,170,141','232,132,155','201,182,240'];
+    function init(){
+      var r=host.getBoundingClientRect(); W=r.width; H=r.height; c.width=W*dpr; c.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+      var n=Math.round(Math.min(90, Math.max(28, W*H/16000))*(opts.density||1)); pts=[];
+      for(var i=0;i<n;i++) pts.push({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.25, vy:(Math.random()-.5)*.25, r:Math.random()<.18?2.4:1.3, c:cols[i%3], ph:Math.random()*6.28});
+    }
+    init(); addEventListener('resize', init);
+    if(fine){ host.addEventListener('pointermove', function(e){ var r=host.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; });
+              host.addEventListener('pointerleave', function(){ mouse.x=mouse.y=-9999; }); }
+    var link=opts.link||130, visible=false, running=false;
+    function frame(t){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<pts.length;i++){ var p=pts[i];
+        if(!reduce){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1;
+          var dx=p.x-mouse.x, dy=p.y-mouse.y, d2=dx*dx+dy*dy; if(d2<16000){ var k=(1-d2/16000)*0.6; p.x+=dx/Math.sqrt(d2+1)*k; p.y+=dy/Math.sqrt(d2+1)*k; } }
+      }
+      for(i=0;i<pts.length;i++){ for(var j=i+1;j<pts.length;j++){
+        var a=pts[i], b=pts[j], ddx=a.x-b.x, ddy=a.y-b.y, d=Math.sqrt(ddx*ddx+ddy*ddy);
+        if(d<link){ ctx.strokeStyle='rgba('+a.c+','+((1-d/link)*0.32*(opts.alpha||1)).toFixed(3)+')'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+      }
+        var mdx=pts[i].x-mouse.x, mdy=pts[i].y-mouse.y, md=Math.sqrt(mdx*mdx+mdy*mdy);
+        if(md<180){ ctx.strokeStyle='rgba(242,170,141,'+((1-md/180)*0.55).toFixed(3)+')'; ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(mouse.x,mouse.y); ctx.stroke(); }
+      }
+      for(i=0;i<pts.length;i++){ var q=pts[i], pulse=reduce?1:(0.55+0.45*Math.sin(t/900+q.ph));
+        ctx.fillStyle='rgba('+q.c+','+(0.9*pulse*(opts.alpha||1)).toFixed(3)+')'; ctx.beginPath(); ctx.arc(q.x,q.y,q.r,0,6.283); ctx.fill(); }
+    }
+    function loop(){ if(running) return; running=true; requestAnimationFrame(function tick(t){ if(!visible||document.hidden){ running=false; return; } frame(t); requestAnimationFrame(tick); }); }
+    if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ visible=es[0].isIntersecting; if(visible){ c.classList.add('on'); if(reduce) frame(0); else loop(); } }, {rootMargin:'100px'}).observe(host); }
+    else { visible=true; c.classList.add('on'); frame(0); }
+    document.addEventListener('visibilitychange', function(){ if(!document.hidden && visible && !reduce) loop(); });
+  }
+  var beyond=document.querySelector('#community'); if(beyond) constellation(beyond, {density:1, link:140, alpha:1});
+  var feat=document.querySelector('#featured'); if(feat) constellation(feat, {density:.7, link:120, alpha:.8});
 })();
 </script>
