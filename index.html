@@ -1233,6 +1233,7 @@
         <span class="eyebrow" style="margin:0;">Featured</span>
         <span class="status-chip"><span class="pulse"></span>Hackathon entry · Completed October 2026</span>
       </div>
+      <img class="v3-render v3-render-tab" src="assets/art/tablet.webp" alt="Render of a tablet showing a scan report with the follow-up booked, beside a stethoscope and a calendar card" width="1100" height="614" loading="lazy">
       <h3>ResultWise</h3>
       <div class="building-sub">AI in Healthcare Hackathon, Leeds · Team of four · Live prototype on synthetic data</div>
       <p class="p-justify">Scan follow ups go missing in the gap between hospitals. ResultWise watches that gap: AI reads the report, plain rules track the booking, and a clinician signs off every step before the patient hears a word, in her own language.</p>
@@ -1774,7 +1775,8 @@
   <div class="beyond-glow"></div>
   <div class="wrap beyond-inner reveal">
     <h2 class="beyond-title">Community and learning</h2>
-    <h2 style="margin-top:16px;"><span class="rl"><span>TEDx University of Leeds</span></span></h2>
+    <img class="v3-render v3-render-scene" src="assets/art/mic.webp" alt="Render of a stage microphone under a warm spotlight" width="1100" height="688" loading="lazy">
+    <h2 style="margin-top:28px;"><span class="rl"><span>TEDx University of Leeds</span></span></h2>
     <div class="beyond-role">"Convergence" — Speaker Coordination &amp; Event Operations</div>
     <p class="p-justify">Behind the scenes at TEDx Convergence: guiding speakers from the audience to the green room to the stage, and keeping the event calm and welcoming.</p>
     <div class="beyond-traits">
@@ -1783,7 +1785,8 @@
       <span><span class="dot"></span>Coordination</span>
       <span><span class="dot"></span>Hosting &amp; hospitality</span>
     </div>
-    <h2 style="margin-top:72px;"><span class="rl"><span>AI Lab UK</span></span></h2>
+    <img class="v3-render v3-render-scene" src="assets/art/laptop.webp" alt="Render of a laptop showing a job search agent flow, with sticky notes and a coffee mug" width="1100" height="660" loading="lazy" style="margin-top:80px;">
+    <h2 style="margin-top:28px;"><span class="rl"><span>AI Lab UK</span></span></h2>
     <div class="beyond-role">Workshop attendee — Leeds, November 2026</div>
     <p class="p-justify">Attended an AI Lab UK workshop in Leeds, where I designed a use case specification for a job search agent that shortlists roles, tailors CVs and tracks follow ups.</p>
     <h2 style="margin-top:72px;"><span class="rl"><span>Technical Symposium</span></span></h2>
@@ -2898,6 +2901,16 @@
   .visual-note, .quiz-q, .about-statement{text-align:left;}
 
   .ticker-row i.v3-tdot{width:7px; height:7px; border-radius:50%; background:var(--v3-peach) !important; -webkit-background-clip:border-box !important; background-clip:border-box !important; display:inline-block; align-self:center; flex:none; opacity:.8;}
+
+  /* photoreal 3D renders */
+  .v3-render{display:block; height:auto; border-radius:20px; user-select:none;
+    box-shadow:0 30px 60px -24px rgba(0,0,0,.55), 0 0 0 1px rgba(250,244,240,.08);}
+  .v3-render-scene{width:min(620px, 92%); margin:36px auto 0; transition:transform .8s cubic-bezier(0.22,1,0.36,1);}
+  .v3-render-scene:hover{transform:translateY(-4px) scale(1.01);}
+  .v3-render-tab{position:absolute; top:40px; right:40px; width:min(36%, 420px); z-index:1;}
+  #featured .building-card > *:not(.v3-render){position:relative; z-index:2;}
+  @media (min-width:1101px){ #featured .building-card > p, #featured .building-sub{max-width:56%;} }
+  @media (max-width:1100px){ .v3-render-tab{position:static; width:100%; max-width:520px; margin:0 0 24px;} }
 
   /* ---------- reduced motion ---------- */
   @media (prefers-reduced-motion: reduce){
