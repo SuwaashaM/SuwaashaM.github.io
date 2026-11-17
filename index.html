@@ -2889,6 +2889,14 @@
   .v3-stagger > *{opacity:0; transform:translateY(18px); transition:opacity .7s var(--v3-ease), transform .7s var(--v3-ease);}
   .v3-stagger.v3-in > *{opacity:1; transform:none;}
 
+  /* ---------- justified body paragraphs ---------- */
+  .p-justify, .cx-desc, .tl-card p, .lede, .building-inline p, .cv-card p, .about p:not(.about-statement){
+    text-align:justify !important; text-align-last:left !important;
+    -webkit-hyphens:auto; hyphens:auto; hyphenate-limit-chars:7 3 3; word-spacing:-0.01em;
+  }
+  .beyond .p-justify, .lede{text-align-last:center !important; -webkit-hyphens:manual; hyphens:manual;}
+  .visual-note, .quiz-q, .about-statement{text-align:left;}
+
   /* ---------- reduced motion ---------- */
   @media (prefers-reduced-motion: reduce){
     .v3-aurora i, .cx-title em{animation:none !important;}
@@ -2905,6 +2913,7 @@
 
 <script id="v3-aurora-js">
 (function(){
+  if(!document.documentElement.lang) document.documentElement.lang='en-GB'; /* lets the browser hyphenate justified text */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
