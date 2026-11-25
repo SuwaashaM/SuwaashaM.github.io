@@ -41,17 +41,21 @@ h1,h2,h3,p{margin:0}
 .small{font-size:16px}
 .hl{font-family:'Playfair Display',Georgia,serif;font-weight:800;color:var(--ink);line-height:1.1}
 .tag{font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:#333;background:rgba(255,255,255,.7);border:1px solid var(--rule);border-radius:999px;padding:4px 10px}
-section{position:relative;padding:48px 0;border-bottom:1px solid var(--ink);overflow:hidden}
+section{position:relative;padding:80px 0;border-bottom:1px solid var(--ink);overflow:hidden}
 footer{overflow:hidden}
 .deco{position:absolute;pointer-events:none;z-index:0}
 section > *:not(.deco){position:relative;z-index:1}
 .row{display:flex;flex-wrap:wrap;gap:48px}
 .main{flex:999 1 560px;min-width:0}
 .side{flex:1 1 300px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:36px 40px}
-.card{display:flex;flex-direction:column;gap:10px;padding:16px 16px 18px;border-top:4px solid var(--c,#111);background:linear-gradient(180deg,var(--tint,rgba(255,255,255,.55)),rgba(255,255,255,.35));border-radius:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px}
+.card{display:flex;flex-direction:column;gap:12px;padding:22px 22px 24px;border-top:4px solid var(--c,#111);background:linear-gradient(180deg,var(--tint,rgba(255,255,255,.55)),rgba(255,255,255,.35));border-radius:2px}
 .card .kick{color:var(--c,var(--red))}
-.sec-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px 32px;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.sec-head > div{display:flex;flex-direction:column;gap:10px}
+.sec-title{font-size:clamp(32px,4vw,44px)}
+.sec-head .meta{max-width:420px;font-size:14px;line-height:1.5}
+.card > .meta:last-child,.card > .tags:last-child{margin-top:auto}
 
 /* masthead */
 header{padding-top:28px}
@@ -81,11 +85,21 @@ nav a.cv{color:var(--red)}
 .tk-row .kick{width:160px;color:var(--ink)}
 
 /* footer */
-footer{position:relative;padding:56px 0 40px}
+footer{position:relative;padding:28px 0 40px}
 .cta{display:inline-block;margin-top:8px;background:var(--ink);color:var(--paper);font-family:Inter,sans-serif;font-weight:600;font-size:15px;padding:13px 20px;text-decoration:none}
 .cta:hover{background:var(--red);color:#fff}
 
 
+
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:8px}
+@media (max-width:640px){.contact-grid{grid-template-columns:1fr}}
+.c-card{display:flex;flex-direction:column;gap:8px;padding:24px;background:rgba(255,255,255,.75);border:1px solid var(--rule);border-top:4px solid var(--c);text-decoration:none;color:var(--ink);transition:transform .25s ease,box-shadow .25s ease}
+.c-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(17,17,17,.08);color:var(--ink)}
+.c-card .kick{color:var(--c)}
+.c-card strong{font-family:Inter,sans-serif;font-size:17px;font-weight:600;overflow-wrap:anywhere}
+.c-card span.meta{margin-top:auto}
+.contact-lede{display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between;margin-bottom:40px}
+.contact-lede p{max-width:620px}
 /* portrait + stats strip */
 .portrait{margin:0;position:relative;overflow:hidden;background:radial-gradient(120% 90% at 50% 100%,rgba(94,234,212,.35),rgba(167,139,250,.28) 45%,rgba(253,186,116,.22) 75%,transparent);border-bottom:3px solid var(--ink)}
 .portrait img{display:block;width:100%;height:auto;transform-origin:50% 35%}
@@ -138,6 +152,8 @@ footer{position:relative;padding:56px 0 40px}
 }
 
 @media (max-width:640px){
+  section{padding:56px 0}
+  .sec-head{margin-bottom:28px}
   .numbers{border-left:0;padding-left:0;border-top:1px solid var(--rule);padding-top:22px}
   .tk-row .kick{width:100%}
   .body{font-size:17px}
@@ -154,7 +170,7 @@ footer{position:relative;padding:56px 0 40px}
 </div>
 <div class="wrap">
 
-<header>
+<header id="top">
   <div class="dateline">
     <span class="meta">Vol. 1 · Leeds, United Kingdom · November 2026</span>
     <span class="meta">Open to AI and data science roles in the UK</span>
@@ -183,7 +199,7 @@ footer{position:relative;padding:56px 0 40px}
     <circle cx="420" cy="120" r="5" fill="#5EEAD4"/><circle cx="430" cy="160" r="5" fill="#A78BFA"/><circle cx="410" cy="80" r="5" fill="#FDBA74"/>
   </svg>
   <article class="main" style="display:flex;flex-direction:column;gap:18px">
-    <span class="kick" style="color:var(--teal)">Lead story · Research</span>
+    <span class="kick" style="color:var(--teal)">01 · Research · Lead story</span>
     <h2 class="hl" style="font-size:clamp(34px,4.6vw,58px)">Teaching machines to read how humans move</h2>
     <p class="meta">With Dr Carlo Campagnoli and Dr Elham Mirfarah, University of Leeds · Paper in preparation</p>
     <div class="cols body">
@@ -211,7 +227,7 @@ footer{position:relative;padding:56px 0 40px}
     <g fill="#FDBA74"><circle cx="290" cy="45" r="4"/><circle cx="330" cy="70" r="3"/><circle cx="370" cy="30" r="4"/></g>
     <path d="M10 160 L 390 25" stroke="#FB7185" stroke-width="1.5" stroke-dasharray="4 6"/>
   </svg>
-  <div class="sec-head"><h2 class="hl reveal" style="font-size:40px">Features</h2><span class="meta">Selected data and AI projects</span></div>
+  <div class="sec-head"><div><span class="kick" style="color:var(--red)">02 · Work</span><h2 class="hl sec-title reveal">Features</h2></div><span class="meta">Selected data and AI projects, each with the question, the method and what the data actually said.</span></div>
   <div class="grid">
     <article class="card rise" style="--c:var(--red);--tint:rgba(254,202,202,.35)"><img src="assets/img/netflix.jpg" alt="Chart from the Netflix catalogue analysis" loading="lazy" width="600" height="340"><span class="kick">Analysis · 2026</span><h3 class="hl" style="font-size:24px">Did rapid growth change Netflix?</h3><p class="body small">5,884 titles, three predictions, two not supported. A study in letting the data disagree.</p><p class="meta">Python · pandas · statsmodels · SciPy</p></article>
     <article class="card rise" style="--c:var(--teal);--tint:rgba(153,246,228,.30)"><img src="assets/img/medical.jpg" alt="Chart from the medical costs analysis" loading="lazy" width="600" height="340"><span class="kick">Health · 2026</span><h3 class="hl" style="font-size:24px">The smoking penalty above BMI 30</h3><p class="body small">A penalty about 2.5× larger; one interaction term lifted explained variation from 75% to 86%.</p><p class="meta">Python · statsmodels · bootstrap</p></article>
@@ -224,22 +240,20 @@ footer{position:relative;padding:56px 0 40px}
   </div>
 </section>
 
-<section id="hack" class="row" style="background-image:radial-gradient(rgba(167,139,250,.28) 1.2px, transparent 1.3px);background-size:22px 22px">
-  <div style="flex:1 1 280px;display:flex;flex-direction:column;gap:14px">
-    <h2 class="hl reveal" style="font-size:40px">Dispatches from the hackathon floor</h2>
-    <p class="body" style="font-style:italic;color:#444">“One clever prompt won't get you far. A small system with guardrails, a knowledge base and evals will.”</p>
-  </div>
-  <div class="main" style="display:flex;flex-direction:column;gap:24px">
-    <article class="card rise" style="--c:var(--indigo);--tint:rgba(255,255,255,.85)"><span class="kick">Completed · October 2026 · Team of four</span><h3 class="hl" style="font-size:28px">ResultWise — no follow-up left behind</h3><p class="body">Scan reports often end with “repeat MRI in 6 months”, and that line can be missed when a patient moves hospital. I set up the repo, built the first prototype, the clinician review flow and the evaluation. AI in Healthcare Hackathon, Leeds AI Week.</p><p class="meta">LLM extraction · rule engine · FHIR R4</p></article>
-    <article class="card rise" style="--c:var(--amber);--tint:rgba(255,255,255,.85)"><span class="kick">Top 10 finalist · 2025 · Rebuilt 2026</span><h3 class="hl" style="font-size:28px">Hauntify</h3><p class="body">A Streamlit app pairing computer-vision costume filters with an NLP classifier at about 90% accuracy.</p><p class="meta">Python · Streamlit · OpenCV · NLP</p></article>
-    <article class="card rise" style="--c:var(--green);--tint:rgba(255,255,255,.85)"><span class="kick">Solo entry · 2026</span><h3 class="hl" style="font-size:28px">AI research assistant with verifiable citations</h3><p class="body">Nebius × NVIDIA Global AI Hackathon 2026.</p></article>
+<section id="hack" style="background-image:radial-gradient(rgba(167,139,250,.28) 1.2px, transparent 1.3px);background-size:22px 22px">
+  <div class="sec-head"><div><span class="kick" style="color:var(--indigo)">03 · Hackathons</span><h2 class="hl sec-title reveal">Dispatches from the hackathon floor</h2></div><span class="meta">“One clever prompt won't get you far. A small system with guardrails, a knowledge base and evals will.”</span></div>
+  <div class="grid">
+    <article class="card rise" style="--c:var(--indigo);--tint:rgba(255,255,255,.85)"><span class="kick">Completed · October 2026 · Team of four</span><h3 class="hl" style="font-size:24px">ResultWise — no follow-up left behind</h3><p class="body">Scan reports often end with “repeat MRI in 6 months”, and that line can be missed when a patient moves hospital. I set up the repo, built the first prototype, the clinician review flow and the evaluation. AI in Healthcare Hackathon, Leeds AI Week.</p><p class="meta">LLM extraction · rule engine · FHIR R4</p></article>
+    <article class="card rise" style="--c:var(--amber);--tint:rgba(255,255,255,.85)"><span class="kick">Top 10 finalist · 2025 · Rebuilt 2026</span><h3 class="hl" style="font-size:24px">Hauntify</h3><p class="body">A Streamlit app pairing computer-vision costume filters with an NLP classifier at about 90% accuracy.</p><p class="meta">Python · Streamlit · OpenCV · NLP</p></article>
+    <article class="card rise" style="--c:var(--green);--tint:rgba(255,255,255,.85)"><span class="kick">Solo entry · 2026</span><h3 class="hl" style="font-size:24px">AI research assistant with verifiable citations</h3><p class="body">Nebius × NVIDIA Global AI Hackathon 2026.</p></article>
   </div>
 </section>
 
-<section id="career" class="row">
+<section id="career">
+  <div class="sec-head"><div><span class="kick" style="color:var(--teal)">04 · Experience</span><h2 class="hl sec-title reveal">Career notes</h2></div><span class="meta">Research, consulting and internships, most recent first.</span></div>
+  <div class="row">
   <div class="main" style="display:flex;flex-direction:column;gap:22px">
-    <h2 class="hl reveal" style="font-size:40px">Career notes</h2>
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px 40px">
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px">
       <article style="display:flex;flex-direction:column;gap:6px"><span class="meta">Oct 2026 – present</span><h3 class="hl" style="font-size:20px">Research Collaborator, University of Leeds</h3><p class="body small">Turning the dissertation into a manuscript, with a unified Python and R pipeline.</p></article>
       <article style="display:flex;flex-direction:column;gap:6px"><span class="meta">Aug – Sep 2026</span><h3 class="hl" style="font-size:20px">Data Science &amp; Product Consultant (client project)</h3><p class="body small">Competitor research, feasibility report, client pitch and a mobile-first proof of concept for an early-stage start-up. Under NDA.</p></article>
       <article style="display:flex;flex-direction:column;gap:6px"><span class="meta">Jul – Sep 2024 · Remote</span><h3 class="hl" style="font-size:20px">Data Science Intern, Corizo</h3><p class="body small">Cleaning, exploring and modelling real datasets, reported for non-technical readers.</p></article>
@@ -252,11 +266,12 @@ footer{position:relative;padding:56px 0 40px}
     <div><h3 class="hl" style="font-size:20px">MSc Data Science and Analytics</h3><p class="meta">University of Leeds · 2025 – 2026</p></div>
     <div><h3 class="hl" style="font-size:20px">B.Tech Information Technology</h3><p class="meta">SRM Valliammai Engineering College · CGPA 9.02/10</p></div>
   </aside>
+  </div>
 </section>
 
 <section id="community" style="background:linear-gradient(135deg,rgba(251,207,232,.30),rgba(199,210,254,.25) 60%,rgba(153,246,228,.22))">
-  <div style="padding:0 0 0;"><h2 class="hl reveal" style="font-size:40px;margin-bottom:24px">Community &amp; learning</h2></div>
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px 40px">
+  <div class="sec-head"><div><span class="kick" style="color:var(--rose)">05 · Community</span><h2 class="hl sec-title reveal">Community &amp; learning</h2></div><span class="meta">Volunteering, workshops and events that keep me learning in public.</span></div>
+  <div class="grid">
     <article class="card rise" style="--c:var(--rose);--tint:rgba(255,255,255,.7)"><span class="kick">New · Nov 2026 – present</span><h3 class="hl" style="font-size:20px">Social Media Analyst and Blog Writer, UKind Therapy CIC</h3><p class="body small">Social media analytics, blogs and newsletters for a survivor-led social enterprise.</p></article>
     <article class="card rise" style="--c:var(--indigo);--tint:rgba(255,255,255,.7)"><span class="kick">Workshop · Nov 2026</span><h3 class="hl" style="font-size:20px">Find Your First AI Agent, AI Lab (Zygens), Leeds</h3><p class="body small">Designed a job-search agent use case, since built with guardrails, a knowledge base and evals.</p></article>
     <article class="card rise" style="--c:var(--teal);--tint:rgba(255,255,255,.7)"><span class="kick">Jun 2026</span><h3 class="hl" style="font-size:20px">TEDx University of Leeds, “Convergence”</h3><p class="body small">Speaker coordination and event operations.</p></article>
@@ -264,9 +279,9 @@ footer{position:relative;padding:56px 0 40px}
   </div>
 </section>
 
-<section id="toolkit" class="row" style="gap:40px">
-  <h2 class="hl reveal" style="font-size:40px;flex:1 1 240px">The toolkit index</h2>
-  <div class="main" style="display:flex;flex-direction:column;gap:16px">
+<section id="toolkit">
+  <div class="sec-head"><div><span class="kick" style="color:var(--amber)">06 · Toolkit</span><h2 class="hl sec-title reveal">The toolkit index</h2></div><span class="meta">Languages, methods and tools I use day to day.</span></div>
+  <div style="display:flex;flex-direction:column;gap:18px">
     <div class="tk-row"><span class="kick">Languages &amp; data</span><span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span><span class="tag">pandas</span><span class="tag">NumPy</span></div>
     <div class="tk-row"><span class="kick">Machine learning</span><span class="tag">scikit-learn</span><span class="tag">cross-validation</span><span class="tag">feature engineering</span><span class="tag">TensorFlow/Keras</span><span class="tag">CNN · TCN · LSTM · GRU</span></div>
     <div class="tk-row"><span class="kick">AI</span><span class="tag">NLP</span><span class="tag">generative AI</span><span class="tag">agentic AI</span><span class="tag">human-in-the-loop AI</span></div>
@@ -274,27 +289,28 @@ footer{position:relative;padding:56px 0 40px}
     <div class="tk-row"><span class="kick">Tools</span><span class="tag">Git &amp; GitHub</span><span class="tag">Azure</span><span class="tag">Streamlit</span><span class="tag">OpenCV</span><span class="tag">LaTeX</span><span class="tag">Figma</span><span class="tag">Lovable</span></div>
   </div>
 </section>
-</main>
 
-<footer id="contact">
-  <svg class="deco" aria-hidden="true" viewBox="0 0 500 160" style="right:0;bottom:30px;width:520px;opacity:.4">
+<section id="contact" style="background:linear-gradient(135deg,rgba(153,246,228,.22),rgba(199,210,254,.22) 50%,rgba(254,215,170,.25));border-bottom:3px double var(--ink)">
+  <svg class="deco" aria-hidden="true" viewBox="0 0 500 160" style="right:0;top:20px;width:520px;opacity:.4">
     <path d="M0 120 Q 125 40 250 100 T 500 60" fill="none" stroke="#FB7185" stroke-width="2"/>
     <path d="M0 140 Q 125 70 250 120 T 500 90" fill="none" stroke="#5EEAD4" stroke-width="2"/>
   </svg>
-  <div class="row" style="gap:40px;justify-content:space-between;align-items:flex-end;position:relative">
-    <div style="flex:1 1 420px;display:flex;flex-direction:column;gap:12px">
-      <span class="kick">Letters to the editor</span>
-      <h2 class="hl" style="font-size:clamp(32px,4vw,48px)">Hiring for AI or data? Let's talk.</h2>
-      <p class="body">Based in Leeds and open to AI and data science roles across the UK.</p>
-    </div>
-    <div class="body" style="flex:1 1 300px;display:flex;flex-direction:column;gap:8px">
-      <a href="mailto:suwaashaperumal@gmail.com">suwaashaperumal@gmail.com</a>
-      <a href="https://www.linkedin.com/in/suwaasham">linkedin.com/in/suwaasham</a>
-      <a href="https://github.com/SuwaashaM">github.com/SuwaashaM</a>
-      <a href="cv/Suwaasha_Murugaperumal_CV.pdf" class="cta">Download CV</a>
-    </div>
+  <div class="sec-head"><div><span class="kick" style="color:var(--red)">07 · Contact</span><h2 class="hl sec-title reveal">Get in touch</h2></div><span class="meta">Letters to the editor are always welcome.</span></div>
+  <div class="contact-lede">
+    <p class="body">Hiring for an AI or data role, or want to talk about a project? I am based in Leeds and open to AI and data science roles across the UK. Email is the quickest way to reach me.</p>
+    <a class="cta" href="mailto:suwaashaperumal@gmail.com?subject=Hello%20Suwaasha">Email me</a>
   </div>
-  <p class="meta" style="border-top:1px solid var(--ink);padding-top:14px;margin-top:40px">© 2026 Suwaasha Murugaperumal · Printed in Leeds</p>
+  <div class="contact-grid">
+    <a class="c-card rise" style="--c:var(--red)" href="mailto:suwaashaperumal@gmail.com"><span class="kick">Email</span><strong>suwaashaperumal@gmail.com</strong><span class="meta">Best for roles and projects</span></a>
+    <a class="c-card rise" style="--c:var(--indigo);--d:.08s" href="https://www.linkedin.com/in/suwaasham" target="_blank" rel="noopener"><span class="kick">LinkedIn</span><strong>linkedin.com/in/suwaasham</strong><span class="meta">Experience and updates</span></a>
+    <a class="c-card rise" style="--c:var(--teal);--d:.16s" href="https://github.com/SuwaashaM" target="_blank" rel="noopener"><span class="kick">GitHub</span><strong>github.com/SuwaashaM</strong><span class="meta">Code for the projects above</span></a>
+    <a class="c-card rise" style="--c:var(--amber);--d:.24s" href="cv/Suwaasha_Murugaperumal_CV.pdf"><span class="kick">CV</span><strong>Download my CV</strong><span class="meta">PDF</span></a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="meta" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px"><span>© 2026 Suwaasha Murugaperumal · Printed in Leeds</span><a href="#top" style="color:var(--muted)">Back to top ↑</a></p>
 </footer>
 
 </div>
