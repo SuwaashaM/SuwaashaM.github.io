@@ -41,24 +41,28 @@ h1,h2,h3,p{margin:0}
 .small{font-size:16px}
 .hl{font-family:'Playfair Display',Georgia,serif;font-weight:800;color:var(--ink);line-height:1.1}
 .tag{font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:#333;background:rgba(255,255,255,.7);border:1px solid var(--rule);border-radius:999px;padding:4px 10px}
-section{position:relative;padding:48px 0;border-bottom:1px solid var(--ink);overflow:hidden}
+section{position:relative;padding:80px 0;border-bottom:1px solid var(--ink);overflow:hidden}
 footer{overflow:hidden}
 .deco{position:absolute;pointer-events:none;z-index:0}
 section > *:not(.deco){position:relative;z-index:1}
 .row{display:flex;flex-wrap:wrap;gap:48px}
 .main{flex:999 1 560px;min-width:0}
 .side{flex:1 1 300px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:36px 40px}
-.card{display:flex;flex-direction:column;gap:10px;padding:16px 16px 18px;border-top:4px solid var(--c,#111);background:linear-gradient(180deg,var(--tint,rgba(255,255,255,.55)),rgba(255,255,255,.35));border-radius:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px}
+.card{display:flex;flex-direction:column;gap:12px;padding:22px 22px 24px;border-top:4px solid var(--c,#111);background:linear-gradient(180deg,var(--tint,rgba(255,255,255,.55)),rgba(255,255,255,.35));border-radius:2px}
 .card .kick{color:var(--c,var(--red))}
-.sec-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px 32px;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.sec-head > div{display:flex;flex-direction:column;gap:10px}
+.sec-title{font-size:clamp(32px,4vw,44px)}
+.sec-head .meta{max-width:420px;font-size:14px;line-height:1.5}
+.card > .meta:last-child,.card > .tags:last-child{margin-top:auto}
 
 /* masthead */
-header{padding-top:28px}
+header{padding-top:40px}
 .dateline{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-bottom:1px solid var(--ink);padding-bottom:10px}
-.title{font-size:clamp(44px,8vw,104px);text-align:center;letter-spacing:-.02em;padding:22px 0 8px}
-.strap{text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:#333;padding-bottom:18px}
-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 28px;border-top:3px double var(--ink);border-bottom:1px solid var(--ink);padding:12px 0;background:rgba(250,250,247,.75)}
+.title{font-size:clamp(44px,8vw,112px);text-align:center;letter-spacing:-.02em;padding:72px 0 20px}
+.strap{text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:24px;color:#333;padding-bottom:64px}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 32px;border-top:3px double var(--ink);border-bottom:1px solid var(--ink);padding:16px 0;background:rgba(250,250,247,.75)}
 nav a{color:var(--ink);text-decoration:none;padding:6px 0}
 nav a:hover{color:var(--red)}
 nav a.cv{color:var(--red)}
@@ -81,11 +85,21 @@ nav a.cv{color:var(--red)}
 .tk-row .kick{width:160px;color:var(--ink)}
 
 /* footer */
-footer{position:relative;padding:56px 0 40px}
+footer{position:relative;padding:28px 0 40px}
 .cta{display:inline-block;margin-top:8px;background:var(--ink);color:var(--paper);font-family:Inter,sans-serif;font-weight:600;font-size:15px;padding:13px 20px;text-decoration:none}
 .cta:hover{background:var(--red);color:#fff}
 
 
+
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:8px}
+@media (max-width:640px){.contact-grid{grid-template-columns:1fr}}
+.c-card{display:flex;flex-direction:column;gap:8px;padding:24px;background:rgba(255,255,255,.75);border:1px solid var(--rule);border-top:4px solid var(--c);text-decoration:none;color:var(--ink);transition:transform .25s ease,box-shadow .25s ease}
+.c-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(17,17,17,.08);color:var(--ink)}
+.c-card .kick{color:var(--c)}
+.c-card strong{font-family:Inter,sans-serif;font-size:17px;font-weight:600;overflow-wrap:anywhere}
+.c-card span.meta{margin-top:auto}
+.contact-lede{display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between;margin-bottom:40px}
+.contact-lede p{max-width:620px}
 /* portrait + stats strip */
 .portrait{margin:0;position:relative;overflow:hidden;background:radial-gradient(120% 90% at 50% 100%,rgba(94,234,212,.35),rgba(167,139,250,.28) 45%,rgba(253,186,116,.22) 75%,transparent);border-bottom:3px solid var(--ink)}
 .portrait img{display:block;width:100%;height:auto;transform-origin:50% 35%}
@@ -94,28 +108,99 @@ footer{position:relative;padding:56px 0 40px}
 .card img{display:block;width:100%;height:150px;object-fit:cover;object-position:top;border-radius:2px;background:#fff;margin-bottom:4px}
 
 /* ---------- film-style motion ---------- */
-.intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#0B0B0C;color:#FAFAF7;overflow:hidden}
-.intro .bar{position:absolute;left:0;right:0;height:12vh;background:#000;z-index:2}
+
+/* ---------- cinematic intro ---------- */
+.intro{position:fixed;inset:0;z-index:100;background:#070708;color:#F5F2EA;overflow:hidden;transform-origin:50% 45%}
+.intro canvas{position:absolute;inset:0;width:100%;height:100%}
+.intro .grain{position:absolute;inset:-50%;width:200%;height:200%;opacity:.09;pointer-events:none;z-index:4;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain .6s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(1%,3%)}}
+.intro .vignette{position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.75) 100%)}
+.intro .leak{position:absolute;z-index:2;top:-30%;left:-60%;width:60%;height:160%;pointer-events:none;opacity:0;
+  background:linear-gradient(100deg,transparent,rgba(253,186,116,.28),rgba(251,113,133,.22),transparent);filter:blur(30px);transform:rotate(8deg)}
+.intro .bar{position:absolute;left:0;right:0;height:0;background:#000;z-index:6;transition:height 1s cubic-bezier(.7,0,.2,1)}
 .intro .bar.t{top:0}.intro .bar.b{bottom:0}
-.intro .shot{position:absolute;inset:0;display:grid;place-items:center;text-align:center;opacity:0;padding:0 24px}
-.intro .s1 p{font-family:Inter,sans-serif;font-weight:600;letter-spacing:.4em;text-transform:uppercase;font-size:14px;color:#D6D3CC}
-.intro .s2 h2{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:1.05;color:#FAFAF7}
-.intro .s3 p{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(20px,2.4vw,30px);color:#F5D0C5}
-.intro .skip{position:absolute;right:20px;bottom:calc(12vh + 16px);z-index:3;font-family:Inter,sans-serif;font-size:13px;font-weight:600;color:#FAFAF7;background:transparent;border:1px solid rgba(250,250,247,.5);padding:10px 16px;min-height:44px;cursor:pointer}
-.intro .skip:hover{background:rgba(250,250,247,.12)}
-.play .s1{animation:shot 1.1s steps(1,end) 0s forwards, fadein .5s ease-out 0s both}
-.play .s2{animation:shot 1.2s steps(1,end) 1.1s forwards}
-.play .s2 h2{animation:titlein 1.2s cubic-bezier(.2,.7,.1,1) 1.1s both}
-.play .s3{animation:shot 1s steps(1,end) 2.3s forwards}
-.play .bar.t{animation:bartop .9s cubic-bezier(.7,0,.2,1) 3.2s both}
-.play .bar.b{animation:barbot .9s cubic-bezier(.7,0,.2,1) 3.2s both}
-.play{animation:outro .5s ease-in 3.6s both}
-@keyframes shot{0%{opacity:1}100%{opacity:0}}
-@keyframes fadein{from{filter:blur(6px)}to{filter:blur(0)}}
-@keyframes titlein{from{letter-spacing:.12em;transform:scale(1.08);filter:blur(8px)}to{letter-spacing:0;transform:scale(1);filter:blur(0)}}
-@keyframes bartop{to{transform:translateY(-100%)}}
-@keyframes barbot{to{transform:translateY(100%)}}
-@keyframes outro{to{opacity:0;visibility:hidden}}
+.intro.letterbox .bar{height:13vh}
+.intro .scene{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;text-align:center;padding:18vh 8vw;opacity:0;visibility:hidden}
+.intro .scene.on{opacity:1;visibility:visible}
+.intro .flash{position:absolute;inset:0;z-index:7;background:#F5F2EA;opacity:0;pointer-events:none}
+.intro .flash.go{animation:flash .22s ease-out}
+@keyframes flash{0%{opacity:.55}100%{opacity:0}}
+.intro .slate{font-family:Inter,sans-serif;font-weight:600;font-size:13px;letter-spacing:.55em;text-transform:uppercase;color:#CFCAC0}
+.intro .rule{width:0;height:1px;background:rgba(245,242,234,.55);transition:width 1.4s cubic-bezier(.6,0,.2,1)}
+.intro .on .rule{width:min(320px,50vw)}
+.intro .s1 .slate{opacity:0;letter-spacing:1.1em;transition:opacity 1s ease,letter-spacing 1.8s cubic-bezier(.2,.7,.1,1)}
+.intro .s1.on .slate{opacity:1;letter-spacing:.55em}
+.intro .s2 .line{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(26px,3.4vw,46px);color:#F5D0C5;opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform 1.2s cubic-bezier(.2,.7,.1,1)}
+.intro .s2 .line.b{color:#99F6E4;transition-delay:1.15s}
+.intro .s2.on .line{opacity:1;transform:none}
+.intro .s3 h2{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(46px,8.6vw,128px);line-height:1;letter-spacing:-.01em;color:#F5F2EA;margin:0}
+.intro .s3 .mask{display:block;overflow:hidden;padding:.06em 0}
+.intro .s3 .mask > span{display:block;transform:translateY(110%);transition:transform 1.3s cubic-bezier(.16,.84,.2,1)}
+.intro .s3 .mask + .mask > span{transition-delay:.18s}
+.intro .s3.on .mask > span{transform:none}
+.intro .s3 .shine{color:#F5F2EA}
+.intro .s3.on .shine{animation:glow 2.4s ease 1s both}
+@keyframes glow{0%{text-shadow:0 0 0 rgba(253,230,138,0)}45%{text-shadow:0 0 28px rgba(253,230,138,.55)}100%{text-shadow:0 0 0 rgba(253,230,138,0)}}
+.intro canvas{transition:opacity 1.2s ease}
+.intro.dim canvas{opacity:.18}
+.intro .s3 .sub{opacity:0;transition:opacity 1s ease 1.1s}
+.intro .s3.on .sub{opacity:1}
+.intro .push{position:absolute;inset:0;transform:scale(1);transition:transform 7s cubic-bezier(.2,.5,.3,1)}
+.intro.rolling .push{transform:scale(1.07)}
+.intro.out{transition:opacity .9s ease,transform 1.1s cubic-bezier(.7,0,.2,1);opacity:0;transform:scale(1.18)}
+.intro.out .bar{height:0}
+.intro .skip{position:absolute;right:28px;bottom:calc(13vh + 20px);z-index:8;font-family:Inter,sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;color:#F5F2EA;background:rgba(0,0,0,.25);border:1px solid rgba(245,242,234,.45);padding:11px 18px;min-height:44px;cursor:pointer}
+.intro .skip:hover,.intro .skip:focus-visible{background:rgba(245,242,234,.14);outline:none}
+.intro .tc{position:absolute;left:28px;bottom:calc(13vh + 30px);z-index:8;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.12em;color:rgba(245,242,234,.45)}
+
+/* ---------- project index ---------- */
+.plist{border-top:2px solid var(--ink)}
+.proj{border-bottom:1px solid var(--rule)}
+.proj summary{list-style:none;display:grid;grid-template-columns:64px minmax(0,1fr) auto 44px;align-items:center;gap:24px;padding:26px 12px;cursor:pointer;position:relative;transition:background .3s ease}
+.proj summary::-webkit-details-marker{display:none}
+.proj summary::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--c);transition:width .35s cubic-bezier(.2,.7,.1,1)}
+.proj summary:hover,.proj[open] summary{background:var(--tint)}
+.proj summary:hover::before,.proj[open] summary::before{width:4px}
+.proj summary:focus-visible{outline:2px solid var(--indigo);outline-offset:-2px}
+.p-num{font-family:'Playfair Display',serif;font-weight:800;font-size:30px;color:var(--c);line-height:1}
+.p-head{display:flex;flex-direction:column;gap:8px;min-width:0}
+.p-title{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(21px,2.3vw,28px);line-height:1.15;color:var(--ink);transition:transform .35s cubic-bezier(.2,.7,.1,1)}
+.proj summary:hover .p-title{transform:translateX(6px)}
+.p-cat{color:var(--c)}
+.p-date{white-space:nowrap;text-align:right}
+.p-icon{width:40px;height:40px;border:1px solid var(--ink);border-radius:50%;position:relative;transition:transform .4s cubic-bezier(.2,.7,.1,1),background .3s}
+.p-icon::before,.p-icon::after{content:'';position:absolute;left:50%;top:50%;width:14px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%)}
+.p-icon::after{transform:translate(-50%,-50%) rotate(90deg)}
+.proj[open] .p-icon{transform:rotate(45deg);background:var(--paper)}
+.p-body{overflow:hidden}
+.p-inner{display:grid;grid-template-columns:1fr;gap:32px;padding:8px 12px 40px 100px}
+.p-inner.has-fig{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.p-fig{margin:0;align-self:start}
+.p-fig img{display:block;width:100%;height:auto;border-radius:2px;box-shadow:0 12px 30px rgba(17,17,17,.12)}
+.p-text{display:flex;flex-direction:column;gap:22px;max-width:760px}
+.p-block{display:flex;flex-direction:column;gap:8px}
+.p-block .kick{color:var(--c)}
+.p-stats{display:flex;flex-wrap:wrap;gap:16px 40px;padding:18px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.p-stats > div{display:flex;flex-direction:column;gap:4px}
+.p-stat{font-family:'Playfair Display',serif;font-weight:800;font-size:34px;color:var(--c);line-height:1}
+.p-links{display:flex;flex-wrap:wrap;gap:10px 24px;font-family:Inter,sans-serif;font-weight:600;font-size:14px}
+.p-links a{color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--c);padding:4px 0}
+.p-links a:hover{color:var(--c)}
+.js .proj[open] .p-block,.js .proj[open] .p-fig,.js .proj[open] .p-stats{animation:pin .6s cubic-bezier(.2,.7,.1,1) both}
+.js .proj[open] .p-block:nth-child(2){animation-delay:.08s}
+.js .proj[open] .p-block:nth-child(3){animation-delay:.16s}
+.js .proj[open] .p-stats{animation-delay:.24s}
+@keyframes pin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (max-width:760px){
+  .proj summary{grid-template-columns:36px minmax(0,1fr) 36px;gap:14px;padding:22px 4px}
+  .p-date{grid-column:2;grid-row:2;text-align:left;margin-top:-6px}
+  .p-icon{grid-column:3;grid-row:1;width:34px;height:34px}
+  .p-num{font-size:22px}
+  .p-inner,.p-inner.has-fig{grid-template-columns:1fr;padding:4px 4px 32px}
+}
+
 
 .js .reveal{opacity:0;transform:translateX(-24px);transition:opacity .8s ease,transform 1s cubic-bezier(.77,0,.18,1)}
 .js .reveal.in{opacity:1;transform:none}
@@ -134,10 +219,13 @@ footer{position:relative;padding:56px 0 40px}
 @media (prefers-reduced-motion: reduce){
   .intro{display:none!important}
   .js .portrait::after{display:none}
+  .js .proj[open] .p-block,.js .proj[open] .p-fig,.js .proj[open] .p-stats{animation:none}
   .js .reveal,.js .rise,.js .portrait img,.js .title .w,.js .deco path{clip-path:none!important;opacity:1!important;transform:none!important;filter:none!important;stroke-dashoffset:0!important;transition:none!important}
 }
 
 @media (max-width:640px){
+  section{padding:56px 0}
+  .sec-head{margin-bottom:28px}
   .numbers{border-left:0;padding-left:0;border-top:1px solid var(--rule);padding-top:22px}
   .tk-row .kick{width:100%}
   .body{font-size:17px}
@@ -146,15 +234,19 @@ footer{position:relative;padding:56px 0 40px}
 </head>
 <body>
 <div class="intro" id="intro" aria-hidden="true">
+  <div class="push"><canvas id="introCanvas"></canvas><div class="leak" id="leak"></div></div>
+  <div class="vignette"></div><div class="grain"></div>
   <div class="bar t"></div><div class="bar b"></div>
-  <div class="shot s1"><p>Leeds · 2026</p></div>
-  <div class="shot s2"><h2>Suwaasha<br>Murugaperumal</h2></div>
-  <div class="shot s3"><p>Turning messy data into decisions</p></div>
+  <div class="scene s1"><span class="slate">Leeds · United Kingdom</span><span class="rule"></span><span class="slate" style="font-size:11px;letter-spacing:.4em;opacity:.7">MMXXVI</span></div>
+  <div class="scene s2"><p class="line a">Messy data.</p><p class="line b">Clear decisions.</p></div>
+  <div class="scene s3"><h2><span class="mask"><span class="shine">Suwaasha</span></span><span class="mask"><span class="shine">Murugaperumal</span></span></h2><span class="rule"></span><span class="slate sub">AI developer · Data science · Research</span></div>
+  <div class="flash" id="flash"></div>
+  <span class="tc" id="tc">00:00:00</span>
   <button class="skip" id="skipIntro" type="button" tabindex="-1">Skip intro</button>
 </div>
 <div class="wrap">
 
-<header>
+<header id="top">
   <div class="dateline">
     <span class="meta">Vol. 1 · Leeds, United Kingdom · November 2026</span>
     <span class="meta">Open to AI and data science roles in the UK</span>
@@ -174,7 +266,7 @@ footer{position:relative;padding:56px 0 40px}
 </header>
 
 <main>
-<section id="lead" class="row">
+<section id="lead" class="row" style="padding-top:96px">
   <!-- decorative: reach-to-grasp trajectories -->
   <svg class="deco" aria-hidden="true" viewBox="0 0 600 400" style="right:-40px;top:-70px;width:620px;opacity:.28">
     <path d="M10 360 C 150 340, 220 160, 420 120 S 560 60, 590 40" fill="none" stroke="#5EEAD4" stroke-width="2"/>
@@ -183,7 +275,7 @@ footer{position:relative;padding:56px 0 40px}
     <circle cx="420" cy="120" r="5" fill="#5EEAD4"/><circle cx="430" cy="160" r="5" fill="#A78BFA"/><circle cx="410" cy="80" r="5" fill="#FDBA74"/>
   </svg>
   <article class="main" style="display:flex;flex-direction:column;gap:18px">
-    <span class="kick" style="color:var(--teal)">Lead story · Research</span>
+    <span class="kick" style="color:var(--teal)">01 · Research · Lead story</span>
     <h2 class="hl" style="font-size:clamp(34px,4.6vw,58px)">Teaching machines to read how humans move</h2>
     <p class="meta">With Dr Carlo Campagnoli and Dr Elham Mirfarah, University of Leeds · Paper in preparation</p>
     <div class="cols body">
@@ -211,35 +303,176 @@ footer{position:relative;padding:56px 0 40px}
     <g fill="#FDBA74"><circle cx="290" cy="45" r="4"/><circle cx="330" cy="70" r="3"/><circle cx="370" cy="30" r="4"/></g>
     <path d="M10 160 L 390 25" stroke="#FB7185" stroke-width="1.5" stroke-dasharray="4 6"/>
   </svg>
-  <div class="sec-head"><h2 class="hl reveal" style="font-size:40px">Features</h2><span class="meta">Selected data and AI projects</span></div>
-  <div class="grid">
-    <article class="card rise" style="--c:var(--red);--tint:rgba(254,202,202,.35)"><img src="assets/img/netflix.jpg" alt="Chart from the Netflix catalogue analysis" loading="lazy" width="600" height="340"><span class="kick">Analysis · 2026</span><h3 class="hl" style="font-size:24px">Did rapid growth change Netflix?</h3><p class="body small">5,884 titles, three predictions, two not supported. A study in letting the data disagree.</p><p class="meta">Python · pandas · statsmodels · SciPy</p></article>
-    <article class="card rise" style="--c:var(--teal);--tint:rgba(153,246,228,.30)"><img src="assets/img/medical.jpg" alt="Chart from the medical costs analysis" loading="lazy" width="600" height="340"><span class="kick">Health · 2026</span><h3 class="hl" style="font-size:24px">The smoking penalty above BMI 30</h3><p class="body small">A penalty about 2.5× larger; one interaction term lifted explained variation from 75% to 86%.</p><p class="meta">Python · statsmodels · bootstrap</p></article>
-    <article class="card rise" style="--c:var(--indigo);--tint:rgba(199,210,254,.35)"><img src="assets/img/churn.jpg" alt="Targeting and ROC curves for the churn models" loading="lazy" width="600" height="340"><span class="kick">Business · 2026</span><h3 class="hl" style="font-size:24px">Who is about to leave?</h3><p class="body small">Customer churn: the riskiest 20% of customers held half of all leavers.</p><p class="meta">Python · scikit-learn · pandas</p></article>
-    <article class="card rise" style="--c:var(--green);--tint:rgba(187,247,208,.32)"><img src="assets/img/emissions.jpg" alt="Scatter plot of GDP growth against emissions change by country" loading="lazy" width="600" height="340"><span class="kick">Climate · 2026</span><h3 class="hl" style="font-size:24px">Growth vs emissions</h3><p class="body small">117 countries; 26 decoupled on both measures, and the list shrank once imports were counted.</p><p class="meta">Python · pandas · SciPy · Matplotlib</p></article>
-    <article class="card rise" style="--c:var(--rose);--tint:rgba(251,207,232,.35)"><img src="assets/img/movies.jpg" alt="Charts comparing film genre frequency with median popularity" loading="lazy" width="600" height="340"><span class="kick">Film · 2026</span><h3 class="hl" style="font-size:24px">What makes a movie popular?</h3><p class="body small">9,800 TMDB films: recency mattered most, rating barely did. I also audited and fixed four issues in my own code.</p><p class="meta">Python · pandas · statsmodels · Seaborn</p></article>
-    <article class="card rise" style="--c:var(--amber);--tint:rgba(253,230,138,.32)"><span class="kick">Academic · 2026</span><h3 class="hl" style="font-size:24px">ICO fundraising, tested in R</h3><p class="body small">Coursework refactored into a pipeline with 34 automated checks — which caught a data leak.</p><p class="meta">R</p></article>
-    <article class="card rise" style="--c:var(--teal);--tint:rgba(153,246,228,.30)"><span class="kick">Published · 2024</span><h3 class="hl" style="font-size:24px">Customer lifetime value</h3><p class="body small">Feature engineering gave a 22% lift over baseline; contributed to a paper in IJRAR (2024).</p><p class="meta">Python · pandas · regression</p></article>
-    <article class="card rise" style="--c:var(--indigo);--tint:rgba(199,210,254,.35)"><span class="kick">In progress · Not yet public</span><h3 class="hl" style="font-size:24px">An AI personal assistant agent</h3><p class="body small">Planning, tools and memory, with the user kept in control. Architecture and prototype stage.</p><p class="meta">Python · agentic AI · LLMs · APIs</p></article>
+  <div class="sec-head"><div><span class="kick" style="color:var(--red)">02 · Work</span><h2 class="hl sec-title reveal">Features</h2></div><span class="meta">Selected data and AI projects. Click any title for the story, the challenge and what I learned.</span></div>
+  <div class="plist">
+    <details class="proj" style="--c:var(--red);--tint:rgba(254,202,202,.35)">
+      <summary><span class="p-num">01</span><span class="p-head"><span class="p-title">Did rapid growth change Netflix?</span><span class="p-cat kick">Analysis</span></span><span class="p-date meta">2026</span><span class="p-icon" aria-hidden="true"></span></summary>
+      <div class="p-body"><div class="p-inner has-fig">
+        <figure class="p-fig"><img src="assets/img/netflix.jpg" alt="Share of Netflix additions with no US production country by year" loading="lazy"></figure>
+        <div class="p-text">
+          <div class="p-block"><span class="kick">Overview</span><p class="body small">Between 2016 and 2019 Netflix added five times more titles a year. I asked whether that growth changed what it added: more TV shows, more international productions, newer releases. I tested each idea on 5,884 titles with chi-square, Kruskal–Wallis and logistic regression.</p></div>
+          <div class="p-block"><span class="kick">The challenge</span><p class="body small">The data is a January 2020 snapshot, so titles removed before then are missing. Every finding had to be framed around what the snapshot can and cannot show.</p></div>
+          <div class="p-block"><span class="kick">What I learned</span><p class="body small">Let the data disagree. Two of my three predictions were not supported: TV&#x27;s share showed no steady trend, additions outside the US peaked at 61% in 2018 before falling to 52%, and additions actually got older.</p></div>
+          <div class="p-stats"><div><span class="p-stat">5,884</span><span class="meta">titles analysed</span></div><div><span class="p-stat">2 of 3</span><span class="meta">predictions not supported</span></div></div>
+          <p class="meta">Python · pandas · statsmodels · SciPy · Matplotlib</p>
+          <div class="p-links"><a href="https://github.com/SuwaashaM/netflix-catalogue-analysis" target="_blank" rel="noopener">Code &amp; write-up →</a><a href="https://github.com/SuwaashaM/netflix-catalogue-analysis/blob/main/netflix_catalogue_analysis.ipynb" target="_blank" rel="noopener">Notebook →</a></div>
+        </div>
+      </div></div>
+    </details>
+    <details class="proj" style="--c:var(--rose);--tint:rgba(251,207,232,.35)">
+      <summary><span class="p-num">02</span><span class="p-head"><span class="p-title">What makes a movie popular?</span><span class="p-cat kick">Film</span></span><span class="p-date meta">2026</span><span class="p-icon" aria-hidden="true"></span></summary>
+      <div class="p-body"><div class="p-inner has-fig">
+        <figure class="p-fig"><img src="assets/img/movies.jpg" alt="Charts comparing how common each film genre is with its median popularity" loading="lazy"></figure>
+        <div class="p-text">
+          <div class="p-block"><span class="kick">Overview</span><p class="body small">Is a film&#x27;s popularity explained by its genre, how recent it is, or how well it is rated? I cleaned and visualised 9,800 popular films from TMDB.</p></div>
+          <div class="p-block"><span class="kick">The challenge</span><p class="body small">When I audited my own notebook I found four issues, including a binning step that silently dropped the 100 lowest-rated films.</p></div>
+          <div class="p-block"><span class="kick">What I learned</span><p class="body small">Checking my own work is part of the analysis. The corrected results show recency matters most (median popularity rises from 22 for 2010s films to 35 for the 2020s), rating barely matters (ρ = 0.13), and all four factors together explain only 30% of popularity.</p></div>
+          <div class="p-stats"><div><span class="p-stat">9,800</span><span class="meta">films analysed</span></div><div><span class="p-stat">4</span><span class="meta">issues fixed in my own code</span></div></div>
+          <p class="meta">Python · pandas · statsmodels · Seaborn</p>
+          <div class="p-links"><a href="https://github.com/SuwaashaM/Netflix-Data-Pre-processing-and-Analysis" target="_blank" rel="noopener">Code &amp; write-up →</a></div>
+        </div>
+      </div></div>
+    </details>
+    <details class="proj" style="--c:var(--green);--tint:rgba(187,247,208,.32)">
+      <summary><span class="p-num">03</span><span class="p-head"><span class="p-title">Growth vs emissions</span><span class="p-cat kick">Climate</span></span><span class="p-date meta">2026</span><span class="p-icon" aria-hidden="true"></span></summary>
+      <div class="p-body"><div class="p-inner has-fig">
+        <figure class="p-fig"><img src="assets/img/emissions.jpg" alt="Scatter plot of GDP growth against change in consumption-based emissions by country, 2005 to 2019" loading="lazy"></figure>
+        <div class="p-text">
+          <div class="p-block"><span class="kick">Overview</span><p class="body small">Which countries grew their economies while cutting CO₂ between 2005 and 2019? Using Our World in Data figures for 117 countries, I classified each on both territorial and consumption-based emissions.</p></div>
+          <div class="p-block"><span class="kick">The challenge</span><p class="body small">Counting the emissions in imported goods changes the answer. Switzerland&#x27;s territorial emissions fell 20%, but its consumption emissions rose 12%, and consumption figures are modelled estimates.</p></div>
+          <div class="p-block"><span class="kick">What I learned</span><p class="body small">26 countries, including the UK, Germany and the US, decoupled on both measures. Counting imports shrank the list from 34 to 28, and decoupling was overwhelmingly a rich-country result: 62% of the richest third, none of the poorest.</p></div>
+          <div class="p-stats"><div><span class="p-stat">117</span><span class="meta">countries</span></div><div><span class="p-stat">26</span><span class="meta">decoupled on both measures</span></div></div>
+          <p class="meta">Python · pandas · SciPy · Matplotlib</p>
+          <div class="p-links"><a href="https://github.com/SuwaashaM/co2-emissions-decoupling" target="_blank" rel="noopener">Code &amp; write-up →</a></div>
+        </div>
+      </div></div>
+    </details>
+    <details class="proj" style="--c:var(--teal);--tint:rgba(153,246,228,.30)">
+      <summary><span class="p-num">04</span><span class="p-head"><span class="p-title">The smoking penalty above BMI 30</span><span class="p-cat kick">Health</span></span><span class="p-date meta">2026</span><span class="p-icon" aria-hidden="true"></span></summary>
+      <div class="p-body"><div class="p-inner has-fig">
+        <figure class="p-fig"><img src="assets/img/medical.jpg" alt="Bar chart of the estimated smoking penalty below and above BMI 30" loading="lazy"></figure>
+        <div class="p-text">
+          <div class="p-block"><span class="kick">Overview</span><p class="body small">How much more are smokers charged for medical care, and is the penalty the same for everyone? I fitted regression models on 1,337 adults, adjusting for age, sex, children and region, and checked them with 2,000 bootstrap resamples.</p></div>
+          <div class="p-block"><span class="kick">The challenge</span><p class="body small">The penalty was not the same for everyone, so a single smoking effect hid the real pattern. The dataset is also simulated from census figures, so results are patterns in the data, not real-world causes.</p></div>
+          <div class="p-block"><span class="kick">What I learned</span><p class="body small">One well-chosen interaction term mattered more than extra complexity. The penalty more than doubled above BMI 30, from about $13,400 to $33,200 a year, and explained variation rose from 75% to 86%.</p></div>
+          <div class="p-stats"><div><span class="p-stat">×2.5</span><span class="meta">penalty above BMI 30</span></div><div><span class="p-stat">86%</span><span class="meta">variation explained</span></div></div>
+          <p class="meta">Python · statsmodels · bootstrap · Matplotlib</p>
+          <div class="p-links"><a href="https://github.com/SuwaashaM/smoking-bmi-medical-costs" target="_blank" rel="noopener">Code &amp; write-up →</a></div>
+        </div>
+      </div></div>
+    </details>
+    <details class="proj" style="--c:var(--indigo);--tint:rgba(199,210,254,.35)">
+      <summary><span class="p-num">05</span><span class="p-head"><span class="p-title">Who is about to leave?</span><span class="p-cat kick">Business</span></span><span class="p-date meta">2026</span><span class="p-icon" aria-hidden="true"></span></summary>
+      <div class="p-body"><div class="p-inner has-fig">
+        <figure class="p-fig"><img src="assets/img/churn.jpg" alt="Targeting curve and ROC curves for the churn models" loading="lazy"></figure>
+        <div class="p-text">
+          <div class="p-block"><span class="kick">Overview</span><p class="body small">Which customers are about to leave, and can a simple model find them in time? Using IBM&#x27;s Telco data of 7,043 customers, I compared logistic regression with gradient boosting under cross-validation and a held-out test set.</p></div>
+          <div class="p-block"><span class="kick">The challenge</span><p class="body small">The model had to be one a business could explain and act on, not just the most accurate. It is a sample dataset, so results show association rather than cause.</p></div>
+          <div class="p-block"><span class="kick">What I learned</span><p class="body small">Simple can be enough. The explainable model matched gradient boosting (ROC-AUC 0.85 vs 0.84) and was well calibrated. Contacting the riskiest 20% of customers would reach half of those who leave, 2.5 times better than random.</p></div>
+          <div class="p-stats"><div><span class="p-stat">0.85</span><span class="meta">test ROC-AUC</span></div><div><span class="p-stat">50%</span><span class="meta">of leavers in the riskiest 20%</span></div></div>
+          <p class="meta">Python · scikit-learn · pandas · Matplotlib</p>
+          <div class="p-links"><a href="https://github.com/SuwaashaM/telco-churn-prediction" target="_blank" rel="noopener">Code &amp; write-up →</a></div>
+        </div>
+      </div></div>
+    </details>
+    <details class="proj" style="--c:var(--amber);--tint:rgba(253,230,138,.32)">
+      <summary><span class="p-num">06</span><span class="p-head"><span class="p-title">ICO fundraising, tested in R</span><span class="p-cat kick">Academic</span></span><span class="p-date meta">2026</span><span class="p-icon" aria-hidden="true"></span></summary>
+      <div class="p-body"><div class="p-inner">
+        
+        <div class="p-text">
+          <div class="p-block"><span class="kick">Overview</span><p class="body small">Which token sales reach their fundraising target? I modelled Initial Coin Offering outcomes from digital presence, compliance and geographic signals in R.</p></div>
+          <div class="p-block"><span class="kick">The challenge</span><p class="body small">The data was sparse and patchily reported, so imputation, leakage control and class-imbalance handling had to be done carefully.</p></div>
+          <div class="p-block"><span class="kick">What I learned</span><p class="body small">Careful data handling mattered more than the choice of model. Refactoring my coursework into a tested pipeline caught a leak in the original, where KNN had been tuned on the test set. 34 automated checks now run on every change.</p></div>
+          <div class="p-stats"><div><span class="p-stat">34</span><span class="meta">automated checks</span></div></div>
+          <p class="meta">R · imputation · classification</p>
+          <div class="p-links"><a href="https://github.com/SuwaashaM/ico-fundraising-prediction" target="_blank" rel="noopener">View on GitHub →</a></div>
+        </div>
+      </div></div>
+    </details>
+    <details class="proj" style="--c:var(--teal);--tint:rgba(153,246,228,.30)">
+      <summary><span class="p-num">07</span><span class="p-head"><span class="p-title">Customer lifetime value</span><span class="p-cat kick">Published</span></span><span class="p-date meta">2024</span><span class="p-icon" aria-hidden="true"></span></summary>
+      <div class="p-body"><div class="p-inner">
+        
+        <div class="p-text">
+          <div class="p-block"><span class="kick">Overview</span><p class="body small">Which customers are worth the most over time? I modelled purchasing behaviour across 10,000+ transaction records to find high-value segments.</p></div>
+          <div class="p-block"><span class="kick">The challenge</span><p class="body small">Getting a real, measurable lift over the baseline model rather than a result that only looked better.</p></div>
+          <div class="p-block"><span class="kick">What I learned</span><p class="body small">The lift came from better features, not a bigger model: feature engineering improved predictive performance by 22% under cross-validation. The results became retention recommendations and contributed to a peer-reviewed paper in IJRAR (2024).</p></div>
+          <div class="p-stats"><div><span class="p-stat">10,000+</span><span class="meta">records</span></div><div><span class="p-stat">+22%</span><span class="meta">predictive lift</span></div></div>
+          <p class="meta">Python · pandas · regression</p>
+          
+        </div>
+      </div></div>
+    </details>
+    <details class="proj" style="--c:var(--indigo);--tint:rgba(199,210,254,.35)">
+      <summary><span class="p-num">08</span><span class="p-head"><span class="p-title">An AI personal assistant agent</span><span class="p-cat kick">In progress</span></span><span class="p-date meta">Not yet public</span><span class="p-icon" aria-hidden="true"></span></summary>
+      <div class="p-body"><div class="p-inner">
+        
+        <div class="p-text">
+          <div class="p-block"><span class="kick">Overview</span><p class="body small">An agentic personal assistant that plans, uses tools and remembers context, while the user stays in control. The aim is to organise tasks, analyse information and automate useful workflows.</p></div>
+          <div class="p-block"><span class="kick">The challenge</span><p class="body small">Letting the agent plan and act while keeping the user in control of every step that matters.</p></div>
+          <div class="p-block"><span class="kick">Where it stands</span><p class="body small">It is at the architecture and prototyping stage, built in Python, so there are no results yet. The planner and memory layers come next.</p></div>
+          
+          <p class="meta">Python · agentic AI · LLMs · APIs</p>
+          
+        </div>
+      </div></div>
+    </details>
   </div>
 </section>
 
-<section id="hack" class="row" style="background-image:radial-gradient(rgba(167,139,250,.28) 1.2px, transparent 1.3px);background-size:22px 22px">
-  <div style="flex:1 1 280px;display:flex;flex-direction:column;gap:14px">
-    <h2 class="hl reveal" style="font-size:40px">Dispatches from the hackathon floor</h2>
-    <p class="body" style="font-style:italic;color:#444">“One clever prompt won't get you far. A small system with guardrails, a knowledge base and evals will.”</p>
-  </div>
-  <div class="main" style="display:flex;flex-direction:column;gap:24px">
-    <article class="card rise" style="--c:var(--indigo);--tint:rgba(255,255,255,.85)"><span class="kick">Completed · October 2026 · Team of four</span><h3 class="hl" style="font-size:28px">ResultWise — no follow-up left behind</h3><p class="body">Scan reports often end with “repeat MRI in 6 months”, and that line can be missed when a patient moves hospital. I set up the repo, built the first prototype, the clinician review flow and the evaluation. AI in Healthcare Hackathon, Leeds AI Week.</p><p class="meta">LLM extraction · rule engine · FHIR R4</p></article>
-    <article class="card rise" style="--c:var(--amber);--tint:rgba(255,255,255,.85)"><span class="kick">Top 10 finalist · 2025 · Rebuilt 2026</span><h3 class="hl" style="font-size:28px">Hauntify</h3><p class="body">A Streamlit app pairing computer-vision costume filters with an NLP classifier at about 90% accuracy.</p><p class="meta">Python · Streamlit · OpenCV · NLP</p></article>
-    <article class="card rise" style="--c:var(--green);--tint:rgba(255,255,255,.85)"><span class="kick">Solo entry · 2026</span><h3 class="hl" style="font-size:28px">AI research assistant with verifiable citations</h3><p class="body">Nebius × NVIDIA Global AI Hackathon 2026.</p></article>
+<section id="hack" style="background-image:radial-gradient(rgba(167,139,250,.28) 1.2px, transparent 1.3px);background-size:22px 22px">
+  <div class="sec-head"><div><span class="kick" style="color:var(--indigo)">03 · Hackathons</span><h2 class="hl sec-title reveal">Dispatches from the hackathon floor</h2></div><span class="meta">“One clever prompt won't get you far. A small system with guardrails, a knowledge base and evals will.”</span></div>
+  <div class="plist">
+    <details class="proj" style="--c:var(--indigo);--tint:rgba(199,210,254,.35)">
+      <summary><span class="p-num">01</span><span class="p-head"><span class="p-title">ResultWise — no follow-up left behind</span><span class="p-cat kick">AI in Healthcare Hackathon · Team of four</span></span><span class="p-date meta">Oct 2026</span><span class="p-icon" aria-hidden="true"></span></summary>
+      <div class="p-body"><div class="p-inner has-fig">
+        <figure class="p-fig"><img src="assets/art/tablet.webp" alt="Render of a tablet showing a scan report with the follow-up booked" loading="lazy"></figure>
+        <div class="p-text">
+          <div class="p-block"><span class="kick">Overview</span><p class="body small">Built at the AI in Healthcare Hackathon, Leeds, on 24–25 October 2026. AI reads breast cancer scan reports, plain rules track bookings at both hospitals, and a clinician approves every message before it reaches the patient in her own language. I set up the repository, built the first working prototype, the clinician review flow and the evaluation, and maintained the web app the team demoed.</p></div>
+          <div class="p-block"><span class="kick">The challenge</span><p class="body small">Scan follow-ups can slip through when care moves between hospitals, because each system only sees its own bookings. Anything reaching a patient had to stay under a clinician&#x27;s control.</p></div>
+          <div class="p-block"><span class="kick">What I learned</span><p class="body small">On 10 held-out synthetic reports the AI found every follow-up while keyword rules found 22%, but rules were more precise (100% vs 90%). That is why the clinician review step matters. It is a prototype on synthetic data, not clinically validated.</p></div>
+          <div class="p-stats"><div><span class="p-stat">100%</span><span class="meta">follow-ups found by AI</span></div><div><span class="p-stat">22%</span><span class="meta">found by keyword rules</span></div></div>
+          <p class="meta">LLM extraction · rule engine · human review · FHIR R4</p>
+          <div class="p-links"><a href="https://resultwise.lovable.app/" target="_blank" rel="noopener">Live app →</a><a href="https://resultwise.lovable.app/demo" target="_blank" rel="noopener">Guided demo →</a><a href="https://resultwise.lovable.app/film" target="_blank" rel="noopener">Demo film →</a><a href="https://github.com/SuwaashaM/RESULTWISE" target="_blank" rel="noopener">GitHub →</a></div>
+        </div>
+      </div></div>
+    </details>
+    <details class="proj" style="--c:var(--amber);--tint:rgba(253,230,138,.32)">
+      <summary><span class="p-num">02</span><span class="p-head"><span class="p-title">Hauntify</span><span class="p-cat kick">Halloween Hackathon · Top 10 finalist</span></span><span class="p-date meta">Oct 2025 · rebuilt 2026</span><span class="p-icon" aria-hidden="true"></span></summary>
+      <div class="p-body"><div class="p-inner">
+        
+        <div class="p-text">
+          <div class="p-block"><span class="kick">Overview</span><p class="body small">A Streamlit app mixing computer vision and NLP. Snap a webcam photo and turn it Vampire, Ghost, Zombie or Witch with OpenCV effects, or type a sentence and a small text classifier scores how spooky it is and suggests a costume.</p></div>
+          <div class="p-block"><span class="kick">The challenge</span><p class="body small">Bringing two different AI pieces, image effects and a text classifier, together in one playful app within a hackathon timeframe.</p></div>
+          <div class="p-block"><span class="kick">What I learned</span><p class="body small">The text model reached about 90% accuracy and the app made the Top 10. I have since rebuilt it as a live web app with face-tracking filters and three Halloween mini games.</p></div>
+          <div class="p-stats"><div><span class="p-stat">~90%</span><span class="meta">model accuracy</span></div><div><span class="p-stat">Top 10</span><span class="meta">finalist</span></div></div>
+          <p class="meta">Python · Streamlit · OpenCV · NLP</p>
+          <div class="p-links"><a href="https://hauntify-studio.lovable.app/" target="_blank" rel="noopener">Live app →</a><a href="https://github.com/SuwaashaM/hauntify-halloween-app" target="_blank" rel="noopener">GitHub →</a></div>
+        </div>
+      </div></div>
+    </details>
+    <details class="proj" style="--c:var(--green);--tint:rgba(187,247,208,.32)">
+      <summary><span class="p-num">03</span><span class="p-head"><span class="p-title">AI research assistant with verifiable citations</span><span class="p-cat kick">Nebius × NVIDIA Global AI Hackathon · Solo</span></span><span class="p-date meta">2026</span><span class="p-icon" aria-hidden="true"></span></summary>
+      <div class="p-body"><div class="p-inner">
+        
+        <div class="p-text">
+          <div class="p-block"><span class="kick">Overview</span><p class="body small">A research assistant that shows its working: it plans a question, finds sources, weighs the evidence and answers with citations you can check. It should also flag unsupported claims and compare conflicting evidence.</p></div>
+          <div class="p-block"><span class="kick">The challenge</span><p class="body small">Making every claim in an answer traceable to a source, instead of a fluent answer nobody can verify.</p></div>
+          <div class="p-block"><span class="kick">Where it stands</span><p class="body small">The planned stack is NVIDIA open-source models through Nebius, with a flow from question to plan, sources, evidence check and cited answer.</p></div>
+          
+          <p class="meta">NVIDIA open models · Nebius · citations</p>
+          
+        </div>
+      </div></div>
+    </details>
   </div>
 </section>
 
-<section id="career" class="row">
+<section id="career">
+  <div class="sec-head"><div><span class="kick" style="color:var(--teal)">04 · Experience</span><h2 class="hl sec-title reveal">Career notes</h2></div><span class="meta">Research, consulting and internships, most recent first.</span></div>
+  <div class="row">
   <div class="main" style="display:flex;flex-direction:column;gap:22px">
-    <h2 class="hl reveal" style="font-size:40px">Career notes</h2>
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px 40px">
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px">
       <article style="display:flex;flex-direction:column;gap:6px"><span class="meta">Oct 2026 – present</span><h3 class="hl" style="font-size:20px">Research Collaborator, University of Leeds</h3><p class="body small">Turning the dissertation into a manuscript, with a unified Python and R pipeline.</p></article>
       <article style="display:flex;flex-direction:column;gap:6px"><span class="meta">Aug – Sep 2026</span><h3 class="hl" style="font-size:20px">Data Science &amp; Product Consultant (client project)</h3><p class="body small">Competitor research, feasibility report, client pitch and a mobile-first proof of concept for an early-stage start-up. Under NDA.</p></article>
       <article style="display:flex;flex-direction:column;gap:6px"><span class="meta">Jul – Sep 2024 · Remote</span><h3 class="hl" style="font-size:20px">Data Science Intern, Corizo</h3><p class="body small">Cleaning, exploring and modelling real datasets, reported for non-technical readers.</p></article>
@@ -252,11 +485,12 @@ footer{position:relative;padding:56px 0 40px}
     <div><h3 class="hl" style="font-size:20px">MSc Data Science and Analytics</h3><p class="meta">University of Leeds · 2025 – 2026</p></div>
     <div><h3 class="hl" style="font-size:20px">B.Tech Information Technology</h3><p class="meta">SRM Valliammai Engineering College · CGPA 9.02/10</p></div>
   </aside>
+  </div>
 </section>
 
 <section id="community" style="background:linear-gradient(135deg,rgba(251,207,232,.30),rgba(199,210,254,.25) 60%,rgba(153,246,228,.22))">
-  <div style="padding:0 0 0;"><h2 class="hl reveal" style="font-size:40px;margin-bottom:24px">Community &amp; learning</h2></div>
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px 40px">
+  <div class="sec-head"><div><span class="kick" style="color:var(--rose)">05 · Community</span><h2 class="hl sec-title reveal">Community &amp; learning</h2></div><span class="meta">Volunteering, workshops and events that keep me learning in public.</span></div>
+  <div class="grid">
     <article class="card rise" style="--c:var(--rose);--tint:rgba(255,255,255,.7)"><span class="kick">New · Nov 2026 – present</span><h3 class="hl" style="font-size:20px">Social Media Analyst and Blog Writer, UKind Therapy CIC</h3><p class="body small">Social media analytics, blogs and newsletters for a survivor-led social enterprise.</p></article>
     <article class="card rise" style="--c:var(--indigo);--tint:rgba(255,255,255,.7)"><span class="kick">Workshop · Nov 2026</span><h3 class="hl" style="font-size:20px">Find Your First AI Agent, AI Lab (Zygens), Leeds</h3><p class="body small">Designed a job-search agent use case, since built with guardrails, a knowledge base and evals.</p></article>
     <article class="card rise" style="--c:var(--teal);--tint:rgba(255,255,255,.7)"><span class="kick">Jun 2026</span><h3 class="hl" style="font-size:20px">TEDx University of Leeds, “Convergence”</h3><p class="body small">Speaker coordination and event operations.</p></article>
@@ -264,9 +498,9 @@ footer{position:relative;padding:56px 0 40px}
   </div>
 </section>
 
-<section id="toolkit" class="row" style="gap:40px">
-  <h2 class="hl reveal" style="font-size:40px;flex:1 1 240px">The toolkit index</h2>
-  <div class="main" style="display:flex;flex-direction:column;gap:16px">
+<section id="toolkit">
+  <div class="sec-head"><div><span class="kick" style="color:var(--amber)">06 · Toolkit</span><h2 class="hl sec-title reveal">The toolkit index</h2></div><span class="meta">Languages, methods and tools I use day to day.</span></div>
+  <div style="display:flex;flex-direction:column;gap:18px">
     <div class="tk-row"><span class="kick">Languages &amp; data</span><span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span><span class="tag">pandas</span><span class="tag">NumPy</span></div>
     <div class="tk-row"><span class="kick">Machine learning</span><span class="tag">scikit-learn</span><span class="tag">cross-validation</span><span class="tag">feature engineering</span><span class="tag">TensorFlow/Keras</span><span class="tag">CNN · TCN · LSTM · GRU</span></div>
     <div class="tk-row"><span class="kick">AI</span><span class="tag">NLP</span><span class="tag">generative AI</span><span class="tag">agentic AI</span><span class="tag">human-in-the-loop AI</span></div>
@@ -274,27 +508,28 @@ footer{position:relative;padding:56px 0 40px}
     <div class="tk-row"><span class="kick">Tools</span><span class="tag">Git &amp; GitHub</span><span class="tag">Azure</span><span class="tag">Streamlit</span><span class="tag">OpenCV</span><span class="tag">LaTeX</span><span class="tag">Figma</span><span class="tag">Lovable</span></div>
   </div>
 </section>
-</main>
 
-<footer id="contact">
-  <svg class="deco" aria-hidden="true" viewBox="0 0 500 160" style="right:0;bottom:30px;width:520px;opacity:.4">
+<section id="contact" style="background:linear-gradient(135deg,rgba(153,246,228,.22),rgba(199,210,254,.22) 50%,rgba(254,215,170,.25));border-bottom:3px double var(--ink)">
+  <svg class="deco" aria-hidden="true" viewBox="0 0 500 160" style="right:0;top:20px;width:520px;opacity:.4">
     <path d="M0 120 Q 125 40 250 100 T 500 60" fill="none" stroke="#FB7185" stroke-width="2"/>
     <path d="M0 140 Q 125 70 250 120 T 500 90" fill="none" stroke="#5EEAD4" stroke-width="2"/>
   </svg>
-  <div class="row" style="gap:40px;justify-content:space-between;align-items:flex-end;position:relative">
-    <div style="flex:1 1 420px;display:flex;flex-direction:column;gap:12px">
-      <span class="kick">Letters to the editor</span>
-      <h2 class="hl" style="font-size:clamp(32px,4vw,48px)">Hiring for AI or data? Let's talk.</h2>
-      <p class="body">Based in Leeds and open to AI and data science roles across the UK.</p>
-    </div>
-    <div class="body" style="flex:1 1 300px;display:flex;flex-direction:column;gap:8px">
-      <a href="mailto:suwaashaperumal@gmail.com">suwaashaperumal@gmail.com</a>
-      <a href="https://www.linkedin.com/in/suwaasham">linkedin.com/in/suwaasham</a>
-      <a href="https://github.com/SuwaashaM">github.com/SuwaashaM</a>
-      <a href="cv/Suwaasha_Murugaperumal_CV.pdf" class="cta">Download CV</a>
-    </div>
+  <div class="sec-head"><div><span class="kick" style="color:var(--red)">07 · Contact</span><h2 class="hl sec-title reveal">Get in touch</h2></div><span class="meta">Letters to the editor are always welcome.</span></div>
+  <div class="contact-lede">
+    <p class="body">Hiring for an AI or data role, or want to talk about a project? I am based in Leeds and open to AI and data science roles across the UK. Email is the quickest way to reach me.</p>
+    <a class="cta" href="mailto:suwaashaperumal@gmail.com?subject=Hello%20Suwaasha">Email me</a>
   </div>
-  <p class="meta" style="border-top:1px solid var(--ink);padding-top:14px;margin-top:40px">© 2026 Suwaasha Murugaperumal · Printed in Leeds</p>
+  <div class="contact-grid">
+    <a class="c-card rise" style="--c:var(--red)" href="mailto:suwaashaperumal@gmail.com"><span class="kick">Email</span><strong>suwaashaperumal@gmail.com</strong><span class="meta">Best for roles and projects</span></a>
+    <a class="c-card rise" style="--c:var(--indigo);--d:.08s" href="https://www.linkedin.com/in/suwaasham" target="_blank" rel="noopener"><span class="kick">LinkedIn</span><strong>linkedin.com/in/suwaasham</strong><span class="meta">Experience and updates</span></a>
+    <a class="c-card rise" style="--c:var(--teal);--d:.16s" href="https://github.com/SuwaashaM" target="_blank" rel="noopener"><span class="kick">GitHub</span><strong>github.com/SuwaashaM</strong><span class="meta">Code for the projects above</span></a>
+    <a class="c-card rise" style="--c:var(--amber);--d:.24s" href="cv/Suwaasha_Murugaperumal_CV.pdf"><span class="kick">CV</span><strong>Download my CV</strong><span class="meta">PDF</span></a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="meta" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px"><span>© 2026 Suwaasha Murugaperumal · Printed in Leeds</span><a href="#top" style="color:var(--muted)">Back to top ↑</a></p>
 </footer>
 
 </div>
@@ -302,16 +537,52 @@ footer{position:relative;padding:56px 0 40px}
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.documentElement.classList.add('js');
-  var intro=document.getElementById('intro');
-  function endIntro(){ if(intro){ intro.remove(); intro=null; } document.querySelector('.title').classList.add('in'); }
+  var intro=document.getElementById('intro'), raf=null, timers=[];
+  function endIntro(){
+    if(!intro) return;
+    timers.forEach(clearTimeout); if(raf) cancelAnimationFrame(raf);
+    var el=intro; intro=null;
+    el.classList.add('out');
+    document.querySelector('.title').classList.add('in');
+    setTimeout(function(){ el.remove(); }, 1100);
+  }
   var seen=false; try{ seen=sessionStorage.getItem('introSeen')==='1'; }catch(e){}
-  if(reduce || seen){ endIntro(); }
+  if(reduce || seen){ if(intro){ intro.remove(); intro=null; } document.querySelector('.title').classList.add('in'); }
   else{
     try{ sessionStorage.setItem('introSeen','1'); }catch(e){}
-    intro.classList.add('play');
     document.getElementById('skipIntro').addEventListener('click', endIntro);
-    intro.addEventListener('animationend', function(e){ if(e.target===intro) endIntro(); });
-    setTimeout(endIntro, 4300);
+    document.addEventListener('keydown', function k(e){ if(e.key==='Escape'){ endIntro(); document.removeEventListener('keydown',k);} });
+    /* particle field: scattered noise that settles into a clean curve */
+    var cv=document.getElementById('introCanvas'), cx=cv.getContext('2d'), dpr=Math.min(window.devicePixelRatio||1,2), W, Hh, pts=[];
+    function size(){ W=cv.clientWidth; Hh=cv.clientHeight; cv.width=W*dpr; cv.height=Hh*dpr; cx.setTransform(dpr,0,0,dpr,0,0); }
+    size(); window.addEventListener('resize', size);
+    var cols=['#5EEAD4','#A78BFA','#FDBA74','#FB7185','#F5F2EA'], N=Math.round(Math.min(220, W/5));
+    for(var i=0;i<N;i++){ var u=i/(N-1); pts.push({x:Math.random()*W,y:Math.random()*Hh,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,u:u,r:Math.random()*1.6+.6,c:cols[i%cols.length]}); }
+    var order=0, t0=performance.now();
+    function target(p){ var x=W*.12+p.u*W*.76; var y=Hh*.62-Math.sin(p.u*Math.PI*.95)*Hh*.22 - p.u*Hh*.06; return [x,y]; }
+    function frame(t){
+      var el=(t-t0)/1000; cx.clearRect(0,0,W,Hh);
+      var tc=document.getElementById('tc'); if(tc){ var f=Math.floor(el*24)%24, sec=Math.floor(el); tc.textContent='00:0'+sec+':'+(f<10?'0':'')+f; }
+      for(var i=0;i<pts.length;i++){ var p=pts[i];
+        if(order>0){ var g=target(p); p.x+=(g[0]-p.x)*0.06*order; p.y+=(g[1]-p.y)*0.06*order; }
+        else { p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>Hh)p.vy*=-1; }
+        cx.globalAlpha=order>0?.9:.55; cx.fillStyle=p.c; cx.beginPath(); cx.arc(p.x,p.y,p.r,0,6.283); cx.fill();
+      }
+      if(order>0){ cx.globalAlpha=.12*order; cx.strokeStyle='#F5F2EA'; cx.lineWidth=1; cx.beginPath();
+        for(var j=0;j<pts.length;j++){ var q=pts[j]; j?cx.lineTo(q.x,q.y):cx.moveTo(q.x,q.y);} cx.stroke(); }
+      raf=requestAnimationFrame(frame);
+    }
+    raf=requestAnimationFrame(frame);
+    var sc=intro.querySelectorAll('.scene'), flash=document.getElementById('flash'), leak=document.getElementById('leak');
+    function cut(n){ sc.forEach(function(x,i){ x.classList.toggle('on', i===n); }); if(n>=0){ flash.classList.remove('go'); void flash.offsetWidth; flash.classList.add('go'); } }
+    function at(ms,fn){ timers.push(setTimeout(fn,ms)); }
+    at(80,  function(){ intro.classList.add('letterbox','rolling'); });
+    at(700, function(){ cut(0); });
+    at(2300,function(){ cut(1); });
+    at(3200,function(){ order=1; leak.animate([{opacity:0,transform:'translateX(0) rotate(8deg)'},{opacity:1,offset:.4},{opacity:0,transform:'translateX(320%) rotate(8deg)'}],{duration:2200,easing:'ease-in-out'}); });
+    at(4700,function(){ cut(-1); });
+    at(4900,function(){ intro.classList.add('dim'); cut(2); });
+    at(7600,endIntro);
   }
   var els=document.querySelectorAll('.reveal,.rise,.portrait,section,footer');
   function count(el){
@@ -327,6 +598,26 @@ footer{position:relative;padding:56px 0 40px}
       io.unobserve(en.target);} });
   },{threshold:.15});
   els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.proj').forEach(function(d){
+    var sum=d.querySelector('summary'), body=d.querySelector('.p-body'), busy=false;
+    sum.addEventListener('click', function(e){
+      if(reduce || !body.animate) return;
+      e.preventDefault(); if(busy) return; busy=true;
+      if(!d.open){
+        d.open=true; var h=body.scrollHeight;
+        body.animate([{height:'0px',opacity:0},{height:h+'px',opacity:1}],{duration:520,easing:'cubic-bezier(.2,.7,.1,1)'}).onfinish=function(){busy=false;};
+      } else {
+        var h2=body.scrollHeight;
+        body.animate([{height:h2+'px',opacity:1},{height:'0px',opacity:0}],{duration:380,easing:'cubic-bezier(.7,0,.3,1)'}).onfinish=function(){ d.open=false; busy=false; };
+      }
+    });
+  });
 })();
 </script>
 </body>
